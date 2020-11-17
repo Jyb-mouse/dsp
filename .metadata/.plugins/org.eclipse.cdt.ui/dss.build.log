@@ -1,0 +1,2000 @@
+16:28:18 **** Incremental Build of configuration Release for project dss ****
+Info: Internal Builder is used for build
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\clang.exe" -gdwarf-2 -emit-llvm -S -target dsp -I "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\include" "..\\fft_32x32(1).c" -o fft_32x32(1).ll 
+'' is not a recognized processor for this target (ignoring processor)
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\llc.exe" -march=dsp -mcpu=dspse -relocation-model=static -filetype=obj fft_32x32(1).ll -o fft_32x32(1).o 
+abstract
+val1,result!!0 ArgReg= 13
+val1,result!!1 ArgReg= 14
+op code is 154
+op code is 154
+op code is 154
+# Machine code for function bit_reverse: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"n"; line no:12
+	DBG_VALUE %noreg, 0, !"x"; line no:12
+	ST %vreg0, <fi#0>, 0; mem:ST4[%n.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%x.addr] CPURegs:%vreg1
+	%vreg2<def> = MovGR %ZERO, 0; CPURegs:%vreg2
+	ST %vreg2<kill>, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg2 dbg:..\fft_32x32(1).c:17:8
+	%vreg3<def> = MovGR %ZERO, 1; CPURegs:%vreg3
+	ST %vreg3, <fi#4>, 0; mem:ST4[%j] CPURegs:%vreg3 dbg:..\fft_32x32(1).c:17:8
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#7
+	%vreg4<def> = LD <fi#0>, 0; mem:LD4[%n.addr] CPURegs:%vreg4 dbg:..\fft_32x32(1).c:17:8
+	%vreg5<def> = ADDiu %vreg4<kill>, -1; CPURegs:%vreg5,%vreg4 dbg:..\fft_32x32(1).c:17:8
+	%vreg6<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg6 dbg:..\fft_32x32(1).c:17:8
+	%vreg7<def> = GE %vreg6<kill>, %vreg5<kill>; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\fft_32x32(1).c:17:8
+	JC %vreg7<kill>, <BB#8>; CPURegs:%vreg7 dbg:..\fft_32x32(1).c:17:8
+	Jmp <BB#2>; dbg:..\fft_32x32(1).c:17:8
+    Successors according to CFG: BB#2(124) BB#8(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	DBG_VALUE <fi#5>, 0, !"k"; line no:18
+	%vreg9<def> = LD <fi#0>, 0; mem:LD4[%n.addr] CPURegs:%vreg9 dbg:..\fft_32x32(1).c:18:10
+	%vreg10<def> = SRA %vreg9<kill>, %vreg3; CPURegs:%vreg10,%vreg9,%vreg3 dbg:..\fft_32x32(1).c:18:10
+	ST %vreg10<kill>, <fi#5>, 0; mem:ST4[%k] CPURegs:%vreg10 dbg:..\fft_32x32(1).c:18:10
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.cond1
+    Predecessors according to CFG: BB#2 BB#4
+	%vreg11<def> = LD <fi#5>, 0; mem:LD4[%k] CPURegs:%vreg11 dbg:..\fft_32x32(1).c:18:10
+	%vreg12<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg12 dbg:..\fft_32x32(1).c:18:10
+	%vreg13<def> = XORu %vreg12<kill>, %vreg11; CPURegs:%vreg13,%vreg12,%vreg11 dbg:..\fft_32x32(1).c:18:10
+	ST %vreg13, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg13 dbg:..\fft_32x32(1).c:18:10
+	%vreg14<def> = LE %vreg11, %vreg13; CPURegs:%vreg14,%vreg11,%vreg13 dbg:..\fft_32x32(1).c:18:10
+	JC %vreg14<kill>, <BB#5>; CPURegs:%vreg14 dbg:..\fft_32x32(1).c:18:10
+	Jmp <BB#4>; dbg:..\fft_32x32(1).c:18:10
+    Successors according to CFG: BB#4(124) BB#5(4)
+
+BB#4: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#3
+	%vreg63<def> = LD <fi#5>, 0; mem:LD4[%k] CPURegs:%vreg63 dbg:..\fft_32x32(1).c:18:39
+	%vreg64<def> = SRA %vreg63<kill>, %vreg3; CPURegs:%vreg64,%vreg63,%vreg3 dbg:..\fft_32x32(1).c:18:39
+	ST %vreg64<kill>, <fi#5>, 0; mem:ST4[%k] CPURegs:%vreg64 dbg:..\fft_32x32(1).c:18:39
+	Jmp <BB#3>; dbg:..\fft_32x32(1).c:18:39
+    Successors according to CFG: BB#3
+
+BB#5: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#3
+	%vreg15<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg15 dbg:..\fft_32x32(1).c:19:9
+	%vreg16<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg16 dbg:..\fft_32x32(1).c:19:9
+	%vreg17<def> = GE %vreg16<kill>, %vreg15<kill>; CPURegs:%vreg17,%vreg16,%vreg15 dbg:..\fft_32x32(1).c:19:9
+	JC %vreg17<kill>, <BB#7>; CPURegs:%vreg17 dbg:..\fft_32x32(1).c:19:9
+	Jmp <BB#6>; dbg:..\fft_32x32(1).c:19:9
+    Successors according to CFG: BB#6(16) BB#7(16)
+
+BB#6: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#5
+	%vreg18<def> = MovGR %ZERO, 3; CPURegs:%vreg18
+	%vreg19<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg19 dbg:..\fft_32x32(1).c:20:6
+	%vreg20<def> = SHL %vreg19<kill>, %vreg18; CPURegs:%vreg20,%vreg19,%vreg18 dbg:..\fft_32x32(1).c:20:6
+	%vreg21<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg21 dbg:..\fft_32x32(1).c:20:6
+	%vreg22<def> = ADDu %vreg21<kill>, %vreg20<kill>; CPURegs:%vreg22,%vreg21,%vreg20 dbg:..\fft_32x32(1).c:20:6
+	%vreg23<def> = LD %vreg22<kill>, 0; mem:LD4[%arrayidx] CPURegs:%vreg23,%vreg22 dbg:..\fft_32x32(1).c:20:6
+	ST %vreg23<kill>, <fi#2>, 0; mem:ST4[%temp] CPURegs:%vreg23 dbg:..\fft_32x32(1).c:20:6
+	%vreg24<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg24 dbg:..\fft_32x32(1).c:21:6
+	%vreg25<def> = SHL %vreg24<kill>, %vreg18; CPURegs:%vreg25,%vreg24,%vreg18 dbg:..\fft_32x32(1).c:21:6
+	%vreg26<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg26 dbg:..\fft_32x32(1).c:21:6
+	%vreg27<def> = ADDu %vreg26, %vreg25<kill>; CPURegs:%vreg27,%vreg26,%vreg25 dbg:..\fft_32x32(1).c:21:6
+	%vreg28<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg28 dbg:..\fft_32x32(1).c:21:6
+	%vreg29<def> = SHL %vreg28<kill>, %vreg18; CPURegs:%vreg29,%vreg28,%vreg18 dbg:..\fft_32x32(1).c:21:6
+	%vreg30<def> = ADDu %vreg26, %vreg29<kill>; CPURegs:%vreg30,%vreg26,%vreg29 dbg:..\fft_32x32(1).c:21:6
+	%vreg31<def> = LD %vreg30<kill>, 0; mem:LD4[%arrayidx7] CPURegs:%vreg31,%vreg30 dbg:..\fft_32x32(1).c:21:6
+	ST %vreg31<kill>, %vreg27<kill>, 0; mem:ST4[%arrayidx9] CPURegs:%vreg31,%vreg27 dbg:..\fft_32x32(1).c:21:6
+	%vreg32<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg32 dbg:..\fft_32x32(1).c:22:6
+	%vreg33<def> = SHL %vreg32<kill>, %vreg18; CPURegs:%vreg33,%vreg32,%vreg18 dbg:..\fft_32x32(1).c:22:6
+	%vreg34<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg34 dbg:..\fft_32x32(1).c:22:6
+	%vreg35<def> = ADDu %vreg34<kill>, %vreg33<kill>; CPURegs:%vreg35,%vreg34,%vreg33 dbg:..\fft_32x32(1).c:22:6
+	%vreg36<def> = LD <fi#2>, 0; mem:LD4[%temp] CPURegs:%vreg36 dbg:..\fft_32x32(1).c:22:6
+	ST %vreg36<kill>, %vreg35<kill>, 0; mem:ST4[%arrayidx11] CPURegs:%vreg36,%vreg35 dbg:..\fft_32x32(1).c:22:6
+	%vreg37<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg37 dbg:..\fft_32x32(1).c:23:6
+	%vreg38<def> = SHL %vreg37<kill>, %vreg18; CPURegs:%vreg38,%vreg37,%vreg18 dbg:..\fft_32x32(1).c:23:6
+	%vreg39<def> = MovGR %ZERO, 4; CPURegs:%vreg39
+	%vreg40<def> = ORu %vreg38<kill>, %vreg39; CPURegs:%vreg40,%vreg38,%vreg39 dbg:..\fft_32x32(1).c:23:6
+	%vreg41<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg41 dbg:..\fft_32x32(1).c:23:6
+	%vreg42<def> = ADDu %vreg40<kill>, %vreg41<kill>; CPURegs:%vreg42,%vreg40,%vreg41 dbg:..\fft_32x32(1).c:23:6
+	%vreg43<def> = LD %vreg42<kill>, 0; mem:LD4[%arrayidx13] CPURegs:%vreg43,%vreg42 dbg:..\fft_32x32(1).c:23:6
+	ST %vreg43<kill>, <fi#2>, 0; mem:ST4[%temp] CPURegs:%vreg43 dbg:..\fft_32x32(1).c:23:6
+	%vreg44<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg44 dbg:..\fft_32x32(1).c:24:6
+	%vreg45<def> = SHL %vreg44<kill>, %vreg18; CPURegs:%vreg45,%vreg44,%vreg18 dbg:..\fft_32x32(1).c:24:6
+	%vreg46<def> = ORu %vreg45<kill>, %vreg39; CPURegs:%vreg46,%vreg45,%vreg39 dbg:..\fft_32x32(1).c:24:6
+	%vreg47<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg47 dbg:..\fft_32x32(1).c:24:6
+	%vreg48<def> = ADDu %vreg46<kill>, %vreg47; CPURegs:%vreg48,%vreg46,%vreg47 dbg:..\fft_32x32(1).c:24:6
+	%vreg49<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg49 dbg:..\fft_32x32(1).c:24:6
+	%vreg50<def> = SHL %vreg49<kill>, %vreg18; CPURegs:%vreg50,%vreg49,%vreg18 dbg:..\fft_32x32(1).c:24:6
+	%vreg51<def> = ORu %vreg50<kill>, %vreg39; CPURegs:%vreg51,%vreg50,%vreg39 dbg:..\fft_32x32(1).c:24:6
+	%vreg52<def> = ADDu %vreg51<kill>, %vreg47; CPURegs:%vreg52,%vreg51,%vreg47 dbg:..\fft_32x32(1).c:24:6
+	%vreg53<def> = LD %vreg52<kill>, 0; mem:LD4[%arrayidx16] CPURegs:%vreg53,%vreg52 dbg:..\fft_32x32(1).c:24:6
+	ST %vreg53<kill>, %vreg48<kill>, 0; mem:ST4[%arrayidx19] CPURegs:%vreg53,%vreg48 dbg:..\fft_32x32(1).c:24:6
+	%vreg54<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg54 dbg:..\fft_32x32(1).c:25:6
+	%vreg55<def> = SHL %vreg54<kill>, %vreg18; CPURegs:%vreg55,%vreg54,%vreg18 dbg:..\fft_32x32(1).c:25:6
+	%vreg56<def> = ORu %vreg55<kill>, %vreg39; CPURegs:%vreg56,%vreg55,%vreg39 dbg:..\fft_32x32(1).c:25:6
+	%vreg57<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg57 dbg:..\fft_32x32(1).c:25:6
+	%vreg58<def> = ADDu %vreg56<kill>, %vreg57<kill>; CPURegs:%vreg58,%vreg56,%vreg57 dbg:..\fft_32x32(1).c:25:6
+	%vreg59<def> = LD <fi#2>, 0; mem:LD4[%temp] CPURegs:%vreg59 dbg:..\fft_32x32(1).c:25:6
+	ST %vreg59<kill>, %vreg58<kill>, 0; mem:ST4[%arrayidx22] CPURegs:%vreg59,%vreg58 dbg:..\fft_32x32(1).c:25:6
+    Successors according to CFG: BB#7
+
+BB#7: derived from LLVM BB %for.inc23
+    Predecessors according to CFG: BB#5 BB#6
+	%vreg60<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg60 dbg:..\fft_32x32(1).c:17:37
+	%vreg61<def> = ADDiu %vreg60<kill>, 1; CPURegs:%vreg61,%vreg60 dbg:..\fft_32x32(1).c:17:37
+	ST %vreg61<kill>, <fi#4>, 0; mem:ST4[%j] CPURegs:%vreg61 dbg:..\fft_32x32(1).c:17:37
+	Jmp <BB#1>; dbg:..\fft_32x32(1).c:17:37
+    Successors according to CFG: BB#1
+
+BB#8: derived from LLVM BB %for.end24
+    Predecessors according to CFG: BB#1
+	RetLR; dbg:..\fft_32x32(1).c:28:1
+
+# End machine code for function bit_reverse.
+
+binary20 99e7b800
+binary4e 14200005
+1e
+fc
+binary60 6c4787e2
+1e
+f8
+binary60 ec5787c2
+binary4d 94200001
+1e
+f0
+binary60 ec278782
+binary4e 94200015
+binary4d 94200001
+1e
+ec
+binary60 ec278762
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+ec
+binary30 c8378762
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+ec
+binary60 ec378762
+1e
+fc
+binary30 c83787e2
+binary57 80000000
+binary57 80000000
+binary14 1830fff8
+1e
+ec
+binary30 c8478762
+binary26 90010304
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+27
+1e
+fc
+binary30 c83787e2
+28
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+e8
+binary30 c8378742
+binary57 80000000
+binary57 80000000
+binary5e 8430c20a
+1e
+e8
+binary60 ec378742
+1e
+e8
+binary30 c8378742
+binary57 80000000
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary7d 84410306
+binary37 1000c405
+1e
+f0
+binary60 ec478782
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+1e
+ec
+binary30 c8378762
+binary57 80000000
+1e
+f0
+binary30 c8478782
+binary26 90010304
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94300035
+binary4d 14300001
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 84414400
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+1e
+f4
+binary60 ec4787a2
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 4414400
+1e
+ec
+binary30 c8678762
+binary57 80000000
+binary57 80000000
+binary5d 84618309
+binary15 84514600
+5
+0
+binary30 c8514002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec510002
+1e
+ec
+binary30 c8478762
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 84414400
+1e
+f4
+binary30 c85787a2
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec510002
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+binary4e 94500045
+binary4d 94500001
+binary59 4410505
+1e
+f8
+binary30 c86787c2
+binary57 80000000
+binary57 80000000
+binary15 84410600
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+1e
+f4
+binary60 ec4787a2
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 84410309
+binary59 4410505
+1e
+f8
+binary30 c86787c2
+binary57 80000000
+binary57 80000000
+binary15 4410600
+1e
+ec
+binary30 c8778762
+binary57 80000000
+binary57 80000000
+binary5d 8471c309
+binary59 8471c505
+binary15 8461c600
+6
+0
+binary30 c8618002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec610002
+1e
+ec
+binary30 c8478762
+binary57 80000000
+binary57 80000000
+binary5d 84310309
+binary59 430c505
+1e
+f8
+binary30 c84787c2
+binary57 80000000
+binary57 80000000
+binary15 8430c400
+1e
+f4
+binary30 c84787a2
+binary57 80000000
+binary57 80000000
+3
+0
+binary60 ec40c002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary14 99e78800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+val2,result!!2 FI= ffffffff
+val6,result!!1
+op code is 9a
+RegsToPass.size()=2
+op code is 9a
+op code is 9a
+op code is 9a
+# Machine code for function fft_32x32a: SSA
+Frame Objects:
+  fi#-1: size=4, align=8, fixed, at location [SP+8]
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+  fi#7: size=4, align=4, at location [SP]
+  fi#8: size=4, align=4, at location [SP]
+  fi#9: size=4, align=4, at location [SP]
+  fi#10: size=4, align=4, at location [SP]
+  fi#11: size=4, align=4, at location [SP]
+  fi#12: size=4, align=4, at location [SP]
+  fi#13: size=4, align=4, at location [SP]
+  fi#14: size=4, align=4, at location [SP]
+  fi#15: size=4, align=4, at location [SP]
+  fi#16: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:29
+	DBG_VALUE %noreg, 0, !"w"; line no:29
+	DBG_VALUE %noreg, 0, !"nx"; line no:29
+	%vreg2<def> = LD <fi#-1>, 0; mem:LD4[FixedStack-1](align=8) CPURegs:%vreg2
+	ST %vreg0, <fi#0>, 0; mem:ST4[%x.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%w.addr] CPURegs:%vreg1
+	ST %vreg2, <fi#2>, 0; mem:ST4[%nx.addr] CPURegs:%vreg2
+	ST %vreg2, <fi#4>, 0; mem:ST4[%n2] CPURegs:%vreg2 dbg:..\fft_32x32(1).c:32:2
+	%vreg3<def> = MovGR %ZERO, 1; CPURegs:%vreg3
+	ST %vreg3, <fi#5>, 0; mem:ST4[%ie] CPURegs:%vreg3 dbg:..\fft_32x32(1).c:33:2
+	%vreg4<def> = LD <fi#2>, 0; mem:LD4[%nx.addr] CPURegs:%vreg4 dbg:..\fft_32x32(1).c:34:7
+	ST %vreg4<kill>, <fi#9>, 0; mem:ST4[%k] CPURegs:%vreg4 dbg:..\fft_32x32(1).c:34:7
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#11
+	%vreg5<def> = MovGR %ZERO, 2; CPURegs:%vreg5
+	%vreg6<def> = LD <fi#9>, 0; mem:LD4[%k] CPURegs:%vreg6 dbg:..\fft_32x32(1).c:34:7
+	%vreg7<def> = LT %vreg6<kill>, %vreg5; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\fft_32x32(1).c:34:7
+	JC %vreg7<kill>, <BB#12>; CPURegs:%vreg7 dbg:..\fft_32x32(1).c:34:7
+	Jmp <BB#2>; dbg:..\fft_32x32(1).c:34:7
+    Successors according to CFG: BB#2(124) BB#12(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	%vreg10<def> = LD <fi#4>, 0; mem:LD4[%n2] CPURegs:%vreg10 dbg:..\fft_32x32(1).c:35:3
+	ST %vreg10<kill>, <fi#3>, 0; mem:ST4[%n1] CPURegs:%vreg10 dbg:..\fft_32x32(1).c:35:3
+	%vreg12<def> = LD <fi#4>, 0; mem:LD4[%n2] CPURegs:%vreg12 dbg:..\fft_32x32(1).c:36:3
+	%vreg13<def> = SRA %vreg12<kill>, %vreg3; CPURegs:%vreg13,%vreg12,%vreg3 dbg:..\fft_32x32(1).c:36:3
+	ST %vreg13<kill>, <fi#4>, 0; mem:ST4[%n2] CPURegs:%vreg13 dbg:..\fft_32x32(1).c:36:3
+	%vreg14<def> = MovGR %ZERO, 0; CPURegs:%vreg14
+	ST %vreg14, <fi#8>, 0; mem:ST4[%j] CPURegs:%vreg14 dbg:..\fft_32x32(1).c:51:9
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.cond1
+    Predecessors according to CFG: BB#2 BB#7
+	%vreg15<def> = LD <fi#2>, 0; mem:LD4[%nx.addr] CPURegs:%vreg15 dbg:..\fft_32x32(1).c:51:9
+	%vreg16<def> = LD <fi#8>, 0; mem:LD4[%j] CPURegs:%vreg16 dbg:..\fft_32x32(1).c:51:9
+	%vreg17<def> = GE %vreg16<kill>, %vreg15<kill>; CPURegs:%vreg17,%vreg16,%vreg15 dbg:..\fft_32x32(1).c:51:9
+	JC %vreg17<kill>, <BB#8>; CPURegs:%vreg17 dbg:..\fft_32x32(1).c:51:9
+	Jmp <BB#4>; dbg:..\fft_32x32(1).c:51:9
+    Successors according to CFG: BB#4(124) BB#8(4)
+
+BB#4: derived from LLVM BB %for.body3
+    Predecessors according to CFG: BB#3
+	ST %vreg14, <fi#6>, 0; mem:ST4[%ia] CPURegs:%vreg14 dbg:..\fft_32x32(1).c:52:5
+	ST %vreg14, <fi#7>, 0; mem:ST4[%i] CPURegs:%vreg14 dbg:..\fft_32x32(1).c:53:10
+    Successors according to CFG: BB#5
+
+BB#5: derived from LLVM BB %for.cond4
+    Predecessors according to CFG: BB#4 BB#6
+	%vreg46<def> = LD <fi#4>, 0; mem:LD4[%n2] CPURegs:%vreg46 dbg:..\fft_32x32(1).c:53:10
+	%vreg47<def> = LD <fi#7>, 0; mem:LD4[%i] CPURegs:%vreg47 dbg:..\fft_32x32(1).c:53:10
+	%vreg48<def> = GE %vreg47<kill>, %vreg46<kill>; CPURegs:%vreg48,%vreg47,%vreg46 dbg:..\fft_32x32(1).c:53:10
+	JC %vreg48<kill>, <BB#7>; CPURegs:%vreg48 dbg:..\fft_32x32(1).c:53:10
+	Jmp <BB#6>; dbg:..\fft_32x32(1).c:53:10
+    Successors according to CFG: BB#6(124) BB#7(4)
+
+BB#6: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#5
+	%vreg52<def> = MovGR %ZERO, 3; CPURegs:%vreg52
+	%vreg53<def> = LD <fi#6>, 0; mem:LD4[%ia] CPURegs:%vreg53 dbg:..\fft_32x32(1).c:54:6
+	%vreg54<def> = SHL %vreg53<kill>, %vreg52; CPURegs:%vreg54,%vreg53,%vreg52 dbg:..\fft_32x32(1).c:54:6
+	%vreg55<def> = LD <fi#1>, 0; mem:LD4[%w.addr] CPURegs:%vreg55 dbg:..\fft_32x32(1).c:54:6
+	%vreg56<def> = ADDu %vreg55<kill>, %vreg54<kill>; CPURegs:%vreg56,%vreg55,%vreg54 dbg:..\fft_32x32(1).c:54:6
+	%vreg57<def> = LD %vreg56<kill>, 0; mem:LD4[%arrayidx] CPURegs:%vreg57,%vreg56 dbg:..\fft_32x32(1).c:54:6
+	ST %vreg57<kill>, <fi#14>, 0; mem:ST4[%c] CPURegs:%vreg57 dbg:..\fft_32x32(1).c:54:6
+	%vreg58<def> = LD <fi#6>, 0; mem:LD4[%ia] CPURegs:%vreg58 dbg:..\fft_32x32(1).c:55:6
+	%vreg59<def> = SHL %vreg58<kill>, %vreg52; CPURegs:%vreg59,%vreg58,%vreg52 dbg:..\fft_32x32(1).c:55:6
+	%vreg60<def> = MovGR %ZERO, 4; CPURegs:%vreg60
+	%vreg61<def> = ORu %vreg59<kill>, %vreg60; CPURegs:%vreg61,%vreg59,%vreg60 dbg:..\fft_32x32(1).c:55:6
+	%vreg62<def> = LD <fi#1>, 0; mem:LD4[%w.addr] CPURegs:%vreg62 dbg:..\fft_32x32(1).c:55:6
+	%vreg63<def> = ADDu %vreg61<kill>, %vreg62<kill>; CPURegs:%vreg63,%vreg61,%vreg62 dbg:..\fft_32x32(1).c:55:6
+	%vreg64<def> = LD %vreg63<kill>, 0; mem:LD4[%arrayidx8] CPURegs:%vreg64,%vreg63 dbg:..\fft_32x32(1).c:55:6
+	ST %vreg64<kill>, <fi#15>, 0; mem:ST4[%s] CPURegs:%vreg64 dbg:..\fft_32x32(1).c:55:6
+	%vreg65<def> = LD <fi#6>, 0; mem:LD4[%ia] CPURegs:%vreg65 dbg:..\fft_32x32(1).c:56:6
+	%vreg66<def> = ADDiu %vreg65<kill>, 1; CPURegs:%vreg66,%vreg65 dbg:..\fft_32x32(1).c:56:6
+	ST %vreg66<kill>, <fi#6>, 0; mem:ST4[%ia] CPURegs:%vreg66 dbg:..\fft_32x32(1).c:56:6
+	%vreg67<def> = LD <fi#8>, 0; mem:LD4[%j] CPURegs:%vreg67 dbg:..\fft_32x32(1).c:57:6
+	%vreg68<def> = LD <fi#7>, 0; mem:LD4[%i] CPURegs:%vreg68 dbg:..\fft_32x32(1).c:57:6
+	%vreg69<def> = ADDu %vreg68<kill>, %vreg67<kill>; CPURegs:%vreg69,%vreg68,%vreg67 dbg:..\fft_32x32(1).c:57:6
+	ST %vreg69, <fi#11>, 0; mem:ST4[%m] CPURegs:%vreg69 dbg:..\fft_32x32(1).c:57:6
+	%vreg70<def> = LD <fi#4>, 0; mem:LD4[%n2] CPURegs:%vreg70 dbg:..\fft_32x32(1).c:58:6
+	%vreg71<def> = ADDu %vreg69, %vreg70<kill>; CPURegs:%vreg71,%vreg69,%vreg70 dbg:..\fft_32x32(1).c:58:6
+	ST %vreg71, <fi#10>, 0; mem:ST4[%l] CPURegs:%vreg71 dbg:..\fft_32x32(1).c:58:6
+	%vreg72<def> = LD <fi#11>, 0; mem:LD4[%m] CPURegs:%vreg72 dbg:..\fft_32x32(1).c:59:6
+	%vreg73<def> = SHL %vreg72<kill>, %vreg52; CPURegs:%vreg73,%vreg72,%vreg52 dbg:..\fft_32x32(1).c:59:6
+	%vreg74<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg74 dbg:..\fft_32x32(1).c:59:6
+	%vreg75<def> = ADDu %vreg74, %vreg73<kill>; CPURegs:%vreg75,%vreg74,%vreg73 dbg:..\fft_32x32(1).c:59:6
+	%vreg76<def> = SHL %vreg71, %vreg52; CPURegs:%vreg76,%vreg71,%vreg52 dbg:..\fft_32x32(1).c:59:6
+	%vreg77<def> = ADDu %vreg74, %vreg76<kill>; CPURegs:%vreg77,%vreg74,%vreg76 dbg:..\fft_32x32(1).c:59:6
+	%vreg78<def> = LD %vreg77<kill>, 0; mem:LD4[%arrayidx15] CPURegs:%vreg78,%vreg77 dbg:..\fft_32x32(1).c:59:6
+	%vreg79<def> = LD %vreg75<kill>, 0; mem:LD4[%arrayidx13] CPURegs:%vreg79,%vreg75 dbg:..\fft_32x32(1).c:59:6
+	%vreg80<def> = SUBu %vreg79<kill>, %vreg78<kill>; CPURegs:%vreg80,%vreg79,%vreg78 dbg:..\fft_32x32(1).c:59:6
+	ST %vreg80<kill>, <fi#12>, 0; mem:ST4[%xt] CPURegs:%vreg80 dbg:..\fft_32x32(1).c:59:6
+	%vreg81<def> = LD <fi#11>, 0; mem:LD4[%m] CPURegs:%vreg81 dbg:..\fft_32x32(1).c:60:6
+	%vreg82<def> = SHL %vreg81<kill>, %vreg52; CPURegs:%vreg82,%vreg81,%vreg52 dbg:..\fft_32x32(1).c:60:6
+	%vreg83<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg83 dbg:..\fft_32x32(1).c:60:6
+	%vreg84<def> = ADDu %vreg83, %vreg82<kill>; CPURegs:%vreg84,%vreg83,%vreg82 dbg:..\fft_32x32(1).c:60:6
+	%vreg85<def> = LD <fi#10>, 0; mem:LD4[%l] CPURegs:%vreg85 dbg:..\fft_32x32(1).c:60:6
+	%vreg86<def> = SHL %vreg85<kill>, %vreg52; CPURegs:%vreg86,%vreg85,%vreg52 dbg:..\fft_32x32(1).c:60:6
+	%vreg87<def> = ADDu %vreg83, %vreg86<kill>; CPURegs:%vreg87,%vreg83,%vreg86 dbg:..\fft_32x32(1).c:60:6
+	%vreg88<def> = LD %vreg87<kill>, 0; mem:LD4[%arrayidx19] CPURegs:%vreg88,%vreg87 dbg:..\fft_32x32(1).c:60:6
+	%vreg89<def> = LD %vreg84, 0; mem:LD4[%arrayidx17] CPURegs:%vreg89,%vreg84 dbg:..\fft_32x32(1).c:60:6
+	%vreg90<def> = ADDu %vreg89<kill>, %vreg88<kill>; CPURegs:%vreg90,%vreg89,%vreg88 dbg:..\fft_32x32(1).c:60:6
+	ST %vreg90<kill>, %vreg84, 0; mem:ST4[%arrayidx22] CPURegs:%vreg90,%vreg84 dbg:..\fft_32x32(1).c:60:6
+	%vreg91<def> = LD <fi#11>, 0; mem:LD4[%m] CPURegs:%vreg91 dbg:..\fft_32x32(1).c:61:6
+	%vreg92<def> = SHL %vreg91<kill>, %vreg52; CPURegs:%vreg92,%vreg91,%vreg52 dbg:..\fft_32x32(1).c:61:6
+	%vreg93<def> = ORu %vreg92<kill>, %vreg60; CPURegs:%vreg93,%vreg92,%vreg60 dbg:..\fft_32x32(1).c:61:6
+	%vreg94<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg94 dbg:..\fft_32x32(1).c:61:6
+	%vreg95<def> = ADDu %vreg93<kill>, %vreg94; CPURegs:%vreg95,%vreg93,%vreg94 dbg:..\fft_32x32(1).c:61:6
+	%vreg96<def> = LD <fi#10>, 0; mem:LD4[%l] CPURegs:%vreg96 dbg:..\fft_32x32(1).c:61:6
+	%vreg97<def> = SHL %vreg96<kill>, %vreg52; CPURegs:%vreg97,%vreg96,%vreg52 dbg:..\fft_32x32(1).c:61:6
+	%vreg98<def> = ORu %vreg97<kill>, %vreg60; CPURegs:%vreg98,%vreg97,%vreg60 dbg:..\fft_32x32(1).c:61:6
+	%vreg99<def> = ADDu %vreg98<kill>, %vreg94; CPURegs:%vreg99,%vreg98,%vreg94 dbg:..\fft_32x32(1).c:61:6
+	%vreg100<def> = LD %vreg99<kill>, 0; mem:LD4[%arrayidx28] CPURegs:%vreg100,%vreg99 dbg:..\fft_32x32(1).c:61:6
+	%vreg101<def> = LD %vreg95<kill>, 0; mem:LD4[%arrayidx25] CPURegs:%vreg101,%vreg95 dbg:..\fft_32x32(1).c:61:6
+	%vreg102<def> = SUBu %vreg101<kill>, %vreg100<kill>; CPURegs:%vreg102,%vreg101,%vreg100 dbg:..\fft_32x32(1).c:61:6
+	ST %vreg102<kill>, <fi#13>, 0; mem:ST4[%yt] CPURegs:%vreg102 dbg:..\fft_32x32(1).c:61:6
+	%vreg103<def> = LD <fi#11>, 0; mem:LD4[%m] CPURegs:%vreg103 dbg:..\fft_32x32(1).c:62:6
+	%vreg104<def> = SHL %vreg103<kill>, %vreg52; CPURegs:%vreg104,%vreg103,%vreg52 dbg:..\fft_32x32(1).c:62:6
+	%vreg105<def> = ORu %vreg104<kill>, %vreg60; CPURegs:%vreg105,%vreg104,%vreg60 dbg:..\fft_32x32(1).c:62:6
+	%vreg106<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg106 dbg:..\fft_32x32(1).c:62:6
+	%vreg107<def> = ADDu %vreg105<kill>, %vreg106; CPURegs:%vreg107,%vreg105,%vreg106 dbg:..\fft_32x32(1).c:62:6
+	%vreg108<def> = LD <fi#10>, 0; mem:LD4[%l] CPURegs:%vreg108 dbg:..\fft_32x32(1).c:62:6
+	%vreg109<def> = SHL %vreg108<kill>, %vreg52; CPURegs:%vreg109,%vreg108,%vreg52 dbg:..\fft_32x32(1).c:62:6
+	%vreg110<def> = ORu %vreg109<kill>, %vreg60; CPURegs:%vreg110,%vreg109,%vreg60 dbg:..\fft_32x32(1).c:62:6
+	%vreg111<def> = ADDu %vreg110<kill>, %vreg106; CPURegs:%vreg111,%vreg110,%vreg106 dbg:..\fft_32x32(1).c:62:6
+	%vreg112<def> = LD %vreg111<kill>, 0; mem:LD4[%arrayidx35] CPURegs:%vreg112,%vreg111 dbg:..\fft_32x32(1).c:62:6
+	%vreg113<def> = LD %vreg107, 0; mem:LD4[%arrayidx32] CPURegs:%vreg113,%vreg107 dbg:..\fft_32x32(1).c:62:6
+	%vreg114<def> = ADDu %vreg113<kill>, %vreg112<kill>; CPURegs:%vreg114,%vreg113,%vreg112 dbg:..\fft_32x32(1).c:62:6
+	ST %vreg114<kill>, %vreg107, 0; mem:ST4[%arrayidx39] CPURegs:%vreg114,%vreg107 dbg:..\fft_32x32(1).c:62:6
+	%vreg115<def> = LD <fi#12>, 0; mem:LD4[%xt] CPURegs:%vreg115 dbg:..\fft_32x32(1).c:63:6
+	%vreg116<def> = LD <fi#15>, 0; mem:LD4[%s] CPURegs:%vreg116 dbg:..\fft_32x32(1).c:63:6
+	%vreg117<def> = MUL32 %vreg116<kill>, %vreg115<kill>; CPURegs:%vreg117,%vreg116,%vreg115 dbg:..\fft_32x32(1).c:63:6
+	%vreg118<def> = LD <fi#13>, 0; mem:LD4[%yt] CPURegs:%vreg118 dbg:..\fft_32x32(1).c:63:6
+	%vreg119<def> = LD <fi#14>, 0; mem:LD4[%c] CPURegs:%vreg119 dbg:..\fft_32x32(1).c:63:6
+	%vreg120<def> = MUL32 %vreg119<kill>, %vreg118<kill>; CPURegs:%vreg120,%vreg119,%vreg118 dbg:..\fft_32x32(1).c:63:6
+	%vreg121<def> = ADDu %vreg120<kill>, %vreg117<kill>; CPURegs:%vreg121,%vreg120,%vreg117 dbg:..\fft_32x32(1).c:63:6
+	%vreg122<def> = LD <fi#10>, 0; mem:LD4[%l] CPURegs:%vreg122 dbg:..\fft_32x32(1).c:63:6
+	%vreg123<def> = SHL %vreg122<kill>, %vreg52; CPURegs:%vreg123,%vreg122,%vreg52 dbg:..\fft_32x32(1).c:63:6
+	%vreg124<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg124 dbg:..\fft_32x32(1).c:63:6
+	%vreg125<def> = ADDu %vreg124<kill>, %vreg123<kill>; CPURegs:%vreg125,%vreg124,%vreg123 dbg:..\fft_32x32(1).c:63:6
+	%vreg126<def> = MovGR %ZERO, 16; CPURegs:%vreg126
+	%vreg127<def> = SRA %vreg121<kill>, %vreg126; CPURegs:%vreg127,%vreg121,%vreg126 dbg:..\fft_32x32(1).c:63:6
+	ST %vreg127<kill>, %vreg125<kill>, 0; mem:ST4[%arrayidx45] CPURegs:%vreg127,%vreg125 dbg:..\fft_32x32(1).c:63:6
+	%vreg128<def> = LD <fi#12>, 0; mem:LD4[%xt] CPURegs:%vreg128 dbg:..\fft_32x32(1).c:64:6
+	%vreg129<def> = LD <fi#14>, 0; mem:LD4[%c] CPURegs:%vreg129 dbg:..\fft_32x32(1).c:64:6
+	%vreg130<def> = MUL32 %vreg129<kill>, %vreg128<kill>; CPURegs:%vreg130,%vreg129,%vreg128 dbg:..\fft_32x32(1).c:64:6
+	%vreg131<def> = LD <fi#13>, 0; mem:LD4[%yt] CPURegs:%vreg131 dbg:..\fft_32x32(1).c:64:6
+	%vreg132<def> = LD <fi#15>, 0; mem:LD4[%s] CPURegs:%vreg132 dbg:..\fft_32x32(1).c:64:6
+	%vreg133<def> = MUL32 %vreg132<kill>, %vreg131<kill>; CPURegs:%vreg133,%vreg132,%vreg131 dbg:..\fft_32x32(1).c:64:6
+	%vreg134<def> = SUBu %vreg133<kill>, %vreg130<kill>; CPURegs:%vreg134,%vreg133,%vreg130 dbg:..\fft_32x32(1).c:64:6
+	%vreg135<def> = SRA %vreg134<kill>, %vreg126; CPURegs:%vreg135,%vreg134,%vreg126 dbg:..\fft_32x32(1).c:64:6
+	%vreg136<def> = LD <fi#10>, 0; mem:LD4[%l] CPURegs:%vreg136 dbg:..\fft_32x32(1).c:64:6
+	%vreg137<def> = SHL %vreg136<kill>, %vreg52; CPURegs:%vreg137,%vreg136,%vreg52 dbg:..\fft_32x32(1).c:64:6
+	%vreg138<def> = ORu %vreg137<kill>, %vreg60; CPURegs:%vreg138,%vreg137,%vreg60 dbg:..\fft_32x32(1).c:64:6
+	%vreg139<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg139 dbg:..\fft_32x32(1).c:64:6
+	%vreg140<def> = ADDu %vreg138<kill>, %vreg139<kill>; CPURegs:%vreg140,%vreg138,%vreg139 dbg:..\fft_32x32(1).c:64:6
+	ST %vreg135<kill>, %vreg140<kill>, 0; mem:ST4[%arrayidx52] CPURegs:%vreg135,%vreg140 dbg:..\fft_32x32(1).c:64:6
+	%vreg141<def> = LD <fi#7>, 0; mem:LD4[%i] CPURegs:%vreg141 dbg:..\fft_32x32(1).c:53:23
+	%vreg142<def> = ADDiu %vreg141<kill>, 1; CPURegs:%vreg142,%vreg141 dbg:..\fft_32x32(1).c:53:23
+	ST %vreg142<kill>, <fi#7>, 0; mem:ST4[%i] CPURegs:%vreg142 dbg:..\fft_32x32(1).c:53:23
+	Jmp <BB#5>; dbg:..\fft_32x32(1).c:53:23
+    Successors according to CFG: BB#5
+
+BB#7: derived from LLVM BB %for.inc54
+    Predecessors according to CFG: BB#5
+	%vreg49<def> = LD <fi#3>, 0; mem:LD4[%n1] CPURegs:%vreg49 dbg:..\fft_32x32(1).c:51:22
+	%vreg50<def> = LD <fi#8>, 0; mem:LD4[%j] CPURegs:%vreg50 dbg:..\fft_32x32(1).c:51:22
+	%vreg51<def> = ADDu %vreg50<kill>, %vreg49<kill>; CPURegs:%vreg51,%vreg50,%vreg49 dbg:..\fft_32x32(1).c:51:22
+	ST %vreg51<kill>, <fi#8>, 0; mem:ST4[%j] CPURegs:%vreg51 dbg:..\fft_32x32(1).c:51:22
+	Jmp <BB#3>; dbg:..\fft_32x32(1).c:51:22
+    Successors according to CFG: BB#3
+
+BB#8: derived from LLVM BB %for.end56
+    Predecessors according to CFG: BB#3
+	DBG_VALUE <fi#16>, 0, !"p"; line no:68
+	ST %vreg14, <fi#16>, 0; mem:ST4[%p] CPURegs:%vreg14 dbg:..\fft_32x32(1).c:68:8
+    Successors according to CFG: BB#9
+
+BB#9: derived from LLVM BB %for.cond57
+    Predecessors according to CFG: BB#8 BB#10
+	%vreg19<def> = LD <fi#4>, 0; mem:LD4[%n2] CPURegs:%vreg19 dbg:..\fft_32x32(1).c:68:8
+	%vreg20<def> = LD <fi#16>, 0; mem:LD4[%p] CPURegs:%vreg20 dbg:..\fft_32x32(1).c:68:8
+	%vreg21<def> = GE %vreg20<kill>, %vreg19<kill>; CPURegs:%vreg21,%vreg20,%vreg19 dbg:..\fft_32x32(1).c:68:8
+	JC %vreg21<kill>, <BB#11>; CPURegs:%vreg21 dbg:..\fft_32x32(1).c:68:8
+	Jmp <BB#10>; dbg:..\fft_32x32(1).c:68:8
+    Successors according to CFG: BB#10(124) BB#11(4)
+
+BB#10: derived from LLVM BB %for.inc68
+    Predecessors according to CFG: BB#9
+	%vreg26<def> = LD <fi#16>, 0; mem:LD4[%p] CPURegs:%vreg26 dbg:..\fft_32x32(1).c:69:5
+	%vreg27<def> = SHL %vreg26, %vreg5; CPURegs:%vreg27,%vreg26,%vreg5 dbg:..\fft_32x32(1).c:69:5
+	%vreg28<def> = LD <fi#1>, 0; mem:LD4[%w.addr] CPURegs:%vreg28 dbg:..\fft_32x32(1).c:69:5
+	%vreg29<def> = ADDu %vreg28, %vreg27<kill>; CPURegs:%vreg29,%vreg28,%vreg27 dbg:..\fft_32x32(1).c:69:5
+	%vreg30<def> = MovGR %ZERO, 3; CPURegs:%vreg30
+	%vreg31<def> = SHL %vreg26, %vreg30; CPURegs:%vreg31,%vreg26,%vreg30 dbg:..\fft_32x32(1).c:69:5
+	%vreg32<def> = ADDu %vreg28, %vreg31<kill>; CPURegs:%vreg32,%vreg28,%vreg31 dbg:..\fft_32x32(1).c:69:5
+	%vreg33<def> = LD %vreg32<kill>, 0; mem:LD4[%arrayidx61] CPURegs:%vreg33,%vreg32 dbg:..\fft_32x32(1).c:69:5
+	ST %vreg33<kill>, %vreg29<kill>, 0; mem:ST4[%arrayidx62] CPURegs:%vreg33,%vreg29 dbg:..\fft_32x32(1).c:69:5
+	%vreg34<def> = LD <fi#16>, 0; mem:LD4[%p] CPURegs:%vreg34 dbg:..\fft_32x32(1).c:70:5
+	%vreg35<def> = SHL %vreg34, %vreg30; CPURegs:%vreg35,%vreg34,%vreg30 dbg:..\fft_32x32(1).c:70:5
+	%vreg36<def> = MovGR %ZERO, 4; CPURegs:%vreg36
+	%vreg37<def> = ORu %vreg35<kill>, %vreg36<kill>; CPURegs:%vreg37,%vreg35,%vreg36 dbg:..\fft_32x32(1).c:70:5
+	%vreg38<def> = SHL %vreg34, %vreg5; CPURegs:%vreg38,%vreg34,%vreg5 dbg:..\fft_32x32(1).c:70:5
+	%vreg39<def> = LD <fi#1>, 0; mem:LD4[%w.addr] CPURegs:%vreg39 dbg:..\fft_32x32(1).c:70:5
+	%vreg40<def> = ADDu %vreg38<kill>, %vreg39; CPURegs:%vreg40,%vreg38,%vreg39 dbg:..\fft_32x32(1).c:70:5
+	%vreg41<def> = ADDu %vreg37<kill>, %vreg39; CPURegs:%vreg41,%vreg37,%vreg39 dbg:..\fft_32x32(1).c:70:5
+	%vreg42<def> = LD %vreg41<kill>, 0; mem:LD4[%arrayidx65] CPURegs:%vreg42,%vreg41 dbg:..\fft_32x32(1).c:70:5
+	ST %vreg42<kill>, %vreg40<kill>, 4; mem:ST4[%arrayidx67] CPURegs:%vreg42,%vreg40 dbg:..\fft_32x32(1).c:70:5
+	%vreg43<def> = LD <fi#16>, 0; mem:LD4[%p] CPURegs:%vreg43 dbg:..\fft_32x32(1).c:68:27
+	%vreg44<def> = ADDiu %vreg43<kill>, 2; CPURegs:%vreg44,%vreg43 dbg:..\fft_32x32(1).c:68:27
+	ST %vreg44<kill>, <fi#16>, 0; mem:ST4[%p] CPURegs:%vreg44 dbg:..\fft_32x32(1).c:68:27
+	Jmp <BB#9>; dbg:..\fft_32x32(1).c:68:27
+    Successors according to CFG: BB#9
+
+BB#11: derived from LLVM BB %for.inc71
+    Predecessors according to CFG: BB#9
+	%vreg23<def> = LD <fi#9>, 0; mem:LD4[%k] CPURegs:%vreg23 dbg:..\fft_32x32(1).c:34:21
+	%vreg24<def> = SRA %vreg23<kill>, %vreg3; CPURegs:%vreg24,%vreg23,%vreg3 dbg:..\fft_32x32(1).c:34:21
+	ST %vreg24<kill>, <fi#9>, 0; mem:ST4[%k] CPURegs:%vreg24 dbg:..\fft_32x32(1).c:34:21
+	Jmp <BB#1>; dbg:..\fft_32x32(1).c:34:21
+    Successors according to CFG: BB#1
+
+BB#12: derived from LLVM BB %for.end73
+    Predecessors according to CFG: BB#1
+	%vreg8<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg8 dbg:..\fft_32x32(1).c:76:2
+	%vreg9<def> = LD <fi#2>, 0; mem:LD4[%nx.addr] CPURegs:%vreg9 dbg:..\fft_32x32(1).c:76:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:76:2
+	%A0<def> = COPY %vreg9; CPURegs:%vreg9 dbg:..\fft_32x32(1).c:76:2
+	%A1<def> = COPY %vreg8; CPURegs:%vreg8 dbg:..\fft_32x32(1).c:76:2
+	CALL <ga:@bit_reverse>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_32x32(1).c:76:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:76:2
+	RetLR; dbg:..\fft_32x32(1).c:77:1
+
+# End machine code for function fft_32x32a.
+
+binary14 99e7b000
+1e
+1fc
+binary60 edf78fe2
+1e
+208
+binary30 48279042
+1e
+1f8
+binary60 6c478fc2
+1e
+1f4
+binary60 ec578fa2
+1e
+1f0
+binary60 6c278f82
+1e
+1e8
+binary60 ec278f42
+binary4e 94200015
+binary4d 94200001
+1e
+1f0
+binary30 48378f82
+1e
+1e4
+binary60 ec278f22
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8378ea2
+binary57 80000000
+binary57 80000000
+binary5e 8430c20a
+1e
+1d4
+binary60 ec378ea2
+binary4e 94300025
+binary4d 14300001
+1e
+1d4
+binary30 c8478ea2
+binary57 80000000
+binary3b 90010303
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1e8
+binary30 c8478f42
+binary57 80000000
+binary57 80000000
+1e
+1ec
+binary60 ec478f62
+1e
+1e8
+binary30 c8478f42
+binary57 80000000
+binary57 80000000
+binary5e 8441020a
+1e
+1e8
+binary60 ec478f42
+binary4e 94400005
+binary4d 94400001
+1e
+1d8
+binary60 ec478ec2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1ec
+binary30 c8578f62
+binary57 80000000
+1e
+1d8
+binary30 c8678ec2
+binary57 80000000
+binary57 80000000
+binary15 84518500
+1e
+1d8
+binary60 ec578ec2
+1e
+1f0
+binary30 c8578f82
+binary57 80000000
+1e
+1d8
+binary30 c8678ec2
+binary26 90018504
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1e0
+binary60 6c478f02
+1e
+1dc
+binary60 ec478ee2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94500035
+binary4d 14500001
+1e
+1e0
+binary30 c8678f02
+binary57 80000000
+binary57 80000000
+binary5d 4618509
+1e
+1f4
+binary30 c8778fa2
+binary57 80000000
+binary57 80000000
+binary15 8461c600
+6
+0
+binary30 c8618002
+binary57 80000000
+binary57 80000000
+1e
+1c0
+binary60 ec678e02
+1e
+1e0
+binary30 c8678f02
+binary57 80000000
+binary57 80000000
+binary5d 84718509
+binary4e 94600045
+binary4d 94600001
+binary59 471c605
+1e
+1f4
+binary30 c8878fa2
+binary57 80000000
+binary57 80000000
+binary15 8471c800
+7
+0
+binary30 c871c002
+binary57 80000000
+binary57 80000000
+1e
+1bc
+binary60 ec778de2
+1e
+1e0
+binary30 c8778f02
+binary57 80000000
+binary57 80000000
+binary14 9871c008
+1e
+1e0
+binary60 ec778f02
+1e
+1d8
+binary30 c8778ec2
+binary57 80000000
+1e
+1dc
+binary30 c8878ee2
+binary57 80000000
+binary57 80000000
+binary15 84720700
+1e
+1e8
+binary30 48878f42
+1e
+1cc
+binary60 ec778e62
+binary57 80000000
+binary57 80000000
+binary15 8471c800
+1e
+1cc
+binary30 48878e62
+1e
+1d0
+binary60 ec778e82
+binary57 80000000
+binary57 80000000
+binary5d 4820509
+1e
+1f8
+binary30 c8978fc2
+binary57 80000000
+binary57 80000000
+binary15 4824800
+binary5d 8471c509
+binary15 84724700
+7
+0
+binary30 c871c002
+binary57 80000000
+8
+0
+binary30 c8820002
+binary57 80000000
+binary57 80000000
+binary63 84720702
+1e
+1c8
+binary60 ec778e42
+1e
+1cc
+binary30 c8778e62
+binary57 80000000
+binary57 80000000
+binary5d 471c509
+1e
+1f8
+binary30 c8878fc2
+binary57 80000000
+binary57 80000000
+binary15 4720700
+1e
+1d0
+binary30 c8978e82
+binary57 80000000
+binary57 80000000
+binary5d 84924509
+binary15 84820900
+8
+0
+binary30 c8820002
+binary57 80000000
+7
+0
+binary30 c891c002
+binary57 80000000
+binary57 80000000
+binary15 84824800
+7
+0
+binary60 ec81c002
+1e
+1cc
+binary30 c8778e62
+binary57 80000000
+binary57 80000000
+binary5d 8471c509
+binary59 471c605
+1e
+1f8
+binary30 c8878fc2
+binary57 80000000
+binary57 80000000
+binary15 471c800
+1e
+1d0
+binary30 c8978e82
+binary57 80000000
+binary57 80000000
+binary5d 84924509
+binary59 84924605
+binary15 84824800
+8
+0
+binary30 c8820002
+binary57 80000000
+7
+0
+binary30 c871c002
+binary57 80000000
+binary57 80000000
+binary63 8471c802
+1e
+1c4
+binary60 ec778e22
+1e
+1cc
+binary30 c8778e62
+binary57 80000000
+binary57 80000000
+binary5d 8471c509
+binary59 471c605
+1e
+1f8
+binary30 c8878fc2
+binary57 80000000
+binary57 80000000
+binary15 471c800
+1e
+1d0
+binary30 c8978e82
+binary57 80000000
+binary57 80000000
+binary5d 84924509
+binary59 84924605
+binary15 84824800
+8
+0
+binary30 c8820002
+binary57 80000000
+7
+0
+binary30 c891c002
+binary57 80000000
+binary57 80000000
+binary15 84824800
+7
+0
+binary60 ec81c002
+1e
+1c8
+binary30 c8778e42
+binary57 80000000
+1e
+1bc
+binary30 c8878de2
+binary57 80000000
+binary57 80000000
+binary43 8472070c
+1e
+1c4
+binary30 c8878e22
+binary57 80000000
+1e
+1c0
+binary30 c8978e02
+binary57 80000000
+binary57 80000000
+binary43 8482480c
+binary15 84720700
+1e
+1d0
+binary30 c8878e82
+binary57 80000000
+binary57 80000000
+binary5d 4820509
+1e
+1f8
+binary30 c8978fc2
+binary57 80000000
+binary57 80000000
+binary15 84824800
+binary4e 94900105
+binary4d 94900001
+binary5e 8471c90a
+8
+0
+binary60 ec720002
+1e
+1c8
+binary30 c8778e42
+binary57 80000000
+1e
+1c0
+binary30 c8878e02
+binary57 80000000
+binary57 80000000
+binary43 8472070c
+1e
+1c4
+binary30 c8878e22
+binary57 80000000
+1e
+1bc
+binary30 c8a78de2
+binary57 80000000
+binary57 80000000
+binary43 8482880c
+binary63 84720702
+binary5e 471c90a
+1e
+1d0
+binary30 c8878e82
+binary57 80000000
+binary57 80000000
+binary5d 84520509
+binary59 84514605
+1e
+1f8
+binary30 c8678fc2
+binary57 80000000
+binary57 80000000
+binary15 84514600
+5
+0
+binary60 ec714002
+1e
+1dc
+binary30 c8578ee2
+binary57 80000000
+binary57 80000000
+binary14 98514008
+1e
+1dc
+binary60 ec578ee2
+1e
+1e8
+binary30 c8578f42
+binary57 80000000
+1e
+1dc
+binary30 c8678ee2
+binary26 90018504
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1b8
+binary30 c8478dc2
+binary57 80000000
+binary57 80000000
+binary5d 4510309
+1e
+1f4
+binary30 c8678fa2
+binary57 80000000
+binary57 80000000
+binary15 4518500
+binary4e 94700035
+binary4d 94700001
+binary5d 84410709
+binary15 84418400
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+5
+0
+binary60 ec414002
+1e
+1b8
+binary30 c8478dc2
+binary57 80000000
+binary57 80000000
+binary5d 4510709
+binary4e 94600045
+binary4d 94600001
+binary59 4514605
+binary5d 84410309
+1e
+1f4
+binary30 c8678fa2
+binary57 80000000
+binary57 80000000
+binary15 4410600
+binary15 84514600
+5
+0
+binary30 c8514002
+binary57 80000000
+binary57 80000000
+4
+4
+binary60 ec510022
+1e
+1b8
+binary30 c8478dc2
+binary57 80000000
+binary57 80000000
+binary14 98410010
+1e
+1b8
+binary60 ec478dc2
+1e
+1e8
+binary30 c8478f42
+binary57 80000000
+1e
+1b8
+binary30 c8578dc2
+binary26 90014404
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1f8
+binary30 c8578fc2
+binary57 80000000
+1e
+1f0
+binary30 c8478f82
+binary57 80000000
+binary57 80000000
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+1fc
+binary30 c9f78fe2
+binary14 99e79000
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+val2,result!!2 FI= ffffffff
+val6,result!!1
+RegsToPass.size()=2
+op code is c
+op code is 9a
+RegsToPass.size()=2
+op code is 9a
+# Machine code for function fft_32x32: SSA
+Frame Objects:
+  fi#-1: size=4, align=8, fixed, at location [SP+8]
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=256, align=4, at location [SP]
+  fi#4: size=2, align=4, at location [SP]
+  fi#5: size=256, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+  fi#7: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"fftSrcAddr"; line no:78
+	DBG_VALUE %noreg, 0, !"fftDstAddr"; line no:78
+	DBG_VALUE %noreg, 0, !"nfft"; line no:78
+	%vreg2<def> = LD <fi#-1>, 0; mem:LD4[FixedStack-1](align=8) CPURegs:%vreg2
+	ST %vreg0, <fi#0>, 0; mem:ST4[%fftSrcAddr.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%fftDstAddr.addr] CPURegs:%vreg1
+	ST %vreg2<kill>, <fi#2>, 0; mem:ST4[%nfft.addr] CPURegs:%vreg2
+	%vreg3<def> = LDH <fi#2>, 0; mem:LD2[%nfft.addr](align=4) CPURegs:%vreg3 dbg:..\fft_32x32(1).c:80:2
+	STH %vreg3<kill>, <fi#4>, 0; mem:ST2[%ndata](align=4) CPURegs:%vreg3 dbg:..\fft_32x32(1).c:80:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:81:2
+	%vreg4<def> = COPY %SP; CPURegs:%vreg4 dbg:..\fft_32x32(1).c:81:2
+	%vreg5<def> = MovGR %ZERO, 256; CPURegs:%vreg5
+	ST %vreg5<kill>, %vreg4, 8; mem:ST4[<unknown>] CPURegs:%vreg5,%vreg4 dbg:..\fft_32x32(1).c:81:2
+	%vreg6<def> = MovIGH %ZERO, <ga:@fft_32x32.f>[TF=3]; CPURegs:%vreg6 dbg:..\fft_32x32(1).c:81:2
+	%vreg7<def,tied1> = MovIGL %vreg6<tied0>, <ga:@fft_32x32.f>[TF=4]; CPURegs:%vreg7,%vreg6 dbg:..\fft_32x32(1).c:81:2
+	%vreg8<def> = LEA <fi#5>, 0; CPURegs:%vreg8
+	%A0<def> = COPY %vreg8; CPURegs:%vreg8 dbg:..\fft_32x32(1).c:81:2
+	%A1<def> = COPY %vreg7; CPURegs:%vreg7 dbg:..\fft_32x32(1).c:81:2
+	CALL <es:memcpy>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_32x32(1).c:81:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:81:2
+	%vreg9<def> = MovGR %ZERO, 0; CPURegs:%vreg9
+	ST %vreg9, <fi#6>, 0; mem:ST4[%j] CPURegs:%vreg9 dbg:..\fft_32x32(1).c:83:7
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#2
+	%vreg10<def> = LD <fi#6>, 0; mem:LD4[%j] CPURegs:%vreg10 dbg:..\fft_32x32(1).c:83:7
+	%vreg11<def> = LTI %vreg10<kill>, 32; CPURegs:%vreg11,%vreg10 dbg:..\fft_32x32(1).c:83:7
+	JNC %vreg11<kill>, <BB#3>; CPURegs:%vreg11 dbg:..\fft_32x32(1).c:83:7
+	Jmp <BB#2>; dbg:..\fft_32x32(1).c:83:7
+    Successors according to CFG: BB#2(124) BB#3(4)
+
+BB#2: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#1
+	%vreg40<def> = MovGR %ZERO, 3; CPURegs:%vreg40
+	%vreg41<def> = LD <fi#6>, 0; mem:LD4[%j] CPURegs:%vreg41 dbg:..\fft_32x32(1).c:85:6
+	%vreg42<def> = SHL %vreg41<kill>, %vreg40; CPURegs:%vreg42,%vreg41,%vreg40 dbg:..\fft_32x32(1).c:85:6
+	%vreg43<def> = LD <fi#0>, 0; mem:LD4[%fftSrcAddr.addr] CPURegs:%vreg43 dbg:..\fft_32x32(1).c:85:6
+	%vreg44<def> = ADDu %vreg43<kill>, %vreg42; CPURegs:%vreg44,%vreg43,%vreg42 dbg:..\fft_32x32(1).c:85:6
+	%vreg45<def> = LEA <fi#3>, 0; CPURegs:%vreg45
+	%vreg46<def> = ADDu %vreg45, %vreg42; CPURegs:%vreg46,%vreg45,%vreg42 dbg:..\fft_32x32(1).c:85:6
+	%vreg47<def> = LD %vreg44<kill>, 0; mem:LD4[%imag1] CPURegs:%vreg47,%vreg44 dbg:..\fft_32x32(1).c:85:6
+	ST %vreg47<kill>, %vreg46<kill>, 0; mem:ST4[%arrayidx] CPURegs:%vreg47,%vreg46 dbg:..\fft_32x32(1).c:85:6
+	%vreg48<def> = LD <fi#6>, 0; mem:LD4[%j] CPURegs:%vreg48 dbg:..\fft_32x32(1).c:86:6
+	%vreg49<def> = SHL %vreg48<kill>, %vreg40; CPURegs:%vreg49,%vreg48,%vreg40 dbg:..\fft_32x32(1).c:86:6
+	%vreg50<def> = MovGR %ZERO, 4; CPURegs:%vreg50
+	%vreg51<def> = ORu %vreg49, %vreg50<kill>; CPURegs:%vreg51,%vreg49,%vreg50 dbg:..\fft_32x32(1).c:86:6
+	%vreg52<def> = ADDu %vreg51<kill>, %vreg45; CPURegs:%vreg52,%vreg51,%vreg45 dbg:..\fft_32x32(1).c:86:6
+	%vreg53<def> = LD <fi#0>, 0; mem:LD4[%fftSrcAddr.addr] CPURegs:%vreg53 dbg:..\fft_32x32(1).c:86:6
+	%vreg54<def> = ADDu %vreg53<kill>, %vreg49; CPURegs:%vreg54,%vreg53,%vreg49 dbg:..\fft_32x32(1).c:86:6
+	%vreg55<def> = LD %vreg54<kill>, 4; mem:LD4[%real] CPURegs:%vreg55,%vreg54 dbg:..\fft_32x32(1).c:86:6
+	ST %vreg55<kill>, %vreg52<kill>, 0; mem:ST4[%arrayidx4] CPURegs:%vreg55,%vreg52 dbg:..\fft_32x32(1).c:86:6
+	%vreg56<def> = LD <fi#6>, 0; mem:LD4[%j] CPURegs:%vreg56 dbg:..\fft_32x32(1).c:83:20
+	%vreg57<def> = ADDiu %vreg56<kill>, 1; CPURegs:%vreg57,%vreg56 dbg:..\fft_32x32(1).c:83:20
+	ST %vreg57<kill>, <fi#6>, 0; mem:ST4[%j] CPURegs:%vreg57 dbg:..\fft_32x32(1).c:83:20
+	Jmp <BB#1>; dbg:..\fft_32x32(1).c:83:20
+    Successors according to CFG: BB#1
+
+BB#3: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#1
+	%vreg12<def> = MovGR %ZERO, 16; CPURegs:%vreg12
+	%vreg13<def> = LDH <fi#4>, 0; mem:LD2[%ndata](align=4) CPURegs:%vreg13 dbg:..\fft_32x32(1).c:89:2
+	%vreg14<def> = SHL %vreg13<kill>, %vreg12; CPURegs:%vreg14,%vreg13,%vreg12 dbg:..\fft_32x32(1).c:89:2
+	%vreg15<def> = SRA %vreg14<kill>, %vreg12; CPURegs:%vreg15,%vreg14,%vreg12 dbg:..\fft_32x32(1).c:89:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:89:2
+	%vreg16<def> = COPY %SP; CPURegs:%vreg16 dbg:..\fft_32x32(1).c:89:2
+	ST %vreg15<kill>, %vreg16, 8; mem:ST4[<unknown>] CPURegs:%vreg15,%vreg16 dbg:..\fft_32x32(1).c:89:2
+	%vreg17<def> = LEA <fi#3>, 0; CPURegs:%vreg17
+	%vreg18<def> = LEA <fi#5>, 0; CPURegs:%vreg18
+	%A0<def> = COPY %vreg17; CPURegs:%vreg17 dbg:..\fft_32x32(1).c:89:2
+	%A1<def> = COPY %vreg18; CPURegs:%vreg18 dbg:..\fft_32x32(1).c:89:2
+	CALL <ga:@fft_32x32a>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_32x32(1).c:89:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_32x32(1).c:89:2
+	DBG_VALUE <fi#7>, 0, !"j"; line no:90
+	ST %vreg9, <fi#7>, 0; mem:ST4[%j7] CPURegs:%vreg9 dbg:..\fft_32x32(1).c:90:7
+    Successors according to CFG: BB#4
+
+BB#4: derived from LLVM BB %for.cond8
+    Predecessors according to CFG: BB#3 BB#5
+	%vreg20<def> = LD <fi#7>, 0; mem:LD4[%j7] CPURegs:%vreg20 dbg:..\fft_32x32(1).c:90:7
+	%vreg21<def> = LTI %vreg20<kill>, 32; CPURegs:%vreg21,%vreg20 dbg:..\fft_32x32(1).c:90:7
+	JNC %vreg21<kill>, <BB#6>; CPURegs:%vreg21 dbg:..\fft_32x32(1).c:90:7
+	Jmp <BB#5>; dbg:..\fft_32x32(1).c:90:7
+    Successors according to CFG: BB#5(124) BB#6(4)
+
+BB#5: derived from LLVM BB %for.inc21
+    Predecessors according to CFG: BB#4
+	%vreg22<def> = MovGR %ZERO, 3; CPURegs:%vreg22
+	%vreg23<def> = LD <fi#7>, 0; mem:LD4[%j7] CPURegs:%vreg23 dbg:..\fft_32x32(1).c:91:8
+	%vreg24<def> = SHL %vreg23<kill>, %vreg22; CPURegs:%vreg24,%vreg23,%vreg22 dbg:..\fft_32x32(1).c:91:8
+	%vreg25<def> = LD <fi#1>, 0; mem:LD4[%fftDstAddr.addr] CPURegs:%vreg25 dbg:..\fft_32x32(1).c:91:8
+	%vreg26<def> = ADDu %vreg25<kill>, %vreg24; CPURegs:%vreg26,%vreg25,%vreg24 dbg:..\fft_32x32(1).c:91:8
+	%vreg28<def> = ADDu %vreg17, %vreg24; CPURegs:%vreg28,%vreg17,%vreg24 dbg:..\fft_32x32(1).c:91:8
+	%vreg29<def> = LD %vreg28<kill>, 0; mem:LD4[%arrayidx13] CPURegs:%vreg29,%vreg28 dbg:..\fft_32x32(1).c:91:8
+	ST %vreg29<kill>, %vreg26<kill>, 0; mem:ST4[%imag154] CPURegs:%vreg29,%vreg26 dbg:..\fft_32x32(1).c:91:8
+	%vreg30<def> = LD <fi#7>, 0; mem:LD4[%j7] CPURegs:%vreg30 dbg:..\fft_32x32(1).c:92:8
+	%vreg31<def> = SHL %vreg30<kill>, %vreg22; CPURegs:%vreg31,%vreg30,%vreg22 dbg:..\fft_32x32(1).c:92:8
+	%vreg32<def> = LD <fi#1>, 0; mem:LD4[%fftDstAddr.addr] CPURegs:%vreg32 dbg:..\fft_32x32(1).c:92:8
+	%vreg33<def> = ADDu %vreg32<kill>, %vreg31; CPURegs:%vreg33,%vreg32,%vreg31 dbg:..\fft_32x32(1).c:92:8
+	%vreg34<def> = MovGR %ZERO, 4; CPURegs:%vreg34
+	%vreg35<def> = ORu %vreg31, %vreg34<kill>; CPURegs:%vreg35,%vreg31,%vreg34 dbg:..\fft_32x32(1).c:92:8
+	%vreg36<def> = ADDu %vreg35<kill>, %vreg17; CPURegs:%vreg36,%vreg35,%vreg17 dbg:..\fft_32x32(1).c:92:8
+	%vreg37<def> = LD %vreg36<kill>, 0; mem:LD4[%arrayidx18] CPURegs:%vreg37,%vreg36 dbg:..\fft_32x32(1).c:92:8
+	ST %vreg37<kill>, %vreg33<kill>, 4; mem:ST4[%real20] CPURegs:%vreg37,%vreg33 dbg:..\fft_32x32(1).c:92:8
+	%vreg38<def> = LD <fi#7>, 0; mem:LD4[%j7] CPURegs:%vreg38 dbg:..\fft_32x32(1).c:90:20
+	%vreg39<def> = ADDiu %vreg38<kill>, 1; CPURegs:%vreg39,%vreg38 dbg:..\fft_32x32(1).c:90:20
+	ST %vreg39<kill>, <fi#7>, 0; mem:ST4[%j7] CPURegs:%vreg39 dbg:..\fft_32x32(1).c:90:20
+	Jmp <BB#4>; dbg:..\fft_32x32(1).c:90:20
+    Successors according to CFG: BB#4
+
+BB#6: derived from LLVM BB %for.end23
+    Predecessors according to CFG: BB#4
+	RetLR; dbg:..\fft_32x32(1).c:95:1
+
+# End machine code for function fft_32x32.
+
+copy phy reg
+binary14 99e7a000
+1e
+3fc
+binary60 6df79fe2
+1e
+3f8
+binary60 ed179fc2
+1e
+3f4
+binary60 ed079fa2
+binary4d 94100001
+binary4e 94104085
+binary15 84178100
+1
+0
+binary30 48204002
+1e
+3f0
+binary60 6c479f82
+1e
+3ec
+binary60 ec579f62
+binary4d 14100001
+1e
+3e8
+binary60 ec279f42
+binary4e 94103e85
+binary15 84178100
+1
+0
+binary34 c8204001
+binary4d 94100001
+binary4e 94102e45
+binary15 84178100
+1
+0
+binary61 ec204001
+binary4e 94201005
+binary4d 94200001
+binary4d 14500001
+1e
+8
+binary60 ec278042
+binary14 18478f20
+binary4e 94500005
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary4e 95100005
+binary4d 95100001
+1e
+1e0
+binary60 ed178f02
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200035
+binary4d 14200001
+1e
+1e0
+binary30 c8378f02
+binary57 80000000
+binary57 80000000
+binary5d 430c209
+1e
+3f0
+binary30 c8479f82
+binary57 80000000
+binary57 80000000
+binary15 4410300
+binary14 98579740
+binary15 4314300
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+3
+0
+binary60 ec40c002
+1e
+1e0
+binary30 c8378f02
+binary57 80000000
+binary57 80000000
+binary5d 8420c209
+binary4e 94300045
+binary4d 94300001
+binary59 84308305
+binary15 430c500
+1e
+3f0
+binary30 c8479f82
+binary57 80000000
+binary57 80000000
+binary15 84210200
+2
+4
+binary30 c8208022
+binary57 80000000
+binary57 80000000
+3
+0
+binary60 ec20c002
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1e0
+binary60 ec278f02
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary3c 9400840e
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94200105
+binary4d 14200001
+binary4d 94100001
+binary4e 94102e45
+binary15 84178100
+1
+0
+binary34 c8304001
+binary5d 8430c209
+binary5e 8420c20a
+binary14 19079740
+binary14 18578f20
+1e
+8
+binary60 ec278042
+binary48 90440080
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+1dc
+binary60 ed178ee2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200035
+binary4d 14200001
+1e
+1dc
+binary30 c8378ee2
+binary57 80000000
+binary57 80000000
+binary5d 430c209
+1e
+3ec
+binary30 c8479f62
+binary57 80000000
+binary57 80000000
+binary15 84410300
+binary15 84340300
+3
+0
+binary30 c830c002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec310002
+1e
+1dc
+binary30 c8378ee2
+binary57 80000000
+binary57 80000000
+binary5d 8420c209
+1e
+3ec
+binary30 c8379f62
+binary57 80000000
+binary57 80000000
+binary15 430c200
+binary4e 94400045
+binary4d 94400001
+binary59 84208405
+binary15 84209000
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+3
+4
+binary60 ec20c022
+1e
+1dc
+binary30 c8278ee2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1dc
+binary60 ec278ee2
+1e
+1dc
+binary30 c8278ee2
+binary57 80000000
+binary3c 9400840e
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+3f4
+binary30 49079fa2
+1e
+3f8
+binary30 c9179fc2
+binary4d 14100001
+1e
+3fc
+binary30 c9f79fe2
+binary4e 94104005
+binary15 85e78100
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\ld.exe" -L "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\lib" -T link_8slots.x -M=linkMapFile -o dss.out DCremove.o cfar_ca.o dopandcfar.o dss.o fft_16x16.o fft_16x16_asm.o fft_32x32(1).o log2abs32.o windowing.o windowing16x32.o windowing16x32_asm.o windowing_asm.o -lc 
+!!!ldfile.cï¼?162
+!!!ldfile.cï¼?162
+is relocated by HI16 **
+symbol 0x14	added 0	 p 0x2026ec
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x14	added 0	 p 0x2026f0
+value = (addend + symbol) : 0x14
+value<<4 : 0x140	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x14	added 0	 p 0x202780
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x14	added 0	 p 0x202788
+value = (addend + symbol) : 0x14
+value<<4 : 0x140	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x14	added 0	 p 0x202818
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x14	added 0	 p 0x202820
+value = (addend + symbol) : 0x14
+value<<4 : 0x140	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0	added 0	 p 0x20290c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0	added 0	 p 0x202910
+value = (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xc82dc	added 0	 p 0x202b2c
+value = mips_elf_high (addend + symbol) : 0xc
+value<<4 : 0xc0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc82dc	added 0	 p 0x202b30
+value = (addend + symbol) : 0xc82dc
+value<<4 : 0xc82dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xd10	added 0	 p 0x202b44
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xd10	added 0	 p 0x202b48
+value = (addend + symbol) : 0xd10
+value<<4 : 0xd100	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x202b50
+value = (s + (-4) - p) : 0x1f2c
+value >> 2 << 5: 0xf960	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0xc82dc	added 0	 p 0x202b8c
+value = mips_elf_high (addend + symbol) : 0xc
+value<<4 : 0xc0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc82dc	added 0	 p 0x202b90
+value = (addend + symbol) : 0xc82dc
+value<<4 : 0xc82dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xcc2dc	added 0	 p 0x202bcc
+value = mips_elf_high (addend + symbol) : 0xc
+value<<4 : 0xc0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xcc2dc	added 0	 p 0x202bd0
+value = (addend + symbol) : 0xcc2dc
+value<<4 : 0xcc2dc0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x202bd8
+value = (s + (-4) - p) : 0x1ea4
+value >> 2 << 5: 0xf520	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x662dc	added 0	 p 0x202c6c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x662dc	added 0	 p 0x202c70
+value = (addend + symbol) : 0x662dc
+value<<4 : 0x662dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x18	added 0	 p 0x202c84
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x18	added 0	 p 0x202c90
+value = (addend + symbol) : 0x18
+value<<4 : 0x180	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x202c98
+value = (s + (-4) - p) : 0x1de4
+value >> 2 << 5: 0xef20	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x203014	addend 0	 p 0x202cb8
+value = (s + (-4) - p) : 0x358
+value >> 2 << 5: 0x1ac0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x202cd4
+value = (s + (-4) - p) : 0x1da8
+value >> 2 << 5: 0xed40	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x682dc	added 0	 p 0x202d40
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x682dc	added 0	 p 0x202d44
+value = (addend + symbol) : 0x682dc
+value<<4 : 0x682dc0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x202d60
+value = (s + (-4) - p) : 0x18f8
+value >> 2 << 5: 0xc7c0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x202d84
+value = (s + (-4) - p) : 0x1cf8
+value >> 2 << 5: 0xe7c0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x682dc	added 0	 p 0x202d9c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x682dc	added 0	 p 0x202da0
+value = (addend + symbol) : 0x682dc
+value<<4 : 0x682dc0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x201bdc	addend 0	 p 0x202da4
+value = (s + (-4) - p) : 0xffffee34
+value >> 2 << 5: 0xffff71a0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x203778	addend 0	 p 0x203e9c
+value = (s + (-4) - p) : 0xfffff8d8
+value >> 2 << 5: 0xffffc6c0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x218	added 0	 p 0x203f10
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x218	added 0	 p 0x203f1c
+value = (addend + symbol) : 0x218
+value<<4 : 0x2180	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x203f20
+value = (s + (-4) - p) : 0xb5c
+value >> 2 << 5: 0x5ae0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x2039d4	addend 0	 p 0x204020
+value = (s + (-4) - p) : 0xfffff9b0
+value >> 2 << 5: 0xffffcd80	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x318	added 0	 p 0x204440
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x318	added 0	 p 0x204444
+value = (addend + symbol) : 0x318
+value<<4 : 0x3180	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x60fd0	added 0	 p 0x204504
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x60fd0	added 0	 p 0x204510
+value = (addend + symbol) : 0x60fd0
+value<<4 : 0x60fd00	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x60f90	added 0	 p 0x204518
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x60f90	added 0	 p 0x20451c
+value = (addend + symbol) : 0x60f90
+value<<4 : 0x60f900	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x60f50	added 0	 p 0x204524
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x60f50	added 0	 p 0x204528
+value = (addend + symbol) : 0x60f50
+value<<4 : 0x60f500	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x60f10	added 0	 p 0x204530
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x60f10	added 0	 p 0x204534
+value = (addend + symbol) : 0x60f10
+value<<4 : 0x60f100	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x2045b4	addend 0	 p 0x204564
+value = (s + (-4) - p) : 0x4c
+value >> 2 << 5: 0x260	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x202890	addend 0	 p 0x200418
+value = (s + (-4) - p) : 0x2474
+value >> 2 << 5: 0x123a0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x200488
+value = (s + (-4) - p) : 0x41d0
+value >> 2 << 5: 0x20e80	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x2004e8
+value = (s + (-4) - p) : 0x4170
+value >> 2 << 5: 0x20b80	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x200530
+value = (s + (-4) - p) : 0x4128
+value >> 2 << 5: 0x20940	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x200920
+value = (s + (-4) - p) : 0x3d38
+value >> 2 << 5: 0x1e9c0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20465c	addend 0	 p 0x20095c
+value = (s + (-4) - p) : 0x3cfc
+value >> 2 << 5: 0x1e7e0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x661dc	added 0	 p 0x2014b4
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x661dc	added 0	 p 0x2014b8
+value = (addend + symbol) : 0x661dc
+value<<4 : 0x661dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x661dc	added 0	 p 0x201530
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x661dc	added 0	 p 0x201534
+value = (addend + symbol) : 0x661dc
+value<<4 : 0x661dc0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x200b04	addend 0	 p 0x20159c
+value = (s + (-4) - p) : 0xfffff564
+value >> 2 << 5: 0xffffab20	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x6101c	added 0	 p 0x2015e4
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6101c	added 0	 p 0x2015ec
+value = (addend + symbol) : 0x6101c
+value<<4 : 0x6101c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204b28	addend 0	 p 0x2017e0
+value = (s + (-4) - p) : 0x3344
+value >> 2 << 5: 0x19a20	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x200b04	addend 0	 p 0x201990
+value = (s + (-4) - p) : 0xfffff170
+value >> 2 << 5: 0xffff8b80	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x657dc	added 0	 p 0x201aa0
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x657dc	added 0	 p 0x201aa4
+value = (addend + symbol) : 0x657dc
+value<<4 : 0x657dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x651dc	added 0	 p 0x201adc
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x651dc	added 0	 p 0x201ae0
+value = (addend + symbol) : 0x651dc
+value<<4 : 0x651dc0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204b28	addend 0	 p 0x201b94
+value = (s + (-4) - p) : 0x2f90
+value >> 2 << 5: 0x17c80	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x65bdc	added 0	 p 0x201d5c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x65bdc	added 0	 p 0x201d60
+value = (addend + symbol) : 0x65bdc
+value<<4 : 0x65bdc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x6109c	added 0	 p 0x201df4
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6109c	added 0	 p 0x201df8
+value = (addend + symbol) : 0x6109c
+value<<4 : 0x6109c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x6105c	added 0	 p 0x201e0c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6105c	added 0	 p 0x201e14
+value = (addend + symbol) : 0x6105c
+value<<4 : 0x6105c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x201e18
+value = (s + (-4) - p) : 0x2c64
+value >> 2 << 5: 0x16320	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x65bdc	added 0	 p 0x2021b4
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x65bdc	added 0	 p 0x2021b8
+value = (addend + symbol) : 0x65bdc
+value<<4 : 0x65bdc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x65bdc	added 0	 p 0x20224c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x65bdc	added 0	 p 0x202250
+value = (addend + symbol) : 0x65bdc
+value<<4 : 0x65bdc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x61014	added 0	 p 0x20226c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x61014	added 0	 p 0x202274
+value = (addend + symbol) : 0x61014
+value<<4 : 0x610140	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x20043c	addend 0	 p 0x20229c
+value = (s + (-4) - p) : 0xffffe19c
+value >> 2 << 5: 0xffff0ce0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x6625c	added 0	 p 0x2022c0
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6625c	added 0	 p 0x2022c8
+value = (addend + symbol) : 0x6625c
+value<<4 : 0x6625c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204a80	addend 0	 p 0x2022d0
+value = (s + (-4) - p) : 0x27ac
+value >> 2 << 5: 0x13d60	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x660dc	added 0	 p 0x2022dc
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x660dc	added 0	 p 0x2022e0
+value = (addend + symbol) : 0x660dc
+value<<4 : 0x660dc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xc10	added 0	 p 0x2022e8
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc10	added 0	 p 0x2022f0
+value = (addend + symbol) : 0xc10
+value<<4 : 0xc100	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x2043a8	addend 0	 p 0x2022f8
+value = (s + (-4) - p) : 0x20ac
+value >> 2 << 5: 0x10560	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x61018	added 0	 p 0x202304
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x61018	added 0	 p 0x202308
+value = (addend + symbol) : 0x61018
+value<<4 : 0x610180	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x6509c	added 0	 p 0x20230c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6509c	added 0	 p 0x202310
+value = (addend + symbol) : 0x6509c
+value<<4 : 0x6509c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x203ebc	addend 0	 p 0x202324
+value = (s + (-4) - p) : 0x1b94
+value >> 2 << 5: 0xdca0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0xc08	added 0	 p 0x2023a8
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc08	added 0	 p 0x2023ac
+value = (addend + symbol) : 0xc08
+value<<4 : 0xc080	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x204108	addend 0	 p 0x2023c0
+value = (s + (-4) - p) : 0x1d44
+value >> 2 << 5: 0xea20	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x6105c	added 0	 p 0x20242c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6105c	added 0	 p 0x202430
+value = (addend + symbol) : 0x6105c
+value<<4 : 0x6105c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x6105c	added 0	 p 0x20250c
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6105c	added 0	 p 0x202510
+value = (addend + symbol) : 0x6105c
+value<<4 : 0x6105c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xc0c	added 0	 p 0x202584
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc0c	added 0	 p 0x202588
+value = (addend + symbol) : 0xc0c
+value<<4 : 0xc0c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x201438	addend 0	 p 0x202598
+value = (s + (-4) - p) : 0xffffee9c
+value >> 2 << 5: 0xffff74e0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x6101c	added 0	 p 0x2025a4
+value = mips_elf_high (addend + symbol) : 0x6
+value<<4 : 0x60	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x6101c	added 0	 p 0x2025ac
+value = (addend + symbol) : 0x6101c
+value<<4 : 0x6101c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x20172c	addend 0	 p 0x2025b0
+value = (s + (-4) - p) : 0xfffff178
+value >> 2 << 5: 0xffff8bc0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x203734	addend 0	 p 0x2031e4
+value = (s + (-4) - p) : 0x54c
+value >> 2 << 5: 0x2a60	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x202df0	addend 0	 p 0x203704
+value = (s + (-4) - p) : 0xfffff6e8
+value >> 2 << 5: 0xffffb740	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x204928	addend 0	 p 0x204164
+value = (s + (-4) - p) : 0x7c0
+value >> 2 << 5: 0x3e00	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x2048dc	addend 0	 p 0x204204
+value = (s + (-4) - p) : 0x6d4
+value >> 2 << 5: 0x36a0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x2048dc	addend 0	 p 0x204240
+value = (s + (-4) - p) : 0x698
+value >> 2 << 5: 0x34c0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x204630	addend 0	 p 0x204358
+value = (s + (-4) - p) : 0x2d4
+value >> 2 << 5: 0x16a0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x52c	added 0	 p 0x204a4c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x52c	added 0	 p 0x204a50
+value = (addend + symbol) : 0x52c
+value<<4 : 0x52c0	dst_mask : 0xffff0
+
+16:28:19 Build Finished. 0 errors, 0 warnings. (took 770ms)
+

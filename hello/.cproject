@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="example.toolchain.configuration.release.170233170">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="example.toolchain.configuration.release.170233170" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="out" artifactName="${ProjName}" buildProperties="" cleanCommand="rm -f" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.VCErrorParser" id="example.toolchain.configuration.release.170233170" name="Release" optionalBuildProperties="" parent="example.toolchain.configuration.release">
+					<folderInfo id="example.toolchain.configuration.release.170233170." name="/" resourcePath="">
+						<toolChain id="example.toolchain.toolchain.1934551261" name="Swift Tool-chain" superClass="example.toolchain.toolchain">
+							<targetPlatform binaryParser="org.eclipse.cdt.core.ELF" id="example.toolchain.targetplatform.1091324361" isAbstract="false" name="Swift Target Platform" osList="win32" superClass="example.toolchain.targetplatform"/>
+							<builder buildPath="${workspace_loc:/hello}/Release" id="example.toolchain.builder.1064529090" managedBuildOn="true" name="Swift Builder.Release" superClass="example.toolchain.builder"/>
+							<tool id="example.toolchain.compiler.734177866" name="Clang" superClass="example.toolchain.compiler">
+								<inputType id="example.toolchain.compiler.input.738031801" name="Compiler Input" superClass="example.toolchain.compiler.input"/>
+							</tool>
+							<tool id="example.toolchain.llc.2134664283" name="Llc" superClass="example.toolchain.llc"/>
+							<tool id="example.toolchain.linker.1258672776" name="Linker" superClass="example.toolchain.linker"/>
+							<tool id="example.toolchain.assembler.2053274522" name="Assembler" superClass="example.toolchain.assembler"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="hello.example.toolchain.executable.850523553" name="Swift Executable" projectType="example.toolchain.executable"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+</cproject>

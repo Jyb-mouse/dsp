@@ -1,0 +1,470 @@
+Archive member included because of file (symbol)
+
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(_sdiv.o)
+                              DCremove.o (__dsp_i32sdiv)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(abs.o)
+                              log2abs32.o (abs)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o)
+                              log2abs32.o (log2_q8)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memcpy.o)
+                              dopandcfar.o (memcpy)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memset.o)
+                              dopandcfar.o (memset)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(table.o)
+                              D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o) (log2Table)
+D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(vector_table.o)
+                              D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o) (half_pi)
+
+Allocating common symbols
+Common symbol       size              file
+
+Log2AbsBuf1         0x40              dopandcfar.o
+cfardetect          0x600             dopandcfar.o
+cfarDetOut          0x200             dopandcfar.o
+radarCubeBase       0x4               dopandcfar.o
+sum                 0x4               dopandcfar.o
+fftOut1D            0x2000            dss.o
+radarCubeBuf        0x60000           dss.o
+fftOutBuf           0x4               dopandcfar.o
+windowingOutBuf     0x200             dopandcfar.o
+adcDataBuf          0x4000            dss.o
+pingPongBuf         0x100             dopandcfar.o
+H                   0x400             dopandcfar.o
+adcDataIn           0x800             dss.o
+fftinBuf            0x100             dopandcfar.o
+localDetMatrixBuffer
+                    0x40              dopandcfar.o
+cfarDetOutBuffer    0x40              dopandcfar.o
+dcoutBuf            0x80              dopandcfar.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000000000                . = 0x0
+
+.rodata         0x0000000000000000      0xc00
+ *(.rodata)
+ .rodata        0x0000000000000000      0x218 dss.o
+                0x0000000000000014                dbg_addr
+ .rodata        0x0000000000000218      0x100 fft_32x32(1).o
+ .rodata        0x0000000000000318       0x14 windowing16x32.o
+ .rodata        0x000000000000032c      0x300 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(table.o)
+                0x000000000000032c                sinTable_q15
+                0x000000000000052c                log2Table
+ *fill*         0x000000000000062c       0xd4 
+ .rodata        0x0000000000000700      0x500 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(vector_table.o)
+                0x0000000000000700                sinTable_hi
+                0x0000000000000800                sinTable_lo
+                0x0000000000000900                negative_mask
+                0x0000000000000a00                half_pi
+                0x0000000000000b00                q15_left_shift
+
+.data           0x0000000000000c00    0x60410
+                0x0000000000000c00                PROVIDE (_fdata, .)
+ *(.data)
+ .data          0x0000000000000c00        0x7 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000000c00                _stump
+ *fill*         0x0000000000000c07        0x1 
+ .data          0x0000000000000c08        0x0 DCremove.o
+ .data          0x0000000000000c08        0x0 cfar_ca.o
+ .data          0x0000000000000c08      0x108 dopandcfar.o
+                0x0000000000000c08                Log2AbsBuf
+                0x0000000000000c0c                detMartrix
+                0x0000000000000c10                window1
+ .data          0x0000000000000d10    0x60200 dss.o
+                0x0000000000000d10                dataMem
+                0x0000000000060d10                window
+ .data          0x0000000000060f10        0x0 fft_16x16.o
+ .data          0x0000000000060f10        0x0 fft_16x16_asm.o
+ .data          0x0000000000060f10        0x0 fft_32x32(1).o
+ .data          0x0000000000060f10        0x0 log2abs32.o
+ .data          0x0000000000060f10        0x0 windowing.o
+ .data          0x0000000000060f10      0x100 windowing16x32.o
+                0x0000000000060f10                shuffle_l
+                0x0000000000060f50                shuffle_h
+                0x0000000000060f90                shuffle_x2_l
+                0x0000000000060fd0                shuffle_x2_h
+ .data          0x0000000000061010        0x0 windowing16x32_asm.o
+ .data          0x0000000000061010        0x0 windowing_asm.o
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(_sdiv.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(abs.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memcpy.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memset.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(table.o)
+ .data          0x0000000000061010        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(vector_table.o)
+                0x0000000000061010                . = .
+
+.sdata
+ *(.sdata)
+
+.lit8
+ *(.lit8)
+
+.lit4
+ *(.lit4)
+                0x0000000000061010                PROVIDE (_edata, .)
+                0x0000000000061010                PROVIDE (edata, .)
+                0x0000000000061010                . = .
+                0x0000000000061010                PROVIDE (__bss_start, .)
+                0x0000000000061010                PROVIDE (_fbss, .)
+
+.sbss           0x0000000000061010        0xc
+ *(.sbss)
+ *(.scommon)
+ .scommon       0x0000000000061010        0xc dopandcfar.o
+                0x0000000000061010                radarCubeBase
+                0x0000000000061014                sum
+                0x0000000000061018                fftOutBuf
+
+.bss            0x000000000006101c    0x6bac0
+ *(.bss)
+ .bss           0x000000000006101c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .bss           0x000000000006101c        0x0 DCremove.o
+ .bss           0x000000000006101c        0x0 cfar_ca.o
+ .bss           0x000000000006101c     0x4180 dopandcfar.o
+                0x000000000006101c                cfarDopplerDetOutBitMask
+                0x000000000006105c                sumAbsBuf
+                0x000000000006109c                detMartrix1
+                0x000000000006509c                fftOutBuf1
+ .bss           0x000000000006519c        0x0 dss.o
+ .bss           0x000000000006519c        0x0 fft_16x16.o
+ .bss           0x000000000006519c        0x0 fft_16x16_asm.o
+ .bss           0x000000000006519c        0x0 fft_32x32(1).o
+ .bss           0x000000000006519c        0x0 log2abs32.o
+ .bss           0x000000000006519c        0x0 windowing.o
+ .bss           0x000000000006519c        0x0 windowing16x32.o
+ .bss           0x000000000006519c        0x0 windowing16x32_asm.o
+ .bss           0x000000000006519c        0x0 windowing_asm.o
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(_sdiv.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(abs.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memcpy.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memset.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(table.o)
+ .bss           0x000000000006519c        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(vector_table.o)
+ *(COMMON)
+ COMMON         0x000000000006519c     0x1140 dopandcfar.o
+                0x000000000006519c                Log2AbsBuf1
+                0x00000000000651dc                cfardetect
+                0x00000000000657dc                cfarDetOut
+                0x00000000000659dc                windowingOutBuf
+                0x0000000000065bdc                pingPongBuf
+                0x0000000000065cdc                H
+                0x00000000000660dc                fftinBuf
+                0x00000000000661dc                localDetMatrixBuffer
+                0x000000000006621c                cfarDetOutBuffer
+                0x000000000006625c                dcoutBuf
+ COMMON         0x00000000000662dc    0x66800 dss.o
+                0x00000000000662dc                fftOut1D
+                0x00000000000682dc                radarCubeBuf
+                0x00000000000c82dc                adcDataBuf
+                0x00000000000cc2dc                adcDataIn
+ COMMON         0x00000000000ccadc        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o)
+                0x00000000000a0000                . = 0xa0000
+                0x00000000000a0000                __heap_size__ = 0xa0000
+
+.heap           0x00000000000a0000    0xa0000
+                0x00000000000a0000                __heap_start__ = .
+                0x0000000000140000                . = (. + __heap_size__)
+ *fill*         0x00000000000a0000    0xa0000 
+                0x0000000000140000                __heap_end__ = .
+                0x0000000000200400                . = 0x200400
+
+.text           0x0000000000200400     0x47b0
+                0x0000000000200400                PROVIDE (_ftext, .)
+ *(.init)
+ *(.text)
+ .text          0x0000000000200400       0x3c D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000200400                _main
+ .text          0x000000000020043c      0x6c8 DCremove.o
+                0x000000000020043c                dcremove
+ .text          0x0000000000200b04      0x934 cfar_ca.o
+                0x0000000000200b04                cfarCa
+ .text          0x0000000000201438     0x122c dopandcfar.o
+                0x0000000000201438                cfar_doppler
+                0x000000000020172c                cfar_rang
+                0x0000000000201bdc                dopplerandcfar
+ .text          0x0000000000202664      0x78c dss.o
+                0x0000000000202664                dbg_output
+                0x0000000000202890                main
+ .text          0x0000000000202df0      0x944 fft_16x16.o
+                0x0000000000202df0                bit_reverse1
+                0x0000000000203014                fft_16x16
+ .text          0x0000000000203734       0x44 fft_16x16_asm.o
+                0x0000000000203734                vmac_butterfly
+ .text          0x0000000000203778      0x990 fft_32x32(1).o
+                0x0000000000203778                bit_reverse
+                0x00000000002039d4                fft_32x32a
+                0x0000000000203ebc                fft_32x32
+ .text          0x0000000000204108      0x1c0 log2abs32.o
+                0x0000000000204108                log2abs32
+ .text          0x00000000002042c8       0xe0 windowing.o
+                0x00000000002042c8                windowing
+ .text          0x00000000002043a8      0x20c windowing16x32.o
+                0x00000000002043a8                windowing_16x32
+ .text          0x00000000002045b4       0x7c windowing16x32_asm.o
+                0x00000000002045b4                windowing16x32_asm
+ .text          0x0000000000204630       0x2c windowing_asm.o
+                0x0000000000204630                windowing_asm
+ .text          0x000000000020465c      0x280 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(_sdiv.o)
+                0x000000000020465c                __dsp_i32sdiv
+ .text          0x00000000002048dc       0x4c D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(abs.o)
+                0x00000000002048dc                abs
+ .text          0x0000000000204928      0x158 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(log2.o)
+                0x0000000000204928                log2_q8
+ .text          0x0000000000204a80       0xa8 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memcpy.o)
+                0x0000000000204a80                memcpy
+ .text          0x0000000000204b28       0x88 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(memset.o)
+                0x0000000000204b28                memset
+ .text          0x0000000000204bb0        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(table.o)
+ .text          0x0000000000204bb0        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a(vector_table.o)
+ *(.fini)
+                0x0000000000204bb0                PROVIDE (etext, .)
+                0x0000000000204bb0                PROVIDE (_etext, .)
+                0x0000000000204bb0                PROVIDE (_end, .)
+                0x0000000000204bb0                PROVIDE (end, .)
+
+.rel.dyn        0x0000000000204bb0       0x10
+ .rel.dyn       0x0000000000204bb0       0x10 dopandcfar.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+                0x0000000000000000      0x39c
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x0000000000000000       0x27 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_pubnames
+                0x0000000000000027       0x1f DCremove.o
+ .debug_pubnames
+                0x0000000000000046       0x1d cfar_ca.o
+ .debug_pubnames
+                0x0000000000000063      0x180 dopandcfar.o
+ .debug_pubnames
+                0x00000000000001e3       0x97 dss.o
+ .debug_pubnames
+                0x000000000000027a       0x31 fft_16x16.o
+ .debug_pubnames
+                0x00000000000002ab       0x3f fft_32x32(1).o
+ .debug_pubnames
+                0x00000000000002ea       0x20 log2abs32.o
+ .debug_pubnames
+                0x000000000000030a       0x20 windowing.o
+ .debug_pubnames
+                0x000000000000032a       0x72 windowing16x32.o
+
+.debug_info     0x0000000000000000     0x190a
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x82 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_info    0x0000000000000082      0x1a1 DCremove.o
+ .debug_info    0x0000000000000223      0x184 cfar_ca.o
+ .debug_info    0x00000000000003a7      0x867 dopandcfar.o
+ .debug_info    0x0000000000000c0e      0x37d dss.o
+ .debug_info    0x0000000000000f8b      0x267 fft_16x16.o
+ .debug_info    0x00000000000011f2      0x2fe fft_32x32(1).o
+ .debug_info    0x00000000000014f0      0x13f log2abs32.o
+ .debug_info    0x000000000000162f       0xe6 windowing.o
+ .debug_info    0x0000000000001715      0x1f5 windowing16x32.o
+
+.debug_abbrev   0x0000000000000000      0x712
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x73 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_abbrev  0x0000000000000073       0x96 DCremove.o
+ .debug_abbrev  0x0000000000000109       0x71 cfar_ca.o
+ .debug_abbrev  0x000000000000017a       0xfc dopandcfar.o
+ .debug_abbrev  0x0000000000000276      0x149 dss.o
+ .debug_abbrev  0x00000000000003bf       0x64 fft_16x16.o
+ .debug_abbrev  0x0000000000000423       0xb1 fft_32x32(1).o
+ .debug_abbrev  0x00000000000004d4       0x9d log2abs32.o
+ .debug_abbrev  0x0000000000000571       0x8f windowing.o
+ .debug_abbrev  0x0000000000000600      0x112 windowing16x32.o
+
+.debug_line     0x0000000000000000      0xc89
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000       0x46 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_line    0x0000000000000046      0x13e DCremove.o
+ .debug_line    0x0000000000000184      0x162 cfar_ca.o
+ .debug_line    0x00000000000002e6      0x2bf dopandcfar.o
+ .debug_line    0x00000000000005a5      0x1b2 dss.o
+ .debug_line    0x0000000000000757      0x122 fft_16x16.o
+ .debug_line    0x0000000000000879      0x17c fft_32x32(1).o
+ .debug_line    0x00000000000009f5       0xd2 log2abs32.o
+ .debug_line    0x0000000000000ac7       0xa8 windowing.o
+ .debug_line    0x0000000000000b6f      0x11a windowing16x32.o
+
+.debug_frame    0x0000000000000000      0x260
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000       0x28 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_frame   0x0000000000000028       0x30 DCremove.o
+ .debug_frame   0x0000000000000058       0x24 cfar_ca.o
+ .debug_frame   0x000000000000007c       0x80 dopandcfar.o
+ .debug_frame   0x00000000000000fc       0x4c dss.o
+ .debug_frame   0x0000000000000148       0x44 fft_16x16.o
+ .debug_frame   0x000000000000018c       0x58 fft_32x32(1).o
+ .debug_frame   0x00000000000001e4       0x2c log2abs32.o
+ .debug_frame   0x0000000000000210       0x28 windowing.o
+ .debug_frame   0x0000000000000238       0x28 windowing16x32.o
+
+.debug_str      0x0000000000000000      0x7bb
+ *(.debug_str)
+ .debug_str     0x0000000000000000       0x7f D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                                         0x88 (size before relaxing)
+ .debug_str     0x000000000000007f       0x8f DCremove.o
+                                         0xe2 (size before relaxing)
+ .debug_str     0x000000000000010e       0xba cfar_ca.o
+                                        0x123 (size before relaxing)
+ .debug_str     0x00000000000001c8      0x3a4 dopandcfar.o
+                                        0x49d (size before relaxing)
+ .debug_str     0x000000000000056c      0x10e dss.o
+                                        0x1c9 (size before relaxing)
+ .debug_str     0x000000000000067a       0x4e fft_16x16.o
+                                         0xbf (size before relaxing)
+ .debug_str     0x00000000000006c8       0x49 fft_32x32(1).o
+                                        0x11b (size before relaxing)
+ .debug_str     0x0000000000000711       0x39 log2abs32.o
+                                         0xef (size before relaxing)
+ .debug_str     0x000000000000074a       0x1b windowing.o
+                                         0xba (size before relaxing)
+ .debug_str     0x0000000000000765       0x56 windowing16x32.o
+                                        0x13e (size before relaxing)
+
+.debug_loc      0x0000000000000000        0x0
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_loc     0x0000000000000000        0x0 DCremove.o
+ .debug_loc     0x0000000000000000        0x0 cfar_ca.o
+ .debug_loc     0x0000000000000000        0x0 dopandcfar.o
+ .debug_loc     0x0000000000000000        0x0 dss.o
+ .debug_loc     0x0000000000000000        0x0 fft_16x16.o
+ .debug_loc     0x0000000000000000        0x0 fft_32x32(1).o
+ .debug_loc     0x0000000000000000        0x0 log2abs32.o
+ .debug_loc     0x0000000000000000        0x0 windowing.o
+ .debug_loc     0x0000000000000000        0x0 windowing16x32.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+                0x0000000000000000      0x472
+ *(.debug_pubtypes)
+ .debug_pubtypes
+                0x0000000000000000       0x23 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_pubtypes
+                0x0000000000000023       0x86 DCremove.o
+ .debug_pubtypes
+                0x00000000000000a9       0x66 cfar_ca.o
+ .debug_pubtypes
+                0x000000000000010f      0x123 dopandcfar.o
+ .debug_pubtypes
+                0x0000000000000232       0x66 dss.o
+ .debug_pubtypes
+                0x0000000000000298       0x24 fft_16x16.o
+ .debug_pubtypes
+                0x00000000000002bc       0x55 fft_32x32(1).o
+ .debug_pubtypes
+                0x0000000000000311       0x75 log2abs32.o
+ .debug_pubtypes
+                0x0000000000000386       0x55 windowing.o
+ .debug_pubtypes
+                0x00000000000003db       0x97 windowing16x32.o
+
+.debug_ranges   0x0000000000000000       0x78
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_ranges  0x0000000000000000       0x18 DCremove.o
+ .debug_ranges  0x0000000000000018        0x0 cfar_ca.o
+ .debug_ranges  0x0000000000000018       0x30 dopandcfar.o
+ .debug_ranges  0x0000000000000048       0x18 dss.o
+ .debug_ranges  0x0000000000000060        0x0 fft_16x16.o
+ .debug_ranges  0x0000000000000060        0x0 fft_32x32(1).o
+ .debug_ranges  0x0000000000000060       0x18 log2abs32.o
+ .debug_ranges  0x0000000000000078        0x0 windowing.o
+ .debug_ranges  0x0000000000000078        0x0 windowing16x32.o
+
+.debug_macro
+ *(.debug_macro)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.gptab.sdata
+ *(.gptab.data)
+ *(.gptab.sdata)
+
+.gptab.sbss
+ *(.gptab.bss)
+ *(.gptab.sbss)
+
+.mdebug.abi32
+ *(.mdebug.abi32)
+
+.mdebug.abiN32
+ *(.mdebug.abiN32)
+
+.mdebug.abi64
+ *(.mdebug.abi64)
+
+.mdebug.abiO64
+ *(.mdebug.abiO64)
+
+.mdebug.eabi32
+ *(.mdebug.eabi32)
+
+.mdebug.eabi64
+ *(.mdebug.eabi64)
+
+.gcc_compiled_long32
+ *(.gcc_compiled_long32)
+
+.gcc_compiled_long64
+ *(.gcc_compiled_long64)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+LOAD DCremove.o
+LOAD cfar_ca.o
+LOAD dopandcfar.o
+LOAD dss.o
+LOAD fft_16x16.o
+LOAD fft_16x16_asm.o
+LOAD fft_32x32(1).o
+LOAD log2abs32.o
+LOAD windowing.o
+LOAD windowing16x32.o
+LOAD windowing16x32_asm.o
+LOAD windowing_asm.o
+LOAD D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a
+OUTPUT(dss.out elf32-tradlittlemips)

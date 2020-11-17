@@ -1,0 +1,197 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000000000                . = 0x0
+
+.rodata
+ *(.rodata)
+
+.data           0x0000000000000000        0x8
+                0x0000000000000000                PROVIDE (_fdata, .)
+ *(.data)
+ .data          0x0000000000000000        0x7 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000000000                _stump
+ *fill*         0x0000000000000007        0x1 
+ .data          0x0000000000000008        0x0 addition.o
+                0x0000000000000008                . = .
+
+.sdata
+ *(.sdata)
+
+.lit8
+ *(.lit8)
+
+.lit4
+ *(.lit4)
+                0x0000000000000008                PROVIDE (_edata, .)
+                0x0000000000000008                PROVIDE (edata, .)
+                0x0000000000000008                . = .
+                0x0000000000000008                PROVIDE (__bss_start, .)
+                0x0000000000000008                PROVIDE (_fbss, .)
+
+.sbss
+ *(.sbss)
+ *(.scommon)
+
+.bss            0x0000000000000008        0x0
+ *(.bss)
+ .bss           0x0000000000000008        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .bss           0x0000000000000008        0x0 addition.o
+ *(COMMON)
+                0x00000000000a0000                . = 0xa0000
+                0x00000000000a0000                __heap_size__ = 0xa0000
+
+.heap           0x00000000000a0000    0xa0000
+                0x00000000000a0000                __heap_start__ = .
+                0x0000000000140000                . = (. + __heap_size__)
+ *fill*         0x00000000000a0000    0xa0000 
+                0x0000000000140000                __heap_end__ = .
+                0x0000000000200400                . = 0x200400
+
+.text           0x0000000000200400       0xc4
+                0x0000000000200400                PROVIDE (_ftext, .)
+ *(.init)
+ *(.text)
+ .text          0x0000000000200400       0x3c D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+                0x0000000000200400                _main
+ .text          0x000000000020043c       0x88 addition.o
+                0x000000000020043c                main
+ *(.fini)
+                0x00000000002004c4                PROVIDE (etext, .)
+                0x00000000002004c4                PROVIDE (_etext, .)
+                0x00000000002004c4                PROVIDE (_end, .)
+                0x00000000002004c4                PROVIDE (end, .)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+                0x0000000000000000       0x42
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x0000000000000000       0x27 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_pubnames
+                0x0000000000000027       0x1b addition.o
+
+.debug_info     0x0000000000000000       0xf0
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000       0x82 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_info    0x0000000000000082       0x6e addition.o
+
+.debug_abbrev   0x0000000000000000       0xc1
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0x73 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_abbrev  0x0000000000000073       0x4e addition.o
+
+.debug_line     0x0000000000000000       0x97
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000       0x46 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_line    0x0000000000000046       0x51 addition.o
+
+.debug_frame    0x0000000000000000       0x4c
+ *(.debug_frame)
+ .debug_frame   0x0000000000000000       0x28 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_frame   0x0000000000000028       0x24 addition.o
+
+.debug_str      0x0000000000000000       0xbf
+ *(.debug_str)
+ .debug_str     0x0000000000000000       0x88 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_str     0x0000000000000088       0x37 addition.o
+                                         0x6d (size before relaxing)
+
+.debug_loc      0x0000000000000000        0x0
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_loc     0x0000000000000000        0x0 addition.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+                0x0000000000000000       0x3d
+ *(.debug_pubtypes)
+ .debug_pubtypes
+                0x0000000000000000       0x23 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_pubtypes
+                0x0000000000000023       0x1a addition.o
+
+.debug_ranges   0x0000000000000000        0x0
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000        0x0 D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/_main.o
+ .debug_ranges  0x0000000000000000        0x0 addition.o
+
+.debug_macro
+ *(.debug_macro)
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+.gptab.sdata
+ *(.gptab.data)
+ *(.gptab.sdata)
+
+.gptab.sbss
+ *(.gptab.bss)
+ *(.gptab.sbss)
+
+.mdebug.abi32
+ *(.mdebug.abi32)
+
+.mdebug.abiN32
+ *(.mdebug.abiN32)
+
+.mdebug.abi64
+ *(.mdebug.abi64)
+
+.mdebug.abiO64
+ *(.mdebug.abiO64)
+
+.mdebug.eabi32
+ *(.mdebug.eabi32)
+
+.mdebug.eabi64
+ *(.mdebug.eabi64)
+
+.gcc_compiled_long32
+ *(.gcc_compiled_long32)
+
+.gcc_compiled_long64
+ *(.gcc_compiled_long64)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+LOAD addition.o
+LOAD D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\lib/libc.a
+OUTPUT(addtion.out elf32-tradlittlemips)

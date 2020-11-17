@@ -1,0 +1,18 @@
+
+
+.global vmac_text
+_begin:
+
+.text
+
+vmac_text:
+||||vload16 vr0 gr4 0 |vload16 vr1 gr5 0||
+movigh gr10 0x0||||load32 gr10 gr30 2|||
+movigl gr10 0x4||||vload16 vr2 gr10 0|||
+||vcmul20 vr3 vr2 vr1||vmovrg2v20 vr5 gr10|||
+|||vadd20 vr4 vr3 vr0||||
+||vsl20 vr6 vr4 vr5|||||
+||||||vstore20 vr6 gr4 0|
+ret|||||||
+nop|||||||
+nop|||||||

@@ -1,0 +1,5078 @@
+15:12:40 **** Incremental Build of configuration Release for project fft_16x16 ****
+Info: Internal Builder is used for build
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\clang.exe" -gdwarf-2 -emit-llvm -S -target dsp -I "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\include" "..\\fft_16x16.c" -o fft_16x16.ll 
+'' is not a recognized processor for this target (ignoring processor)
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\llc.exe" -march=dsp -mcpu=dspse -relocation-model=static -filetype=obj fft_16x16.ll -o fft_16x16.o 
+abstract
+val1,result!!0 ArgReg= 13
+val1,result!!1 ArgReg= 14
+val2,result!!2 FI= -1
+val6,result!!1
+op code is 154
+op code is 154
+op code is 154
+op code is 154
+op code is 12
+op code is 154
+op code is 12
+op code is 154
+op code is 12
+# Machine code for function dbg_output: SSA
+Frame Objects:
+  fi#-1: size=4, align=8, fixed, at location [SP+8]
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"base"; line no:12
+	DBG_VALUE %noreg, 0, !"num"; line no:12
+	DBG_VALUE %noreg, 0, !"wid"; line no:12
+	%vreg2<def> = LD <fi#-1>, 0; mem:LD4[FixedStack-1](align=8) CPURegs:%vreg2
+	ST %vreg0, <fi#1>, 0; mem:ST4[%base.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#2>, 0; mem:ST4[%num.addr] CPURegs:%vreg1
+	ST %vreg2, <fi#3>, 0; mem:ST4[%wid.addr] CPURegs:%vreg2
+	%vreg3<def> = EQI %vreg2, 4; CPURegs:%vreg3,%vreg2 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:13:2
+	JC %vreg3<kill>, <BB#11>; CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:13:2
+	Jmp <BB#18>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:13:2
+    Successors according to CFG: BB#11(16) BB#18(32)
+
+BB#18: derived from LLVM BB %entry
+    Predecessors according to CFG: BB#0
+	%vreg4<def> = EQI %vreg2, 2; CPURegs:%vreg4,%vreg2
+	JC %vreg4<kill>, <BB#6>; CPURegs:%vreg4
+	Jmp <BB#19>
+    Successors according to CFG: BB#6(16) BB#19(16)
+
+BB#19: derived from LLVM BB %entry
+    Predecessors according to CFG: BB#18
+	%vreg5<def> = NEQI %vreg2, 1; CPURegs:%vreg5,%vreg2
+	JC %vreg5<kill>, <BB#16>; CPURegs:%vreg5
+	Jmp <BB#1>
+    Successors according to CFG: BB#1(16) BB#16(16)
+
+BB#1: derived from LLVM BB %sw.bb
+    Predecessors according to CFG: BB#19
+	DBG_VALUE <fi#4>, 0, !"i"; line no:15
+	%vreg41<def> = MovGR %ZERO, 0; CPURegs:%vreg41
+	ST %vreg41, <fi#4>, 0; mem:ST4[%i] CPURegs:%vreg41 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+    Successors according to CFG: BB#2
+
+BB#2: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#1 BB#4
+	%vreg42<def> = LD <fi#2>, 0; mem:LD4[%num.addr] CPURegs:%vreg42 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+	%vreg43<def> = LD <fi#4>, 0; mem:LD4[%i] CPURegs:%vreg43 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+	%vreg44<def> = GE %vreg43<kill>, %vreg42<kill>; CPURegs:%vreg44,%vreg43,%vreg42 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+	JC %vreg44<kill>, <BB#5>; CPURegs:%vreg44 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+	Jmp <BB#3>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:7
+    Successors according to CFG: BB#3(124) BB#5(4)
+
+BB#3: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#2
+	%vreg46<def> = LD <fi#4>, 0; mem:LD4[%i] CPURegs:%vreg46 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg47<def> = LD <fi#1>, 0; mem:LD4[%base.addr] CPURegs:%vreg47 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg48<def> = ADDu %vreg47<kill>, %vreg46<kill>; CPURegs:%vreg48,%vreg47,%vreg46 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg49<def> = LDBS %vreg48<kill>, 0; mem:LD1[%arrayidx] CPURegs:%vreg49,%vreg48 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg50<def> = MovIGH %ZERO, <ga:@dbg_addr>[TF=3]; CPURegs:%vreg50 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg51<def,tied1> = MovIGL %vreg50<tied0>, <ga:@dbg_addr>[TF=4]; CPURegs:%vreg51,%vreg50 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	%vreg52<def> = LD %vreg51<kill>, 0; mem:LD4[@dbg_addr] CPURegs:%vreg52,%vreg51 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+	ST %vreg49<kill>, %vreg52<kill>, 0; mem:ST4[%6] CPURegs:%vreg49,%vreg52 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:16:4
+    Successors according to CFG: BB#4
+
+BB#4: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#3
+	%vreg53<def> = LD <fi#4>, 0; mem:LD4[%i] CPURegs:%vreg53 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:23
+	%vreg54<def> = ADDiu %vreg53<kill>, 1; CPURegs:%vreg54,%vreg53 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:23
+	ST %vreg54<kill>, <fi#4>, 0; mem:ST4[%i] CPURegs:%vreg54 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:23
+	Jmp <BB#2>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:15:23
+    Successors according to CFG: BB#2
+
+BB#5: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#2
+	ST %vreg41, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg41 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:17:3
+	Jmp <BB#17>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:17:3
+    Successors according to CFG: BB#17
+
+BB#6: derived from LLVM BB %sw.bb1
+    Predecessors according to CFG: BB#18
+	DBG_VALUE <fi#5>, 0, !"i"; line no:19
+	%vreg22<def> = MovGR %ZERO, 0; CPURegs:%vreg22
+	ST %vreg22, <fi#5>, 0; mem:ST4[%i2] CPURegs:%vreg22 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+    Successors according to CFG: BB#7
+
+BB#7: derived from LLVM BB %for.cond3
+    Predecessors according to CFG: BB#6 BB#9
+	%vreg23<def> = LD <fi#2>, 0; mem:LD4[%num.addr] CPURegs:%vreg23 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+	%vreg24<def> = LD <fi#5>, 0; mem:LD4[%i2] CPURegs:%vreg24 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+	%vreg25<def> = GE %vreg24<kill>, %vreg23<kill>; CPURegs:%vreg25,%vreg24,%vreg23 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+	JC %vreg25<kill>, <BB#10>; CPURegs:%vreg25 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+	Jmp <BB#8>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:7
+    Successors according to CFG: BB#8(124) BB#10(4)
+
+BB#8: derived from LLVM BB %for.body6
+    Predecessors according to CFG: BB#7
+	%vreg27<def> = MovGR %ZERO, 1; CPURegs:%vreg27
+	%vreg28<def> = LD <fi#5>, 0; mem:LD4[%i2] CPURegs:%vreg28 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg29<def> = SHL %vreg28<kill>, %vreg27<kill>; CPURegs:%vreg29,%vreg28,%vreg27 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg30<def> = LD <fi#1>, 0; mem:LD4[%base.addr] CPURegs:%vreg30 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg31<def> = ADDu %vreg30<kill>, %vreg29<kill>; CPURegs:%vreg31,%vreg30,%vreg29 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg32<def> = LDH %vreg31<kill>, 0; mem:LD2[%arrayidx7] CPURegs:%vreg32,%vreg31 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg33<def> = MovGR %ZERO, 16; CPURegs:%vreg33
+	%vreg34<def> = SHL %vreg32<kill>, %vreg33; CPURegs:%vreg34,%vreg32,%vreg33 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg35<def> = SRA %vreg34<kill>, %vreg33; CPURegs:%vreg35,%vreg34,%vreg33 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg36<def> = MovIGH %ZERO, <ga:@dbg_addr>[TF=3]; CPURegs:%vreg36 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg37<def,tied1> = MovIGL %vreg36<tied0>, <ga:@dbg_addr>[TF=4]; CPURegs:%vreg37,%vreg36 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	%vreg38<def> = LD %vreg37<kill>, 0; mem:LD4[@dbg_addr] CPURegs:%vreg38,%vreg37 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+	ST %vreg35<kill>, %vreg38<kill>, 0; mem:ST4[%14] CPURegs:%vreg35,%vreg38 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:20:4
+    Successors according to CFG: BB#9
+
+BB#9: derived from LLVM BB %for.inc9
+    Predecessors according to CFG: BB#8
+	%vreg39<def> = LD <fi#5>, 0; mem:LD4[%i2] CPURegs:%vreg39 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:23
+	%vreg40<def> = ADDiu %vreg39<kill>, 1; CPURegs:%vreg40,%vreg39 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:23
+	ST %vreg40<kill>, <fi#5>, 0; mem:ST4[%i2] CPURegs:%vreg40 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:23
+	Jmp <BB#7>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:19:23
+    Successors according to CFG: BB#7
+
+BB#10: derived from LLVM BB %for.end11
+    Predecessors according to CFG: BB#7
+	ST %vreg22, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg22 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:21:3
+	Jmp <BB#17>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:21:3
+    Successors according to CFG: BB#17
+
+BB#11: derived from LLVM BB %sw.bb12
+    Predecessors according to CFG: BB#0
+	DBG_VALUE <fi#6>, 0, !"i"; line no:23
+	%vreg6<def> = MovGR %ZERO, 0; CPURegs:%vreg6
+	ST %vreg6, <fi#6>, 0; mem:ST4[%i13] CPURegs:%vreg6 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+    Successors according to CFG: BB#12
+
+BB#12: derived from LLVM BB %for.cond14
+    Predecessors according to CFG: BB#11 BB#14
+	%vreg7<def> = LD <fi#2>, 0; mem:LD4[%num.addr] CPURegs:%vreg7 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+	%vreg8<def> = LD <fi#6>, 0; mem:LD4[%i13] CPURegs:%vreg8 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+	%vreg9<def> = GE %vreg8<kill>, %vreg7<kill>; CPURegs:%vreg9,%vreg8,%vreg7 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+	JC %vreg9<kill>, <BB#15>; CPURegs:%vreg9 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+	Jmp <BB#13>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:7
+    Successors according to CFG: BB#13(124) BB#15(4)
+
+BB#13: derived from LLVM BB %for.body17
+    Predecessors according to CFG: BB#12
+	%vreg11<def> = MovGR %ZERO, 2; CPURegs:%vreg11
+	%vreg12<def> = LD <fi#6>, 0; mem:LD4[%i13] CPURegs:%vreg12 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg13<def> = SHL %vreg12<kill>, %vreg11<kill>; CPURegs:%vreg13,%vreg12,%vreg11 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg14<def> = LD <fi#1>, 0; mem:LD4[%base.addr] CPURegs:%vreg14 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg15<def> = ADDu %vreg14<kill>, %vreg13<kill>; CPURegs:%vreg15,%vreg14,%vreg13 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg16<def> = LD %vreg15<kill>, 0; mem:LD4[%arrayidx18] CPURegs:%vreg16,%vreg15 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg17<def> = MovIGH %ZERO, <ga:@dbg_addr>[TF=3]; CPURegs:%vreg17 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg18<def,tied1> = MovIGL %vreg17<tied0>, <ga:@dbg_addr>[TF=4]; CPURegs:%vreg18,%vreg17 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	%vreg19<def> = LD %vreg18<kill>, 0; mem:LD4[@dbg_addr] CPURegs:%vreg19,%vreg18 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+	ST %vreg16<kill>, %vreg19<kill>, 0; mem:ST4[%22] CPURegs:%vreg16,%vreg19 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:24:4
+    Successors according to CFG: BB#14
+
+BB#14: derived from LLVM BB %for.inc19
+    Predecessors according to CFG: BB#13
+	%vreg20<def> = LD <fi#6>, 0; mem:LD4[%i13] CPURegs:%vreg20 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:23
+	%vreg21<def> = ADDiu %vreg20<kill>, 1; CPURegs:%vreg21,%vreg20 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:23
+	ST %vreg21<kill>, <fi#6>, 0; mem:ST4[%i13] CPURegs:%vreg21 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:23
+	Jmp <BB#12>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:23:23
+    Successors according to CFG: BB#12
+
+BB#15: derived from LLVM BB %for.end21
+    Predecessors according to CFG: BB#12
+	ST %vreg6, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg6 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:25:3
+	Jmp <BB#17>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:25:3
+    Successors according to CFG: BB#17
+
+BB#16: derived from LLVM BB %sw.default
+    Predecessors according to CFG: BB#19
+	%vreg55<def> = MovGR %ZERO, -1; CPURegs:%vreg55
+	ST %vreg55<kill>, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg55 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:27:3
+    Successors according to CFG: BB#17
+
+BB#17: derived from LLVM BB %return
+    Predecessors according to CFG: BB#15 BB#10 BB#5 BB#16
+	%vreg56<def> = LD <fi#0>, 0; mem:LD4[%retval] CPURegs:%vreg56 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:29:1
+	%V0<def> = COPY %vreg56; CPURegs:%vreg56 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:29:1
+	RetLR %V0<imp-use>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h:29:1
+
+# End machine code for function dbg_output.
+
+binary20 99e7b800
+1e
+108
+binary30 48278842
+1e
+f8
+binary60 6c4787c2
+1e
+f4
+binary60 ec5787a2
+binary25 14008082
+1e
+f0
+binary60 ec278782
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary25 94008042
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+1e
+e8
+binary60 ec278742
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94300015
+binary4d 14300001
+1e
+e8
+binary30 c8478742
+binary57 80000000
+binary57 80000000
+binary5d 84310309
+1e
+f8
+binary30 c84787c2
+27
+binary57 80000000
+28
+binary57 80000000
+binary15 84310300
+binary4e 14400105
+3
+0
+binary34 c830c001
+binary4d 94400001
+binary5d 8430c409
+binary5e 8430c40a
+binary4d 94400001
+binary4e 94400005
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec310002
+1e
+e8
+binary30 c8378742
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+e8
+binary60 ec378742
+1e
+f4
+binary30 c83787a2
+binary57 80000000
+1e
+e8
+binary30 c8478742
+binary26 90010304
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+1e
+e4
+binary60 ec278722
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94300025
+binary4d 14300001
+1e
+e4
+binary30 c8478722
+binary57 80000000
+binary57 80000000
+binary5d 84310309
+1e
+f8
+binary30 c84787c2
+binary57 80000000
+binary57 80000000
+binary15 84310300
+binary4d 14400001
+3
+0
+binary30 c830c002
+binary4e 94400005
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec310002
+1e
+e4
+binary30 c8378722
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+e4
+binary60 ec378722
+1e
+f4
+binary30 c83787a2
+binary57 80000000
+1e
+e4
+binary30 c8478722
+binary26 90010304
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary56 94008026
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+1e
+ec
+binary60 ec278762
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+ec
+binary30 c8378762
+binary57 80000000
+1e
+f8
+binary30 c84787c2
+binary57 80000000
+binary57 80000000
+binary15 84310300
+binary4d 14400001
+3
+0
+binary32 c830c000
+binary4e 94400005
+4
+0
+binary30 c8410002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec310002
+1e
+ec
+binary30 c8378762
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+ec
+binary60 ec378762
+1e
+f4
+binary30 c83787a2
+binary57 80000000
+1e
+ec
+binary30 c8478762
+binary26 90010304
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+fc
+binary60 ec2787e2
+1e
+fc
+binary30 c82787e2
+binary14 99e78800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+op code is 9a
+# Machine code for function abs_q: SSA
+Frame Objects:
+  fi#0: size=2, align=4, at location [SP]
+  fi#1: size=2, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:25
+	STH %vreg0, <fi#1>, 0; mem:ST2[%x.addr](align=4) CPURegs:%vreg0
+	%vreg1<def> = MovGR %ZERO, 16; CPURegs:%vreg1
+	%vreg2<def> = LDH <fi#1>, 0; mem:LD2[%x.addr](align=4) CPURegs:%vreg2 dbg:..\fft_16x16.c:26:5
+	%vreg3<def> = SHL %vreg2<kill>, %vreg1; CPURegs:%vreg3,%vreg2,%vreg1 dbg:..\fft_16x16.c:26:5
+	%vreg4<def> = SRA %vreg3<kill>, %vreg1; CPURegs:%vreg4,%vreg3,%vreg1 dbg:..\fft_16x16.c:26:5
+	%vreg5<def> = LTI %vreg4<kill>, 0; CPURegs:%vreg5,%vreg4 dbg:..\fft_16x16.c:26:5
+	JNC %vreg5<kill>, <BB#2>; CPURegs:%vreg5 dbg:..\fft_16x16.c:26:5
+	Jmp <BB#1>; dbg:..\fft_16x16.c:26:5
+    Successors according to CFG: BB#1(12) BB#2(20)
+
+BB#1: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#0
+	%vreg7<def> = LDH <fi#1>, 0; mem:LD2[%x.addr](align=4) CPURegs:%vreg7 dbg:..\fft_16x16.c:27:3
+	%vreg8<def> = MovGR %ZERO, 0; CPURegs:%vreg8
+	%vreg9<def> = SUBu %vreg8<kill>, %vreg7<kill>; CPURegs:%vreg9,%vreg8,%vreg7 dbg:..\fft_16x16.c:27:3
+	STH %vreg9<kill>, <fi#0>, 0; mem:ST2[%retval](align=4) CPURegs:%vreg9 dbg:..\fft_16x16.c:27:3
+	Jmp <BB#3>; dbg:..\fft_16x16.c:27:3
+    Successors according to CFG: BB#3
+
+BB#2: derived from LLVM BB %if.else
+    Predecessors according to CFG: BB#0
+	%vreg6<def> = LDH <fi#1>, 0; mem:LD2[%x.addr](align=4) CPURegs:%vreg6 dbg:..\fft_16x16.c:29:3
+	STH %vreg6<kill>, <fi#0>, 0; mem:ST2[%retval](align=4) CPURegs:%vreg6 dbg:..\fft_16x16.c:29:3
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %return
+    Predecessors according to CFG: BB#2 BB#1
+	%vreg11<def> = LDH <fi#0>, 0; mem:LD2[%retval](align=4) CPURegs:%vreg11 dbg:..\fft_16x16.c:31:1
+	%vreg12<def> = SHL %vreg11<kill>, %vreg1; CPURegs:%vreg12,%vreg11,%vreg1 dbg:..\fft_16x16.c:31:1
+	%vreg13<def> = SRA %vreg12<kill>, %vreg1; CPURegs:%vreg13,%vreg12,%vreg1 dbg:..\fft_16x16.c:31:1
+	%V0<def> = COPY %vreg13; CPURegs:%vreg13 dbg:..\fft_16x16.c:31:1
+	RetLR %V0<imp-use>; dbg:..\fft_16x16.c:31:1
+
+# End machine code for function abs_q.
+
+binary14 99e7b800
+binary4e 14200105
+1e
+f8
+binary61 ec478f81
+binary4d 14200001
+1e
+f8
+binary34 c8378f81
+binary5d 8430c209
+binary5e 8430c20a
+binary3c 9400c00e
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+f8
+binary34 c8378f81
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14400005
+1e
+f8
+binary34 c8378f81
+binary4d 94400001
+binary63 84310302
+1e
+fc
+binary61 ec378fc1
+1e
+fc
+binary34 c8378fc1
+binary5d 8430c209
+binary5e 420c20a
+binary14 99e78800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+op code is 9a
+# Machine code for function max_q: SSA
+Frame Objects:
+  fi#0: size=2, align=4, at location [SP]
+  fi#1: size=2, align=4, at location [SP]
+  fi#2: size=2, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:33
+	DBG_VALUE %noreg, 0, !"y"; line no:33
+	STH %vreg0, <fi#1>, 0; mem:ST2[%x.addr](align=4) CPURegs:%vreg0
+	STH %vreg1, <fi#2>, 0; mem:ST2[%y.addr](align=4) CPURegs:%vreg1
+	%vreg2<def> = MovGR %ZERO, 16; CPURegs:%vreg2
+	%vreg3<def> = LDH <fi#2>, 0; mem:LD2[%y.addr](align=4) CPURegs:%vreg3 dbg:..\fft_16x16.c:34:5
+	%vreg4<def> = SHL %vreg3<kill>, %vreg2; CPURegs:%vreg4,%vreg3,%vreg2 dbg:..\fft_16x16.c:34:5
+	%vreg5<def> = SRA %vreg4<kill>, %vreg2; CPURegs:%vreg5,%vreg4,%vreg2 dbg:..\fft_16x16.c:34:5
+	%vreg6<def> = LDH <fi#1>, 0; mem:LD2[%x.addr](align=4) CPURegs:%vreg6 dbg:..\fft_16x16.c:34:5
+	%vreg7<def> = SHL %vreg6<kill>, %vreg2; CPURegs:%vreg7,%vreg6,%vreg2 dbg:..\fft_16x16.c:34:5
+	%vreg8<def> = SRA %vreg7<kill>, %vreg2; CPURegs:%vreg8,%vreg7,%vreg2 dbg:..\fft_16x16.c:34:5
+	%vreg9<def> = LE %vreg8<kill>, %vreg5<kill>; CPURegs:%vreg9,%vreg8,%vreg5 dbg:..\fft_16x16.c:34:5
+	JC %vreg9<kill>, <BB#2>; CPURegs:%vreg9 dbg:..\fft_16x16.c:34:5
+	Jmp <BB#1>; dbg:..\fft_16x16.c:34:5
+    Successors according to CFG: BB#1(16) BB#2(16)
+
+BB#1: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#0
+	%vreg11<def> = LDH <fi#1>, 0; mem:LD2[%x.addr](align=4) CPURegs:%vreg11 dbg:..\fft_16x16.c:35:3
+	STH %vreg11<kill>, <fi#0>, 0; mem:ST2[%retval](align=4) CPURegs:%vreg11 dbg:..\fft_16x16.c:35:3
+	Jmp <BB#3>; dbg:..\fft_16x16.c:35:3
+    Successors according to CFG: BB#3
+
+BB#2: derived from LLVM BB %if.else
+    Predecessors according to CFG: BB#0
+	%vreg10<def> = LDH <fi#2>, 0; mem:LD2[%y.addr](align=4) CPURegs:%vreg10 dbg:..\fft_16x16.c:37:3
+	STH %vreg10<kill>, <fi#0>, 0; mem:ST2[%retval](align=4) CPURegs:%vreg10 dbg:..\fft_16x16.c:37:3
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %return
+    Predecessors according to CFG: BB#2 BB#1
+	%vreg13<def> = LDH <fi#0>, 0; mem:LD2[%retval](align=4) CPURegs:%vreg13 dbg:..\fft_16x16.c:39:1
+	%vreg14<def> = SHL %vreg13<kill>, %vreg2; CPURegs:%vreg14,%vreg13,%vreg2 dbg:..\fft_16x16.c:39:1
+	%vreg15<def> = SRA %vreg14<kill>, %vreg2; CPURegs:%vreg15,%vreg14,%vreg2 dbg:..\fft_16x16.c:39:1
+	%V0<def> = COPY %vreg15; CPURegs:%vreg15 dbg:..\fft_16x16.c:39:1
+	RetLR %V0<imp-use>; dbg:..\fft_16x16.c:39:1
+
+# End machine code for function max_q.
+
+binary14 99e7b800
+binary4e 14200105
+1e
+f8
+binary61 6c478f81
+1e
+f4
+binary61 ec578f41
+binary4d 14200001
+1e
+f4
+binary34 c8378f41
+binary5d 8430c209
+binary5e 430c20a
+1e
+f8
+binary34 c8478f81
+binary5d 84410209
+binary5e 8441020a
+binary37 90010305
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+f8
+binary34 c8378f81
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+f4
+binary34 c8378f41
+1e
+fc
+binary61 ec378fc1
+1e
+fc
+binary34 c8378fc1
+binary5d 8430c209
+binary5e 420c20a
+binary14 99e78800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+RegsToPass.size()=2
+op code is 9a
+op code is c
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+RegsToPass.size()=2
+# Machine code for function DSP_minval: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=256, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+  fi#7: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:40
+	DBG_VALUE %noreg, 0, !"nx"; line no:40
+	ST %vreg0, <fi#0>, 0; mem:ST4[%x.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%nx.addr] CPURegs:%vreg1
+	%vreg2<def> = MovGR %ZERO, 32767; CPURegs:%vreg2
+	ST %vreg2<kill>, <fi#2>, 0; mem:ST4[%min] CPURegs:%vreg2 dbg:..\fft_16x16.c:43:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:44:2
+	%vreg3<def> = COPY %SP; CPURegs:%vreg3 dbg:..\fft_16x16.c:44:2
+	%vreg4<def> = MovGR %ZERO, 256; CPURegs:%vreg4
+	ST %vreg4, %vreg3, 8; mem:ST4[<unknown>] CPURegs:%vreg4,%vreg3 dbg:..\fft_16x16.c:44:2
+	%vreg5<def> = MovIGH %ZERO, <ga:@DSP_minval.temp>[TF=3]; CPURegs:%vreg5 dbg:..\fft_16x16.c:44:2
+	%vreg6<def,tied1> = MovIGL %vreg5<tied0>, <ga:@DSP_minval.temp>[TF=4]; CPURegs:%vreg6,%vreg5 dbg:..\fft_16x16.c:44:2
+	%vreg7<def> = LEA <fi#3>, 0; CPURegs:%vreg7
+	%A0<def> = COPY %vreg7; CPURegs:%vreg7 dbg:..\fft_16x16.c:44:2
+	%A1<def> = COPY %vreg6; CPURegs:%vreg6 dbg:..\fft_16x16.c:44:2
+	CALL <es:memcpy>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:44:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:44:2
+	%vreg8<def> = MovGR %ZERO, 31; CPURegs:%vreg8
+	%vreg9<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg9 dbg:..\fft_16x16.c:45:2
+	%vreg10<def> = SRA %vreg9, %vreg8<kill>; CPURegs:%vreg10,%vreg9,%vreg8 dbg:..\fft_16x16.c:45:2
+	%vreg11<def> = MovGR %ZERO, 25; CPURegs:%vreg11
+	%vreg12<def> = SRL %vreg10<kill>, %vreg11<kill>; CPURegs:%vreg12,%vreg10,%vreg11 dbg:..\fft_16x16.c:45:2
+	%vreg13<def> = ADDu %vreg9, %vreg12<kill>; CPURegs:%vreg13,%vreg9,%vreg12 dbg:..\fft_16x16.c:45:2
+	%vreg14<def> = MovGR %ZERO, 7; CPURegs:%vreg14
+	%vreg15<def> = SRA %vreg13<kill>, %vreg14; CPURegs:%vreg15,%vreg13,%vreg14 dbg:..\fft_16x16.c:45:2
+	ST %vreg15<kill>, <fi#4>, 0; mem:ST4[%k] CPURegs:%vreg15 dbg:..\fft_16x16.c:45:2
+	%vreg16<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg16 dbg:..\fft_16x16.c:46:6
+	%vreg17<def> = LT %vreg16<kill>, %vreg4; CPURegs:%vreg17,%vreg16,%vreg4 dbg:..\fft_16x16.c:46:6
+	JC %vreg17<kill>, <BB#9>; CPURegs:%vreg17 dbg:..\fft_16x16.c:46:6
+	Jmp <BB#1>; dbg:..\fft_16x16.c:46:6
+    Successors according to CFG: BB#1(16) BB#9(16)
+
+BB#1: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#0
+	DBG_VALUE <fi#5>, 0, !"i"; line no:47
+	%vreg23<def> = MovGR %ZERO, 0; CPURegs:%vreg23
+	ST %vreg23, <fi#5>, 0; mem:ST4[%i] CPURegs:%vreg23 dbg:..\fft_16x16.c:47:8
+    Successors according to CFG: BB#2
+
+BB#2: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#1 BB#3
+	%vreg24<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg24 dbg:..\fft_16x16.c:47:8
+	%vreg25<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg25 dbg:..\fft_16x16.c:47:8
+	%vreg26<def> = GE %vreg25<kill>, %vreg24<kill>; CPURegs:%vreg26,%vreg25,%vreg24 dbg:..\fft_16x16.c:47:8
+	JC %vreg26<kill>, <BB#4>; CPURegs:%vreg26 dbg:..\fft_16x16.c:47:8
+	Jmp <BB#3>; dbg:..\fft_16x16.c:47:8
+    Successors according to CFG: BB#3(124) BB#4(4)
+
+BB#3: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#2
+	%vreg84<def> = MovGR %ZERO, 8; CPURegs:%vreg84
+	%vreg85<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg85 dbg:..\fft_16x16.c:48:4
+	%vreg86<def> = SHL %vreg85<kill>, %vreg84<kill>; CPURegs:%vreg86,%vreg85,%vreg84 dbg:..\fft_16x16.c:48:4
+	%vreg87<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg87 dbg:..\fft_16x16.c:48:4
+	%vreg88<def> = ADDu %vreg87<kill>, %vreg86<kill>; CPURegs:%vreg88,%vreg87,%vreg86 dbg:..\fft_16x16.c:48:4
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:48:4
+	%vreg89<def> = LEA <fi#3>, 0; CPURegs:%vreg89
+	%A0<def> = COPY %vreg88; CPURegs:%vreg88 dbg:..\fft_16x16.c:48:4
+	%A1<def> = COPY %vreg89; CPURegs:%vreg89 dbg:..\fft_16x16.c:48:4
+	CALL <ga:@dsp_minval_asm>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:48:4
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:48:4
+	%vreg90<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg90 dbg:..\fft_16x16.c:47:26
+	%vreg91<def> = ADDiu %vreg90<kill>, 1; CPURegs:%vreg91,%vreg90 dbg:..\fft_16x16.c:47:26
+	ST %vreg91<kill>, <fi#5>, 0; mem:ST4[%i] CPURegs:%vreg91 dbg:..\fft_16x16.c:47:26
+	Jmp <BB#2>; dbg:..\fft_16x16.c:47:26
+    Successors according to CFG: BB#2
+
+BB#4: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#2
+	DBG_VALUE <fi#6>, 0, !"i"; line no:50
+	ST %vreg23, <fi#6>, 0; mem:ST4[%i2] CPURegs:%vreg23 dbg:..\fft_16x16.c:50:8
+    Successors according to CFG: BB#5
+
+BB#5: derived from LLVM BB %for.cond3
+    Predecessors according to CFG: BB#4 BB#8
+	%vreg28<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg28 dbg:..\fft_16x16.c:50:8
+	%vreg29<def> = LTI %vreg28<kill>, 128; CPURegs:%vreg29,%vreg28 dbg:..\fft_16x16.c:50:8
+	JNC %vreg29<kill>, <BB#11>; CPURegs:%vreg29 dbg:..\fft_16x16.c:50:8
+	Jmp <BB#6>; dbg:..\fft_16x16.c:50:8
+    Successors according to CFG: BB#6(124) BB#11(4)
+
+BB#6: derived from LLVM BB %for.body5
+    Predecessors according to CFG: BB#5
+	%vreg62<def> = MovGR %ZERO, 1; CPURegs:%vreg62
+	%vreg63<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg63 dbg:..\fft_16x16.c:51:8
+	%vreg64<def> = SHL %vreg63<kill>, %vreg62; CPURegs:%vreg64,%vreg63,%vreg62 dbg:..\fft_16x16.c:51:8
+	%vreg66<def> = ADDu %vreg7, %vreg64<kill>; CPURegs:%vreg66,%vreg7,%vreg64 dbg:..\fft_16x16.c:51:8
+	%vreg67<def> = LDH %vreg66<kill>, 0; mem:LD2[%arrayidx6] CPURegs:%vreg67,%vreg66 dbg:..\fft_16x16.c:51:8
+	%vreg68<def> = MovGR %ZERO, 16; CPURegs:%vreg68
+	%vreg69<def> = SHL %vreg67<kill>, %vreg68; CPURegs:%vreg69,%vreg67,%vreg68 dbg:..\fft_16x16.c:51:8
+	%vreg70<def> = SRA %vreg69<kill>, %vreg68; CPURegs:%vreg70,%vreg69,%vreg68 dbg:..\fft_16x16.c:51:8
+	%vreg71<def> = LD <fi#2>, 0; mem:LD4[%min] CPURegs:%vreg71 dbg:..\fft_16x16.c:51:8
+	%vreg72<def> = GE %vreg70<kill>, %vreg71<kill>; CPURegs:%vreg72,%vreg70,%vreg71 dbg:..\fft_16x16.c:51:8
+	JC %vreg72<kill>, <BB#8>; CPURegs:%vreg72 dbg:..\fft_16x16.c:51:8
+	Jmp <BB#7>; dbg:..\fft_16x16.c:51:8
+    Successors according to CFG: BB#7(16) BB#8(16)
+
+BB#7: derived from LLVM BB %if.then9
+    Predecessors according to CFG: BB#6
+	%vreg74<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg74 dbg:..\fft_16x16.c:52:5
+	%vreg75<def> = SHL %vreg74<kill>, %vreg62; CPURegs:%vreg75,%vreg74,%vreg62 dbg:..\fft_16x16.c:52:5
+	%vreg77<def> = ADDu %vreg7, %vreg75<kill>; CPURegs:%vreg77,%vreg7,%vreg75 dbg:..\fft_16x16.c:52:5
+	%vreg78<def> = LDH %vreg77<kill>, 0; mem:LD2[%arrayidx10] CPURegs:%vreg78,%vreg77 dbg:..\fft_16x16.c:52:5
+	%vreg80<def> = SHL %vreg78<kill>, %vreg68; CPURegs:%vreg80,%vreg78,%vreg68 dbg:..\fft_16x16.c:52:5
+	%vreg81<def> = SRA %vreg80<kill>, %vreg68; CPURegs:%vreg81,%vreg80,%vreg68 dbg:..\fft_16x16.c:52:5
+	ST %vreg81<kill>, <fi#2>, 0; mem:ST4[%min] CPURegs:%vreg81 dbg:..\fft_16x16.c:52:5
+    Successors according to CFG: BB#8
+
+BB#8: derived from LLVM BB %for.inc12
+    Predecessors according to CFG: BB#6 BB#7
+	%vreg82<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg82 dbg:..\fft_16x16.c:50:28
+	%vreg83<def> = ADDiu %vreg82<kill>, 1; CPURegs:%vreg83,%vreg82 dbg:..\fft_16x16.c:50:28
+	ST %vreg83<kill>, <fi#6>, 0; mem:ST4[%i2] CPURegs:%vreg83 dbg:..\fft_16x16.c:50:28
+	Jmp <BB#5>; dbg:..\fft_16x16.c:50:28
+    Successors according to CFG: BB#5
+
+BB#9: derived from LLVM BB %if.else
+    Predecessors according to CFG: BB#0
+	%vreg18<def> = MovGR %ZERO, 128; CPURegs:%vreg18
+	%vreg19<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg19 dbg:..\fft_16x16.c:53:13
+	%vreg20<def> = LT %vreg19<kill>, %vreg18<kill>; CPURegs:%vreg20,%vreg19,%vreg18 dbg:..\fft_16x16.c:53:13
+	JC %vreg20<kill>, <BB#11>; CPURegs:%vreg20 dbg:..\fft_16x16.c:53:13
+	Jmp <BB#10>; dbg:..\fft_16x16.c:53:13
+    Successors according to CFG: BB#10(16) BB#11(16)
+
+BB#10: derived from LLVM BB %if.then17
+    Predecessors according to CFG: BB#9
+	%vreg21<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg21 dbg:..\fft_16x16.c:54:3
+	%vreg22<def> = ADDiu %vreg21<kill>, -1; CPURegs:%vreg22,%vreg21 dbg:..\fft_16x16.c:54:3
+	ST %vreg22<kill>, <fi#4>, 0; mem:ST4[%k] CPURegs:%vreg22 dbg:..\fft_16x16.c:54:3
+    Successors according to CFG: BB#11
+
+BB#11: derived from LLVM BB %if.end19
+    Predecessors according to CFG: BB#9 BB#10 BB#5
+	DBG_VALUE <fi#7>, 0, !"i"; line no:56
+	%vreg31<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg31 dbg:..\fft_16x16.c:56:7
+	%vreg32<def> = SHL %vreg31<kill>, %vreg14; CPURegs:%vreg32,%vreg31,%vreg14 dbg:..\fft_16x16.c:56:7
+	ST %vreg32<kill>, <fi#7>, 0; mem:ST4[%i20] CPURegs:%vreg32 dbg:..\fft_16x16.c:56:7
+    Successors according to CFG: BB#12
+
+BB#12: derived from LLVM BB %for.cond22
+    Predecessors according to CFG: BB#11 BB#15
+	%vreg33<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg33 dbg:..\fft_16x16.c:56:7
+	%vreg34<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg34 dbg:..\fft_16x16.c:56:7
+	%vreg35<def> = GE %vreg34<kill>, %vreg33<kill>; CPURegs:%vreg35,%vreg34,%vreg33 dbg:..\fft_16x16.c:56:7
+	JC %vreg35<kill>, <BB#16>; CPURegs:%vreg35 dbg:..\fft_16x16.c:56:7
+	Jmp <BB#13>; dbg:..\fft_16x16.c:56:7
+    Successors according to CFG: BB#13(124) BB#16(4)
+
+BB#13: derived from LLVM BB %for.body25
+    Predecessors according to CFG: BB#12
+	%vreg40<def> = MovGR %ZERO, 1; CPURegs:%vreg40
+	%vreg41<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg41 dbg:..\fft_16x16.c:57:7
+	%vreg42<def> = SHL %vreg41<kill>, %vreg40; CPURegs:%vreg42,%vreg41,%vreg40 dbg:..\fft_16x16.c:57:7
+	%vreg43<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg43 dbg:..\fft_16x16.c:57:7
+	%vreg44<def> = ADDu %vreg43<kill>, %vreg42<kill>; CPURegs:%vreg44,%vreg43,%vreg42 dbg:..\fft_16x16.c:57:7
+	%vreg45<def> = LDH %vreg44<kill>, 0; mem:LD2[%arrayidx26] CPURegs:%vreg45,%vreg44 dbg:..\fft_16x16.c:57:7
+	%vreg46<def> = MovGR %ZERO, 16; CPURegs:%vreg46
+	%vreg47<def> = SHL %vreg45<kill>, %vreg46; CPURegs:%vreg47,%vreg45,%vreg46 dbg:..\fft_16x16.c:57:7
+	%vreg48<def> = SRA %vreg47<kill>, %vreg46; CPURegs:%vreg48,%vreg47,%vreg46 dbg:..\fft_16x16.c:57:7
+	%vreg49<def> = LD <fi#2>, 0; mem:LD4[%min] CPURegs:%vreg49 dbg:..\fft_16x16.c:57:7
+	%vreg50<def> = GE %vreg48<kill>, %vreg49<kill>; CPURegs:%vreg50,%vreg48,%vreg49 dbg:..\fft_16x16.c:57:7
+	JC %vreg50<kill>, <BB#15>; CPURegs:%vreg50 dbg:..\fft_16x16.c:57:7
+	Jmp <BB#14>; dbg:..\fft_16x16.c:57:7
+    Successors according to CFG: BB#14(16) BB#15(16)
+
+BB#14: derived from LLVM BB %if.then30
+    Predecessors according to CFG: BB#13
+	%vreg52<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg52 dbg:..\fft_16x16.c:58:4
+	%vreg53<def> = SHL %vreg52<kill>, %vreg40; CPURegs:%vreg53,%vreg52,%vreg40 dbg:..\fft_16x16.c:58:4
+	%vreg54<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg54 dbg:..\fft_16x16.c:58:4
+	%vreg55<def> = ADDu %vreg54<kill>, %vreg53<kill>; CPURegs:%vreg55,%vreg54,%vreg53 dbg:..\fft_16x16.c:58:4
+	%vreg56<def> = LDH %vreg55<kill>, 0; mem:LD2[%arrayidx31] CPURegs:%vreg56,%vreg55 dbg:..\fft_16x16.c:58:4
+	%vreg58<def> = SHL %vreg56<kill>, %vreg46; CPURegs:%vreg58,%vreg56,%vreg46 dbg:..\fft_16x16.c:58:4
+	%vreg59<def> = SRA %vreg58<kill>, %vreg46; CPURegs:%vreg59,%vreg58,%vreg46 dbg:..\fft_16x16.c:58:4
+	ST %vreg59<kill>, <fi#2>, 0; mem:ST4[%min] CPURegs:%vreg59 dbg:..\fft_16x16.c:58:4
+    Successors according to CFG: BB#15
+
+BB#15: derived from LLVM BB %for.inc34
+    Predecessors according to CFG: BB#13 BB#14
+	%vreg60<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg60 dbg:..\fft_16x16.c:56:32
+	%vreg61<def> = ADDiu %vreg60<kill>, 1; CPURegs:%vreg61,%vreg60 dbg:..\fft_16x16.c:56:32
+	ST %vreg61<kill>, <fi#7>, 0; mem:ST4[%i20] CPURegs:%vreg61 dbg:..\fft_16x16.c:56:32
+	Jmp <BB#12>; dbg:..\fft_16x16.c:56:32
+    Successors according to CFG: BB#12
+
+BB#16: derived from LLVM BB %for.end36
+    Predecessors according to CFG: BB#12
+	%vreg36<def> = MovGR %ZERO, 16; CPURegs:%vreg36
+	%vreg37<def> = LDH <fi#2>, 0; mem:LD2[%min](align=4) CPURegs:%vreg37 dbg:..\fft_16x16.c:59:2
+	%vreg38<def> = SHL %vreg37<kill>, %vreg36; CPURegs:%vreg38,%vreg37,%vreg36 dbg:..\fft_16x16.c:59:2
+	%vreg39<def> = SRA %vreg38<kill>, %vreg36; CPURegs:%vreg39,%vreg38,%vreg36 dbg:..\fft_16x16.c:59:2
+	%V0<def> = COPY %vreg39; CPURegs:%vreg39 dbg:..\fft_16x16.c:59:2
+	RetLR %V0<imp-use>; dbg:..\fft_16x16.c:59:2
+
+# End machine code for function DSP_minval.
+
+copy phy reg
+binary14 99e7a800
+1e
+2fc
+binary60 6df797e2
+1e
+2f8
+binary60 ed2797c2
+1e
+2f4
+binary60 6d1797a2
+1e
+2f0
+binary60 ed079782
+binary4e 1427fff5
+1e
+2ec
+binary60 6c479762
+1e
+2e8
+binary60 ec579742
+binary4d 94200001
+binary4e 15201005
+1e
+2e4
+binary60 ec279722
+binary4d 95200001
+binary4d 14500001
+1e
+8
+binary60 ed278042
+binary14 19078f20
+binary4e 94500005
+binary48 90440080
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary4e 942001f5
+binary4d 14200001
+1e
+2e8
+binary30 c8379742
+binary57 80000000
+binary57 80000000
+binary5e 420c20a
+binary4e 94400195
+binary4d 94400001
+binary5f 8420840b
+binary15 420c200
+binary4e 95100075
+binary4d 95100001
+binary5e 8420910a
+1e
+1e0
+binary60 ec278f02
+1e
+2e8
+binary30 c8279742
+binary57 80000000
+binary3b 90009203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 95200005
+binary4d 95200001
+1e
+1dc
+binary60 ed278ee2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200085
+binary4d 14200001
+1e
+1dc
+binary30 c8378ee2
+binary57 80000000
+binary57 80000000
+binary5d 8420c209
+1e
+2ec
+binary30 c8379762
+binary57 80000000
+binary57 80000000
+binary15 440c200
+binary14 98578f20
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+1dc
+binary30 c8278ee2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1dc
+binary60 ec278ee2
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+1e
+1dc
+binary30 c8378ee2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary60 ed278ec2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary30 c8278ec2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1d8
+binary60 ec278ec2
+1e
+1d8
+binary30 c8278ec2
+binary57 80000000
+binary3c 9400900e
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 94200015
+binary4d 14200001
+1e
+1d8
+binary30 c8378ec2
+binary57 80000000
+binary57 80000000
+binary5d 8430c209
+binary15 84340300
+3
+0
+binary34 c840c001
+binary4e 94300105
+binary4d 94300001
+binary5d 84410309
+binary5e 441030a
+1e
+2e4
+binary30 c8579722
+binary26 90010504
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary30 c8478ec2
+binary57 80000000
+binary57 80000000
+binary5d 84210209
+binary15 84240200
+2
+0
+binary34 c8208001
+binary5d 84208309
+binary5e 8420830a
+1e
+2e4
+binary60 ec279722
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200805
+binary4d 14200001
+1e
+2e8
+binary30 c8379742
+binary3b 9000c203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+binary14 9820bff8
+1e
+1e0
+binary60 ec278f02
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+binary5d 84209109
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8278ea2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1d4
+binary60 ec278ea2
+1e
+2e8
+binary30 c8279742
+binary57 80000000
+1e
+1d4
+binary30 c8378ea2
+binary26 9000c204
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94200015
+binary4d 14200001
+1e
+1d4
+binary30 c8378ea2
+binary57 80000000
+binary57 80000000
+binary5d 430c209
+1e
+2ec
+binary30 c8479762
+binary57 80000000
+binary57 80000000
+binary15 84310300
+3
+0
+binary34 c840c001
+binary4e 94300105
+binary4d 94300001
+binary5d 84410309
+binary5e 441030a
+1e
+2e4
+binary30 c8579722
+binary26 90010504
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8478ea2
+binary57 80000000
+binary57 80000000
+binary5d 84210209
+1e
+2ec
+binary30 c8479762
+binary57 80000000
+binary57 80000000
+binary15 84210200
+2
+0
+binary34 c8208001
+binary5d 84208309
+binary5e 8420830a
+1e
+2e4
+binary60 ec279722
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200105
+binary4d 14200001
+binary4d 94100001
+binary4e 94102e45
+binary15 84178100
+1
+0
+binary34 c8304001
+binary5d 8430c209
+binary5e 420c20a
+1e
+2f0
+binary30 49079782
+1e
+2f4
+binary30 c91797a2
+1e
+2f8
+binary30 492797c2
+1e
+2fc
+binary30 c9f797e2
+binary14 99e79800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+RegsToPass.size()=2
+op code is 9a
+op code is c
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+RegsToPass.size()=2
+# Machine code for function DSP_maxval: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=256, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+  fi#7: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:62
+	DBG_VALUE %noreg, 0, !"nx"; line no:62
+	ST %vreg0, <fi#0>, 0; mem:ST4[%x.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%nx.addr] CPURegs:%vreg1
+	%vreg2<def> = MovGR %ZERO, -32768; CPURegs:%vreg2
+	ST %vreg2<kill>, <fi#2>, 0; mem:ST4[%max] CPURegs:%vreg2 dbg:..\fft_16x16.c:64:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:65:2
+	%vreg3<def> = COPY %SP; CPURegs:%vreg3 dbg:..\fft_16x16.c:65:2
+	%vreg4<def> = MovGR %ZERO, 256; CPURegs:%vreg4
+	ST %vreg4, %vreg3, 8; mem:ST4[<unknown>] CPURegs:%vreg4,%vreg3 dbg:..\fft_16x16.c:65:2
+	%vreg5<def> = MovIGH %ZERO, <ga:@DSP_maxval.temp>[TF=3]; CPURegs:%vreg5 dbg:..\fft_16x16.c:65:2
+	%vreg6<def,tied1> = MovIGL %vreg5<tied0>, <ga:@DSP_maxval.temp>[TF=4]; CPURegs:%vreg6,%vreg5 dbg:..\fft_16x16.c:65:2
+	%vreg7<def> = LEA <fi#3>, 0; CPURegs:%vreg7
+	%A0<def> = COPY %vreg7; CPURegs:%vreg7 dbg:..\fft_16x16.c:65:2
+	%A1<def> = COPY %vreg6; CPURegs:%vreg6 dbg:..\fft_16x16.c:65:2
+	CALL <es:memcpy>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:65:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:65:2
+	%vreg8<def> = MovGR %ZERO, 31; CPURegs:%vreg8
+	%vreg9<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg9 dbg:..\fft_16x16.c:82:2
+	%vreg10<def> = SRA %vreg9, %vreg8<kill>; CPURegs:%vreg10,%vreg9,%vreg8 dbg:..\fft_16x16.c:82:2
+	%vreg11<def> = MovGR %ZERO, 25; CPURegs:%vreg11
+	%vreg12<def> = SRL %vreg10<kill>, %vreg11<kill>; CPURegs:%vreg12,%vreg10,%vreg11 dbg:..\fft_16x16.c:82:2
+	%vreg13<def> = ADDu %vreg9, %vreg12<kill>; CPURegs:%vreg13,%vreg9,%vreg12 dbg:..\fft_16x16.c:82:2
+	%vreg14<def> = MovGR %ZERO, 7; CPURegs:%vreg14
+	%vreg15<def> = SRA %vreg13<kill>, %vreg14; CPURegs:%vreg15,%vreg13,%vreg14 dbg:..\fft_16x16.c:82:2
+	ST %vreg15<kill>, <fi#4>, 0; mem:ST4[%k] CPURegs:%vreg15 dbg:..\fft_16x16.c:82:2
+	%vreg16<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg16 dbg:..\fft_16x16.c:83:6
+	%vreg17<def> = LT %vreg16<kill>, %vreg4; CPURegs:%vreg17,%vreg16,%vreg4 dbg:..\fft_16x16.c:83:6
+	JC %vreg17<kill>, <BB#9>; CPURegs:%vreg17 dbg:..\fft_16x16.c:83:6
+	Jmp <BB#1>; dbg:..\fft_16x16.c:83:6
+    Successors according to CFG: BB#1(16) BB#9(16)
+
+BB#1: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#0
+	DBG_VALUE <fi#5>, 0, !"i"; line no:84
+	%vreg23<def> = MovGR %ZERO, 0; CPURegs:%vreg23
+	ST %vreg23, <fi#5>, 0; mem:ST4[%i] CPURegs:%vreg23 dbg:..\fft_16x16.c:84:8
+    Successors according to CFG: BB#2
+
+BB#2: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#1 BB#3
+	%vreg24<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg24 dbg:..\fft_16x16.c:84:8
+	%vreg25<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg25 dbg:..\fft_16x16.c:84:8
+	%vreg26<def> = GE %vreg25<kill>, %vreg24<kill>; CPURegs:%vreg26,%vreg25,%vreg24 dbg:..\fft_16x16.c:84:8
+	JC %vreg26<kill>, <BB#4>; CPURegs:%vreg26 dbg:..\fft_16x16.c:84:8
+	Jmp <BB#3>; dbg:..\fft_16x16.c:84:8
+    Successors according to CFG: BB#3(124) BB#4(4)
+
+BB#3: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#2
+	%vreg84<def> = MovGR %ZERO, 8; CPURegs:%vreg84
+	%vreg85<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg85 dbg:..\fft_16x16.c:85:4
+	%vreg86<def> = SHL %vreg85<kill>, %vreg84<kill>; CPURegs:%vreg86,%vreg85,%vreg84 dbg:..\fft_16x16.c:85:4
+	%vreg87<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg87 dbg:..\fft_16x16.c:85:4
+	%vreg88<def> = ADDu %vreg87<kill>, %vreg86<kill>; CPURegs:%vreg88,%vreg87,%vreg86 dbg:..\fft_16x16.c:85:4
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:85:4
+	%vreg89<def> = LEA <fi#3>, 0; CPURegs:%vreg89
+	%A0<def> = COPY %vreg88; CPURegs:%vreg88 dbg:..\fft_16x16.c:85:4
+	%A1<def> = COPY %vreg89; CPURegs:%vreg89 dbg:..\fft_16x16.c:85:4
+	CALL <ga:@dsp_maxval_asm>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:85:4
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:85:4
+	%vreg90<def> = LD <fi#5>, 0; mem:LD4[%i] CPURegs:%vreg90 dbg:..\fft_16x16.c:84:26
+	%vreg91<def> = ADDiu %vreg90<kill>, 1; CPURegs:%vreg91,%vreg90 dbg:..\fft_16x16.c:84:26
+	ST %vreg91<kill>, <fi#5>, 0; mem:ST4[%i] CPURegs:%vreg91 dbg:..\fft_16x16.c:84:26
+	Jmp <BB#2>; dbg:..\fft_16x16.c:84:26
+    Successors according to CFG: BB#2
+
+BB#4: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#2
+	DBG_VALUE <fi#6>, 0, !"i"; line no:87
+	ST %vreg23, <fi#6>, 0; mem:ST4[%i2] CPURegs:%vreg23 dbg:..\fft_16x16.c:87:8
+    Successors according to CFG: BB#5
+
+BB#5: derived from LLVM BB %for.cond3
+    Predecessors according to CFG: BB#4 BB#8
+	%vreg28<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg28 dbg:..\fft_16x16.c:87:8
+	%vreg29<def> = LTI %vreg28<kill>, 128; CPURegs:%vreg29,%vreg28 dbg:..\fft_16x16.c:87:8
+	JNC %vreg29<kill>, <BB#11>; CPURegs:%vreg29 dbg:..\fft_16x16.c:87:8
+	Jmp <BB#6>; dbg:..\fft_16x16.c:87:8
+    Successors according to CFG: BB#6(124) BB#11(4)
+
+BB#6: derived from LLVM BB %for.body5
+    Predecessors according to CFG: BB#5
+	%vreg62<def> = MovGR %ZERO, 1; CPURegs:%vreg62
+	%vreg63<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg63 dbg:..\fft_16x16.c:88:8
+	%vreg64<def> = SHL %vreg63<kill>, %vreg62; CPURegs:%vreg64,%vreg63,%vreg62 dbg:..\fft_16x16.c:88:8
+	%vreg66<def> = ADDu %vreg7, %vreg64<kill>; CPURegs:%vreg66,%vreg7,%vreg64 dbg:..\fft_16x16.c:88:8
+	%vreg67<def> = LDH %vreg66<kill>, 0; mem:LD2[%arrayidx6] CPURegs:%vreg67,%vreg66 dbg:..\fft_16x16.c:88:8
+	%vreg68<def> = MovGR %ZERO, 16; CPURegs:%vreg68
+	%vreg69<def> = SHL %vreg67<kill>, %vreg68; CPURegs:%vreg69,%vreg67,%vreg68 dbg:..\fft_16x16.c:88:8
+	%vreg70<def> = SRA %vreg69<kill>, %vreg68; CPURegs:%vreg70,%vreg69,%vreg68 dbg:..\fft_16x16.c:88:8
+	%vreg71<def> = LD <fi#2>, 0; mem:LD4[%max] CPURegs:%vreg71 dbg:..\fft_16x16.c:88:8
+	%vreg72<def> = LE %vreg70<kill>, %vreg71<kill>; CPURegs:%vreg72,%vreg70,%vreg71 dbg:..\fft_16x16.c:88:8
+	JC %vreg72<kill>, <BB#8>; CPURegs:%vreg72 dbg:..\fft_16x16.c:88:8
+	Jmp <BB#7>; dbg:..\fft_16x16.c:88:8
+    Successors according to CFG: BB#7(16) BB#8(16)
+
+BB#7: derived from LLVM BB %if.then9
+    Predecessors according to CFG: BB#6
+	%vreg74<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg74 dbg:..\fft_16x16.c:89:5
+	%vreg75<def> = SHL %vreg74<kill>, %vreg62; CPURegs:%vreg75,%vreg74,%vreg62 dbg:..\fft_16x16.c:89:5
+	%vreg77<def> = ADDu %vreg7, %vreg75<kill>; CPURegs:%vreg77,%vreg7,%vreg75 dbg:..\fft_16x16.c:89:5
+	%vreg78<def> = LDH %vreg77<kill>, 0; mem:LD2[%arrayidx10] CPURegs:%vreg78,%vreg77 dbg:..\fft_16x16.c:89:5
+	%vreg80<def> = SHL %vreg78<kill>, %vreg68; CPURegs:%vreg80,%vreg78,%vreg68 dbg:..\fft_16x16.c:89:5
+	%vreg81<def> = SRA %vreg80<kill>, %vreg68; CPURegs:%vreg81,%vreg80,%vreg68 dbg:..\fft_16x16.c:89:5
+	ST %vreg81<kill>, <fi#2>, 0; mem:ST4[%max] CPURegs:%vreg81 dbg:..\fft_16x16.c:89:5
+    Successors according to CFG: BB#8
+
+BB#8: derived from LLVM BB %for.inc12
+    Predecessors according to CFG: BB#6 BB#7
+	%vreg82<def> = LD <fi#6>, 0; mem:LD4[%i2] CPURegs:%vreg82 dbg:..\fft_16x16.c:87:28
+	%vreg83<def> = ADDiu %vreg82<kill>, 1; CPURegs:%vreg83,%vreg82 dbg:..\fft_16x16.c:87:28
+	ST %vreg83<kill>, <fi#6>, 0; mem:ST4[%i2] CPURegs:%vreg83 dbg:..\fft_16x16.c:87:28
+	Jmp <BB#5>; dbg:..\fft_16x16.c:87:28
+    Successors according to CFG: BB#5
+
+BB#9: derived from LLVM BB %if.else
+    Predecessors according to CFG: BB#0
+	%vreg18<def> = MovGR %ZERO, 128; CPURegs:%vreg18
+	%vreg19<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg19 dbg:..\fft_16x16.c:90:13
+	%vreg20<def> = LT %vreg19<kill>, %vreg18<kill>; CPURegs:%vreg20,%vreg19,%vreg18 dbg:..\fft_16x16.c:90:13
+	JC %vreg20<kill>, <BB#11>; CPURegs:%vreg20 dbg:..\fft_16x16.c:90:13
+	Jmp <BB#10>; dbg:..\fft_16x16.c:90:13
+    Successors according to CFG: BB#10(16) BB#11(16)
+
+BB#10: derived from LLVM BB %if.then17
+    Predecessors according to CFG: BB#9
+	%vreg21<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg21 dbg:..\fft_16x16.c:91:3
+	%vreg22<def> = ADDiu %vreg21<kill>, -1; CPURegs:%vreg22,%vreg21 dbg:..\fft_16x16.c:91:3
+	ST %vreg22<kill>, <fi#4>, 0; mem:ST4[%k] CPURegs:%vreg22 dbg:..\fft_16x16.c:91:3
+    Successors according to CFG: BB#11
+
+BB#11: derived from LLVM BB %if.end19
+    Predecessors according to CFG: BB#9 BB#10 BB#5
+	DBG_VALUE <fi#7>, 0, !"i"; line no:93
+	%vreg31<def> = LD <fi#4>, 0; mem:LD4[%k] CPURegs:%vreg31 dbg:..\fft_16x16.c:93:7
+	%vreg32<def> = SHL %vreg31<kill>, %vreg14; CPURegs:%vreg32,%vreg31,%vreg14 dbg:..\fft_16x16.c:93:7
+	ST %vreg32<kill>, <fi#7>, 0; mem:ST4[%i20] CPURegs:%vreg32 dbg:..\fft_16x16.c:93:7
+    Successors according to CFG: BB#12
+
+BB#12: derived from LLVM BB %for.cond22
+    Predecessors according to CFG: BB#11 BB#15
+	%vreg33<def> = LD <fi#1>, 0; mem:LD4[%nx.addr] CPURegs:%vreg33 dbg:..\fft_16x16.c:93:7
+	%vreg34<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg34 dbg:..\fft_16x16.c:93:7
+	%vreg35<def> = GE %vreg34<kill>, %vreg33<kill>; CPURegs:%vreg35,%vreg34,%vreg33 dbg:..\fft_16x16.c:93:7
+	JC %vreg35<kill>, <BB#16>; CPURegs:%vreg35 dbg:..\fft_16x16.c:93:7
+	Jmp <BB#13>; dbg:..\fft_16x16.c:93:7
+    Successors according to CFG: BB#13(124) BB#16(4)
+
+BB#13: derived from LLVM BB %for.body25
+    Predecessors according to CFG: BB#12
+	%vreg40<def> = MovGR %ZERO, 1; CPURegs:%vreg40
+	%vreg41<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg41 dbg:..\fft_16x16.c:94:7
+	%vreg42<def> = SHL %vreg41<kill>, %vreg40; CPURegs:%vreg42,%vreg41,%vreg40 dbg:..\fft_16x16.c:94:7
+	%vreg43<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg43 dbg:..\fft_16x16.c:94:7
+	%vreg44<def> = ADDu %vreg43<kill>, %vreg42<kill>; CPURegs:%vreg44,%vreg43,%vreg42 dbg:..\fft_16x16.c:94:7
+	%vreg45<def> = LDH %vreg44<kill>, 0; mem:LD2[%arrayidx26] CPURegs:%vreg45,%vreg44 dbg:..\fft_16x16.c:94:7
+	%vreg46<def> = MovGR %ZERO, 16; CPURegs:%vreg46
+	%vreg47<def> = SHL %vreg45<kill>, %vreg46; CPURegs:%vreg47,%vreg45,%vreg46 dbg:..\fft_16x16.c:94:7
+	%vreg48<def> = SRA %vreg47<kill>, %vreg46; CPURegs:%vreg48,%vreg47,%vreg46 dbg:..\fft_16x16.c:94:7
+	%vreg49<def> = LD <fi#2>, 0; mem:LD4[%max] CPURegs:%vreg49 dbg:..\fft_16x16.c:94:7
+	%vreg50<def> = LE %vreg48<kill>, %vreg49<kill>; CPURegs:%vreg50,%vreg48,%vreg49 dbg:..\fft_16x16.c:94:7
+	JC %vreg50<kill>, <BB#15>; CPURegs:%vreg50 dbg:..\fft_16x16.c:94:7
+	Jmp <BB#14>; dbg:..\fft_16x16.c:94:7
+    Successors according to CFG: BB#14(16) BB#15(16)
+
+BB#14: derived from LLVM BB %if.then30
+    Predecessors according to CFG: BB#13
+	%vreg52<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg52 dbg:..\fft_16x16.c:95:4
+	%vreg53<def> = SHL %vreg52<kill>, %vreg40; CPURegs:%vreg53,%vreg52,%vreg40 dbg:..\fft_16x16.c:95:4
+	%vreg54<def> = LD <fi#0>, 0; mem:LD4[%x.addr] CPURegs:%vreg54 dbg:..\fft_16x16.c:95:4
+	%vreg55<def> = ADDu %vreg54<kill>, %vreg53<kill>; CPURegs:%vreg55,%vreg54,%vreg53 dbg:..\fft_16x16.c:95:4
+	%vreg56<def> = LDH %vreg55<kill>, 0; mem:LD2[%arrayidx31] CPURegs:%vreg56,%vreg55 dbg:..\fft_16x16.c:95:4
+	%vreg58<def> = SHL %vreg56<kill>, %vreg46; CPURegs:%vreg58,%vreg56,%vreg46 dbg:..\fft_16x16.c:95:4
+	%vreg59<def> = SRA %vreg58<kill>, %vreg46; CPURegs:%vreg59,%vreg58,%vreg46 dbg:..\fft_16x16.c:95:4
+	ST %vreg59<kill>, <fi#2>, 0; mem:ST4[%max] CPURegs:%vreg59 dbg:..\fft_16x16.c:95:4
+    Successors according to CFG: BB#15
+
+BB#15: derived from LLVM BB %for.inc34
+    Predecessors according to CFG: BB#13 BB#14
+	%vreg60<def> = LD <fi#7>, 0; mem:LD4[%i20] CPURegs:%vreg60 dbg:..\fft_16x16.c:93:32
+	%vreg61<def> = ADDiu %vreg60<kill>, 1; CPURegs:%vreg61,%vreg60 dbg:..\fft_16x16.c:93:32
+	ST %vreg61<kill>, <fi#7>, 0; mem:ST4[%i20] CPURegs:%vreg61 dbg:..\fft_16x16.c:93:32
+	Jmp <BB#12>; dbg:..\fft_16x16.c:93:32
+    Successors according to CFG: BB#12
+
+BB#16: derived from LLVM BB %for.end36
+    Predecessors according to CFG: BB#12
+	%vreg36<def> = MovGR %ZERO, 16; CPURegs:%vreg36
+	%vreg37<def> = LDH <fi#2>, 0; mem:LD2[%max](align=4) CPURegs:%vreg37 dbg:..\fft_16x16.c:96:2
+	%vreg38<def> = SHL %vreg37<kill>, %vreg36; CPURegs:%vreg38,%vreg37,%vreg36 dbg:..\fft_16x16.c:96:2
+	%vreg39<def> = SRA %vreg38<kill>, %vreg36; CPURegs:%vreg39,%vreg38,%vreg36 dbg:..\fft_16x16.c:96:2
+	%V0<def> = COPY %vreg39; CPURegs:%vreg39 dbg:..\fft_16x16.c:96:2
+	RetLR %V0<imp-use>; dbg:..\fft_16x16.c:96:2
+
+# End machine code for function DSP_maxval.
+
+copy phy reg
+binary14 99e7a800
+1e
+2fc
+binary60 6df797e2
+1e
+2f8
+binary60 ed2797c2
+1e
+2f4
+binary60 6d1797a2
+1e
+2f0
+binary60 ed079782
+binary4e 14280005
+1e
+2ec
+binary60 6c479762
+1e
+2e8
+binary60 ec579742
+binary4d 942ffff1
+binary4e 15201005
+1e
+2e4
+binary60 ec279722
+binary4d 95200001
+binary4d 14500001
+1e
+8
+binary60 ed278042
+binary14 19078f20
+binary4e 94500005
+binary48 90440080
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary4e 942001f5
+binary4d 14200001
+1e
+2e8
+binary30 c8379742
+binary57 80000000
+binary57 80000000
+binary5e 420c20a
+binary4e 94400195
+binary4d 94400001
+binary5f 8420840b
+binary15 420c200
+binary4e 95100075
+binary4d 95100001
+binary5e 8420910a
+1e
+1e0
+binary60 ec278f02
+1e
+2e8
+binary30 c8279742
+binary57 80000000
+binary3b 90009203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 95200005
+binary4d 95200001
+1e
+1dc
+binary60 ed278ee2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200085
+binary4d 14200001
+1e
+1dc
+binary30 c8378ee2
+binary57 80000000
+binary57 80000000
+binary5d 8420c209
+1e
+2ec
+binary30 c8379762
+binary57 80000000
+binary57 80000000
+binary15 440c200
+binary14 98578f20
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+1dc
+binary30 c8278ee2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1dc
+binary60 ec278ee2
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+1e
+1dc
+binary30 c8378ee2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary60 ed278ec2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary30 c8278ec2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1d8
+binary60 ec278ec2
+1e
+1d8
+binary30 c8278ec2
+binary57 80000000
+binary3c 9400900e
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 94200015
+binary4d 14200001
+1e
+1d8
+binary30 c8378ec2
+binary57 80000000
+binary57 80000000
+binary5d 8430c209
+binary15 84340300
+3
+0
+binary34 c840c001
+binary4e 94300105
+binary4d 94300001
+binary5d 84410309
+binary5e 441030a
+1e
+2e4
+binary30 c8579722
+binary37 90010505
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1d8
+binary30 c8478ec2
+binary57 80000000
+binary57 80000000
+binary5d 84210209
+binary15 84240200
+2
+0
+binary34 c8208001
+binary5d 84208309
+binary5e 8420830a
+1e
+2e4
+binary60 ec279722
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200805
+binary4d 14200001
+1e
+2e8
+binary30 c8379742
+binary3b 9000c203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+binary14 9820bff8
+1e
+1e0
+binary60 ec278f02
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+binary5d 84209109
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8278ea2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+1d4
+binary60 ec278ea2
+1e
+2e8
+binary30 c8279742
+binary57 80000000
+1e
+1d4
+binary30 c8378ea2
+binary26 9000c204
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94200015
+binary4d 14200001
+1e
+1d4
+binary30 c8378ea2
+binary57 80000000
+binary57 80000000
+binary5d 430c209
+1e
+2ec
+binary30 c8479762
+binary57 80000000
+binary57 80000000
+binary15 84310300
+3
+0
+binary34 c840c001
+binary4e 94300105
+binary4d 94300001
+binary5d 84410309
+binary5e 441030a
+1e
+2e4
+binary30 c8579722
+binary37 90010505
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8478ea2
+binary57 80000000
+binary57 80000000
+binary5d 84210209
+1e
+2ec
+binary30 c8479762
+binary57 80000000
+binary57 80000000
+binary15 84210200
+2
+0
+binary34 c8208001
+binary5d 84208309
+binary5e 8420830a
+1e
+2e4
+binary60 ec279722
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200105
+binary4d 14200001
+binary4d 94100001
+binary4e 94102e45
+binary15 84178100
+1
+0
+binary34 c8304001
+binary5d 8430c209
+binary5e 420c20a
+1e
+2f0
+binary30 49079782
+1e
+2f4
+binary30 c91797a2
+1e
+2f8
+binary30 492797c2
+1e
+2fc
+binary30 c9f797e2
+binary14 99e79800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+op code is 9a
+op code is 9a
+op code is 9a
+# Machine code for function bit_reverse: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=2, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"n"; line no:99
+	DBG_VALUE %noreg, 0, !"x"; line no:99
+	ST %vreg0, <fi#0>, 0; mem:ST4[%n.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%x.addr] CPURegs:%vreg1
+	%vreg2<def> = MovGR %ZERO, 0; CPURegs:%vreg2
+	ST %vreg2<kill>, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg2 dbg:..\fft_16x16.c:104:8
+	%vreg3<def> = MovGR %ZERO, 1; CPURegs:%vreg3
+	ST %vreg3, <fi#4>, 0; mem:ST4[%j] CPURegs:%vreg3 dbg:..\fft_16x16.c:104:8
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#7
+	%vreg4<def> = LD <fi#0>, 0; mem:LD4[%n.addr] CPURegs:%vreg4 dbg:..\fft_16x16.c:104:8
+	%vreg5<def> = ADDiu %vreg4<kill>, -1; CPURegs:%vreg5,%vreg4 dbg:..\fft_16x16.c:104:8
+	%vreg6<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg6 dbg:..\fft_16x16.c:104:8
+	%vreg7<def> = GE %vreg6<kill>, %vreg5<kill>; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\fft_16x16.c:104:8
+	JC %vreg7<kill>, <BB#8>; CPURegs:%vreg7 dbg:..\fft_16x16.c:104:8
+	Jmp <BB#2>; dbg:..\fft_16x16.c:104:8
+    Successors according to CFG: BB#2(124) BB#8(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	DBG_VALUE <fi#5>, 0, !"k"; line no:105
+	%vreg9<def> = LD <fi#0>, 0; mem:LD4[%n.addr] CPURegs:%vreg9 dbg:..\fft_16x16.c:105:10
+	%vreg10<def> = SRA %vreg9<kill>, %vreg3; CPURegs:%vreg10,%vreg9,%vreg3 dbg:..\fft_16x16.c:105:10
+	ST %vreg10<kill>, <fi#5>, 0; mem:ST4[%k] CPURegs:%vreg10 dbg:..\fft_16x16.c:105:10
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.cond1
+    Predecessors according to CFG: BB#2 BB#4
+	%vreg11<def> = LD <fi#5>, 0; mem:LD4[%k] CPURegs:%vreg11 dbg:..\fft_16x16.c:105:10
+	%vreg12<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg12 dbg:..\fft_16x16.c:105:10
+	%vreg13<def> = XORu %vreg12<kill>, %vreg11; CPURegs:%vreg13,%vreg12,%vreg11 dbg:..\fft_16x16.c:105:10
+	ST %vreg13, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg13 dbg:..\fft_16x16.c:105:10
+	%vreg14<def> = LE %vreg11, %vreg13; CPURegs:%vreg14,%vreg11,%vreg13 dbg:..\fft_16x16.c:105:10
+	JC %vreg14<kill>, <BB#5>; CPURegs:%vreg14 dbg:..\fft_16x16.c:105:10
+	Jmp <BB#4>; dbg:..\fft_16x16.c:105:10
+    Successors according to CFG: BB#4(124) BB#5(4)
+
+BB#4: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#3
+	%vreg62<def> = LD <fi#5>, 0; mem:LD4[%k] CPURegs:%vreg62 dbg:..\fft_16x16.c:105:39
+	%vreg63<def> = SRA %vreg62<kill>, %vreg3; CPURegs:%vreg63,%vreg62,%vreg3 dbg:..\fft_16x16.c:105:39
+	ST %vreg63<kill>, <fi#5>, 0; mem:ST4[%k] CPURegs:%vreg63 dbg:..\fft_16x16.c:105:39
+	Jmp <BB#3>; dbg:..\fft_16x16.c:105:39
+    Successors according to CFG: BB#3
+
+BB#5: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#3
+	%vreg15<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg15 dbg:..\fft_16x16.c:106:9
+	%vreg16<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg16 dbg:..\fft_16x16.c:106:9
+	%vreg17<def> = GE %vreg16<kill>, %vreg15<kill>; CPURegs:%vreg17,%vreg16,%vreg15 dbg:..\fft_16x16.c:106:9
+	JC %vreg17<kill>, <BB#7>; CPURegs:%vreg17 dbg:..\fft_16x16.c:106:9
+	Jmp <BB#6>; dbg:..\fft_16x16.c:106:9
+    Successors according to CFG: BB#6(16) BB#7(16)
+
+BB#6: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#5
+	%vreg18<def> = MovGR %ZERO, 2; CPURegs:%vreg18
+	%vreg19<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg19 dbg:..\fft_16x16.c:107:6
+	%vreg20<def> = SHL %vreg19<kill>, %vreg18; CPURegs:%vreg20,%vreg19,%vreg18 dbg:..\fft_16x16.c:107:6
+	%vreg21<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg21 dbg:..\fft_16x16.c:107:6
+	%vreg22<def> = ADDu %vreg21<kill>, %vreg20<kill>; CPURegs:%vreg22,%vreg21,%vreg20 dbg:..\fft_16x16.c:107:6
+	%vreg23<def> = LDH %vreg22<kill>, 0; mem:LD2[%arrayidx] CPURegs:%vreg23,%vreg22 dbg:..\fft_16x16.c:107:6
+	STH %vreg23<kill>, <fi#2>, 0; mem:ST2[%temp](align=4) CPURegs:%vreg23 dbg:..\fft_16x16.c:107:6
+	%vreg24<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg24 dbg:..\fft_16x16.c:108:6
+	%vreg25<def> = SHL %vreg24<kill>, %vreg18; CPURegs:%vreg25,%vreg24,%vreg18 dbg:..\fft_16x16.c:108:6
+	%vreg26<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg26 dbg:..\fft_16x16.c:108:6
+	%vreg27<def> = ADDu %vreg26, %vreg25<kill>; CPURegs:%vreg27,%vreg26,%vreg25 dbg:..\fft_16x16.c:108:6
+	%vreg28<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg28 dbg:..\fft_16x16.c:108:6
+	%vreg29<def> = SHL %vreg28<kill>, %vreg18; CPURegs:%vreg29,%vreg28,%vreg18 dbg:..\fft_16x16.c:108:6
+	%vreg30<def> = ADDu %vreg26, %vreg29<kill>; CPURegs:%vreg30,%vreg26,%vreg29 dbg:..\fft_16x16.c:108:6
+	%vreg31<def> = LDH %vreg30<kill>, 0; mem:LD2[%arrayidx7] CPURegs:%vreg31,%vreg30 dbg:..\fft_16x16.c:108:6
+	STH %vreg31<kill>, %vreg27<kill>, 0; mem:ST2[%arrayidx9] CPURegs:%vreg31,%vreg27 dbg:..\fft_16x16.c:108:6
+	%vreg32<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg32 dbg:..\fft_16x16.c:109:6
+	%vreg33<def> = SHL %vreg32<kill>, %vreg18; CPURegs:%vreg33,%vreg32,%vreg18 dbg:..\fft_16x16.c:109:6
+	%vreg34<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg34 dbg:..\fft_16x16.c:109:6
+	%vreg35<def> = ADDu %vreg34<kill>, %vreg33<kill>; CPURegs:%vreg35,%vreg34,%vreg33 dbg:..\fft_16x16.c:109:6
+	%vreg36<def> = LDH <fi#2>, 0; mem:LD2[%temp](align=4) CPURegs:%vreg36 dbg:..\fft_16x16.c:109:6
+	STH %vreg36<kill>, %vreg35<kill>, 0; mem:ST2[%arrayidx11] CPURegs:%vreg36,%vreg35 dbg:..\fft_16x16.c:109:6
+	%vreg37<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg37 dbg:..\fft_16x16.c:110:6
+	%vreg38<def> = SHL %vreg37<kill>, %vreg18; CPURegs:%vreg38,%vreg37,%vreg18 dbg:..\fft_16x16.c:110:6
+	%vreg39<def> = ORu %vreg38<kill>, %vreg18; CPURegs:%vreg39,%vreg38,%vreg18 dbg:..\fft_16x16.c:110:6
+	%vreg40<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg40 dbg:..\fft_16x16.c:110:6
+	%vreg41<def> = ADDu %vreg39<kill>, %vreg40<kill>; CPURegs:%vreg41,%vreg39,%vreg40 dbg:..\fft_16x16.c:110:6
+	%vreg42<def> = LDH %vreg41<kill>, 0; mem:LD2[%arrayidx13] CPURegs:%vreg42,%vreg41 dbg:..\fft_16x16.c:110:6
+	STH %vreg42<kill>, <fi#2>, 0; mem:ST2[%temp](align=4) CPURegs:%vreg42 dbg:..\fft_16x16.c:110:6
+	%vreg43<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg43 dbg:..\fft_16x16.c:111:6
+	%vreg44<def> = SHL %vreg43<kill>, %vreg18; CPURegs:%vreg44,%vreg43,%vreg18 dbg:..\fft_16x16.c:111:6
+	%vreg45<def> = ORu %vreg44<kill>, %vreg18; CPURegs:%vreg45,%vreg44,%vreg18 dbg:..\fft_16x16.c:111:6
+	%vreg46<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg46 dbg:..\fft_16x16.c:111:6
+	%vreg47<def> = ADDu %vreg45<kill>, %vreg46; CPURegs:%vreg47,%vreg45,%vreg46 dbg:..\fft_16x16.c:111:6
+	%vreg48<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg48 dbg:..\fft_16x16.c:111:6
+	%vreg49<def> = SHL %vreg48<kill>, %vreg18; CPURegs:%vreg49,%vreg48,%vreg18 dbg:..\fft_16x16.c:111:6
+	%vreg50<def> = ORu %vreg49<kill>, %vreg18; CPURegs:%vreg50,%vreg49,%vreg18 dbg:..\fft_16x16.c:111:6
+	%vreg51<def> = ADDu %vreg50<kill>, %vreg46; CPURegs:%vreg51,%vreg50,%vreg46 dbg:..\fft_16x16.c:111:6
+	%vreg52<def> = LDH %vreg51<kill>, 0; mem:LD2[%arrayidx16] CPURegs:%vreg52,%vreg51 dbg:..\fft_16x16.c:111:6
+	STH %vreg52<kill>, %vreg47<kill>, 0; mem:ST2[%arrayidx19] CPURegs:%vreg52,%vreg47 dbg:..\fft_16x16.c:111:6
+	%vreg53<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg53 dbg:..\fft_16x16.c:112:6
+	%vreg54<def> = SHL %vreg53<kill>, %vreg18; CPURegs:%vreg54,%vreg53,%vreg18 dbg:..\fft_16x16.c:112:6
+	%vreg55<def> = ORu %vreg54<kill>, %vreg18; CPURegs:%vreg55,%vreg54,%vreg18 dbg:..\fft_16x16.c:112:6
+	%vreg56<def> = LD <fi#1>, 0; mem:LD4[%x.addr] CPURegs:%vreg56 dbg:..\fft_16x16.c:112:6
+	%vreg57<def> = ADDu %vreg55<kill>, %vreg56<kill>; CPURegs:%vreg57,%vreg55,%vreg56 dbg:..\fft_16x16.c:112:6
+	%vreg58<def> = LDH <fi#2>, 0; mem:LD2[%temp](align=4) CPURegs:%vreg58 dbg:..\fft_16x16.c:112:6
+	STH %vreg58<kill>, %vreg57<kill>, 0; mem:ST2[%arrayidx22] CPURegs:%vreg58,%vreg57 dbg:..\fft_16x16.c:112:6
+    Successors according to CFG: BB#7
+
+BB#7: derived from LLVM BB %for.inc23
+    Predecessors according to CFG: BB#5 BB#6
+	%vreg59<def> = LD <fi#4>, 0; mem:LD4[%j] CPURegs:%vreg59 dbg:..\fft_16x16.c:104:37
+	%vreg60<def> = ADDiu %vreg59<kill>, 1; CPURegs:%vreg60,%vreg59 dbg:..\fft_16x16.c:104:37
+	ST %vreg60<kill>, <fi#4>, 0; mem:ST4[%j] CPURegs:%vreg60 dbg:..\fft_16x16.c:104:37
+	Jmp <BB#1>; dbg:..\fft_16x16.c:104:37
+    Successors according to CFG: BB#1
+
+BB#8: derived from LLVM BB %for.end24
+    Predecessors according to CFG: BB#1
+	RetLR; dbg:..\fft_16x16.c:115:1
+
+# End machine code for function bit_reverse.
+
+binary14 99e7b800
+binary4e 14200005
+1e
+fc
+binary60 6c4787e2
+1e
+f8
+binary60 ec5787c2
+binary4d 94200001
+1e
+f0
+binary60 ec278782
+binary4e 94200015
+binary4d 94200001
+1e
+ec
+binary60 ec278762
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+ec
+binary30 c8378762
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+ec
+binary60 ec378762
+1e
+fc
+binary30 c83787e2
+binary57 80000000
+binary57 80000000
+binary14 1830fff8
+1e
+ec
+binary30 c8478762
+binary26 90010304
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+fc
+binary30 c83787e2
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+e8
+binary30 c8378742
+binary57 80000000
+binary57 80000000
+binary5e 8430c20a
+1e
+e8
+binary60 ec378742
+1e
+e8
+binary30 c8378742
+binary57 80000000
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary7d 84410306
+binary37 1000c405
+1e
+f0
+binary60 ec478782
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+1e
+ec
+binary30 c8378762
+binary57 80000000
+1e
+f0
+binary30 c8478782
+binary26 90010304
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94300025
+binary4d 14300001
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 84414400
+4
+0
+binary34 c8410001
+1e
+f4
+binary61 ec478f41
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 4414400
+1e
+ec
+binary30 c8678762
+binary57 80000000
+binary57 80000000
+binary5d 84618309
+binary15 84514600
+5
+0
+binary34 c8514001
+4
+0
+binary61 ec510001
+1e
+ec
+binary30 c8478762
+binary57 80000000
+binary57 80000000
+binary5d 4410309
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 84414400
+1e
+f4
+binary34 c8578f41
+4
+0
+binary61 ec510001
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 84410309
+binary59 4410305
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 84410500
+4
+0
+binary34 c8410001
+1e
+f4
+binary61 ec478f41
+1e
+f0
+binary30 c8478782
+binary57 80000000
+binary57 80000000
+binary5d 84410309
+binary59 4410305
+1e
+f8
+binary30 c85787c2
+binary57 80000000
+binary57 80000000
+binary15 4410500
+1e
+ec
+binary30 c8678762
+binary57 80000000
+binary57 80000000
+binary5d 84618309
+binary59 84618305
+binary15 84518500
+5
+0
+binary34 c8514001
+4
+0
+binary61 ec510001
+1e
+ec
+binary30 c8478762
+binary57 80000000
+binary57 80000000
+binary5d 84410309
+binary59 84310305
+1e
+f8
+binary30 c84787c2
+binary57 80000000
+binary57 80000000
+binary15 8430c400
+1e
+f4
+binary34 c8478f41
+3
+0
+binary61 ec40c001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary14 99e78800
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+val1,result!!0 ArgReg= d
+val1,result!!1 ArgReg= e
+val2,result!!2 FI= ffffffff
+val6,result!!1
+op code is 9a
+RegsToPass.size()=2
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+RegsToPass.size()=2
+op code is c
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+RegsToPass.size()=2
+op code is c
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+RegsToPass.size()=2
+op code is c
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+RegsToPass.size()=2
+op code is c
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+op code is 9a
+RegsToPass.size()=2
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 9a
+op code is 99
+op code is f
+op code is 9a
+op code is 9a
+op code is c
+op code is c
+RegsToPass.size()=2
+op code is c
+op code is c
+op code is 9a
+RegsToPass.size()=2
+# Machine code for function fft_16x16: SSA
+Frame Objects:
+  fi#-1: size=4, align=8, fixed, at location [SP+8]
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+  fi#5: size=4, align=4, at location [SP]
+  fi#6: size=4, align=4, at location [SP]
+  fi#7: size=4, align=4, at location [SP]
+  fi#8: size=4, align=4, at location [SP]
+  fi#9: size=4, align=4, at location [SP]
+  fi#10: size=4, align=4, at location [SP]
+  fi#11: size=4, align=4, at location [SP]
+  fi#12: size=4, align=4, at location [SP]
+  fi#13: size=4, align=4, at location [SP]
+  fi#14: size=4, align=4, at location [SP]
+  fi#15: size=4, align=4, at location [SP]
+  fi#16: size=4, align=4, at location [SP]
+  fi#17: size=4, align=4, at location [SP]
+  fi#18: size=4, align=4, at location [SP]
+  fi#19: size=4, align=4, at location [SP]
+  fi#20: size=4, align=4, at location [SP]
+  fi#21: size=4, align=4, at location [SP]
+  fi#22: size=4, align=4, at location [SP]
+  fi#23: size=4, align=4, at location [SP]
+  fi#24: size=4, align=4, at location [SP]
+  fi#25: size=4, align=4, at location [SP]
+  fi#26: size=4, align=4, at location [SP]
+  fi#27: size=4, align=4, at location [SP]
+  fi#28: size=4, align=4, at location [SP]
+  fi#29: size=4, align=4, at location [SP]
+  fi#30: size=4, align=4, at location [SP]
+  fi#31: size=4, align=4, at location [SP]
+  fi#32: size=4, align=4, at location [SP]
+  fi#33: size=4, align=4, at location [SP]
+  fi#34: size=4, align=4, at location [SP]
+  fi#35: size=4, align=4, at location [SP]
+  fi#36: size=4, align=4, at location [SP]
+  fi#37: size=4, align=4, at location [SP]
+  fi#38: size=4, align=4, at location [SP]
+  fi#39: size=4, align=4, at location [SP]
+  fi#40: size=4, align=4, at location [SP]
+  fi#41: size=4, align=4, at location [SP]
+  fi#42: size=4, align=4, at location [SP]
+  fi#43: size=4, align=4, at location [SP]
+  fi#44: size=4, align=4, at location [SP]
+Jump Tables:
+  jt#0:  BB#69 BB#70 BB#71 BB#72 BB#73  jt#1:  BB#58 BB#59 BB#60 BB#61 BB#62  jt#2:  BB#46 BB#47 BB#48 BB#49 BB#50  jt#3:  BB#34 BB#35 BB#36 BB#37 BB#38  jt#4:  BB#19 BB#20 BB#21 BB#22 BB#23  jt#5:  BB#4 BB#5 BB#6 BB#7 BB#8  jt#6:  BB#81 BB#82 BB#83 BB#84 BB#85
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"x"; line no:116
+	DBG_VALUE %noreg, 0, !"w"; line no:116
+	DBG_VALUE %noreg, 0, !"nx"; line no:116
+	%vreg2<def> = LD <fi#-1>, 0; mem:LD4[FixedStack-1](align=8) CPURegs:%vreg2
+	ST %vreg0, <fi#21>, 0; mem:ST4[%x.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#22>, 0; mem:ST4[%w.addr] CPURegs:%vreg1
+	ST %vreg2, <fi#23>, 0; mem:ST4[%nx.addr] CPURegs:%vreg2
+	ST %vreg2, <fi#25>, 0; mem:ST4[%n2] CPURegs:%vreg2 dbg:..\fft_16x16.c:120:2
+	%vreg3<def> = MovGR %ZERO, 1; CPURegs:%vreg3
+	ST %vreg3, <fi#26>, 0; mem:ST4[%ie] CPURegs:%vreg3 dbg:..\fft_16x16.c:121:2
+	%vreg4<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg4 dbg:..\fft_16x16.c:123:7
+	ST %vreg4<kill>, <fi#30>, 0; mem:ST4[%k] CPURegs:%vreg4 dbg:..\fft_16x16.c:123:7
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#97
+	%vreg5<def> = MovGR %ZERO, 2; CPURegs:%vreg5
+	%vreg6<def> = LD <fi#30>, 0; mem:LD4[%k] CPURegs:%vreg6 dbg:..\fft_16x16.c:123:7
+	%vreg7<def> = LT %vreg6<kill>, %vreg5; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\fft_16x16.c:123:7
+	JC %vreg7<kill>, <BB#98>; CPURegs:%vreg7 dbg:..\fft_16x16.c:123:7
+	Jmp <BB#2>; dbg:..\fft_16x16.c:123:7
+    Successors according to CFG: BB#2(124) BB#98(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	%vreg10<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg10 dbg:..\fft_16x16.c:124:3
+	ST %vreg10<kill>, <fi#24>, 0; mem:ST4[%n1] CPURegs:%vreg10 dbg:..\fft_16x16.c:124:3
+	%vreg12<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg12 dbg:..\fft_16x16.c:125:3
+	%vreg13<def> = SRA %vreg12<kill>, %vreg3; CPURegs:%vreg13,%vreg12,%vreg3 dbg:..\fft_16x16.c:125:3
+	ST %vreg13, <fi#25>, 0; mem:ST4[%n2] CPURegs:%vreg13 dbg:..\fft_16x16.c:125:3
+	%vreg14<def> = MovGR %ZERO, 64; CPURegs:%vreg14
+	%vreg15<def> = LT %vreg13, %vreg14<kill>; CPURegs:%vreg15,%vreg13,%vreg14 dbg:..\fft_16x16.c:126:6
+	JC %vreg15<kill>, <BB#17>; CPURegs:%vreg15 dbg:..\fft_16x16.c:126:6
+	Jmp <BB#3>; dbg:..\fft_16x16.c:126:6
+    Successors according to CFG: BB#3(16) BB#17(16)
+
+BB#3: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#2
+	%vreg276<def> = MovGR %ZERO, 4; CPURegs:%vreg276
+	ST %vreg276, <fi#19>, 0; mem:ST4[%vpnum.addr.i] CPURegs:%vreg276 dbg:..\fft_16x16.c:127:4
+	%vreg277<def> = MovGR %ZERO, 8336896; CPURegs:%vreg277
+	DBG_VALUE <fi#20>, 0, !"vpsel"; line no:14
+	ST %vreg277<kill>, <fi#20>, 0; mem:ST4[%vpsel.i] CPURegs:%vreg277 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:127:4 ]
+	%vreg275<def> = LD <fi#19>, 0; mem:LD4[%vpnum.addr.i] CPURegs:%vreg275 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:127:4 ]
+	%vreg278<def> = GTU %vreg275, %vreg276; CPURegs:%vreg278,%vreg275,%vreg276 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:127:4 ]
+	JC %vreg278<kill>, <BB#9>; CPURegs:%vreg278 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#9(16) BB#104(16)
+
+BB#104: derived from LLVM BB %if.then
+    Predecessors according to CFG: BB#3
+	%vreg280<def> = SHL %vreg275, %vreg5; CPURegs:%vreg280,%vreg275,%vreg5
+	%vreg281<def> = MovIGH %ZERO, <jt#5>[TF=3]; CPURegs:%vreg281
+	%vreg282<def,tied1> = MovIGL %vreg281<tied0>, <jt#5>[TF=4]; CPURegs:%vreg282,%vreg281
+	%vreg283<def> = ADDu %vreg280<kill>, %vreg282<kill>; CPURegs:%vreg283,%vreg280,%vreg282
+	%vreg284<def> = LD %vreg283<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg284,%vreg283
+	Jmpr %vreg284<kill>; CPURegs:%vreg284
+    Successors according to CFG: BB#4(16) BB#5(16) BB#6(16) BB#7(16) BB#8(16)
+
+BB#4: derived from LLVM BB %sw.bb.i
+    Predecessors according to CFG: BB#104
+	%vreg293<def> = LD <fi#20>, 0; mem:LD4[%vpsel.i] CPURegs:%vreg293 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:127:4 ]
+	%vreg294<def> = MovGR %ZERO, 0; CPURegs:%vreg294
+	ST %vreg294<kill>, %vreg293<kill>, 0; mem:ST4[%7] CPURegs:%vreg294,%vreg293 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#10>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#10
+
+BB#5: derived from LLVM BB %sw.bb1.i
+    Predecessors according to CFG: BB#104
+	%vreg291<def> = LD <fi#20>, 0; mem:LD4[%vpsel.i] CPURegs:%vreg291 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:127:4 ]
+	ST %vreg3, %vreg291<kill>, 0; mem:ST4[%8] CPURegs:%vreg3,%vreg291 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#10>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#10
+
+BB#6: derived from LLVM BB %sw.bb2.i
+    Predecessors according to CFG: BB#104
+	%vreg289<def> = LD <fi#20>, 0; mem:LD4[%vpsel.i] CPURegs:%vreg289 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:127:4 ]
+	%vreg290<def> = MovGR %ZERO, 3; CPURegs:%vreg290
+	ST %vreg290<kill>, %vreg289<kill>, 0; mem:ST4[%9] CPURegs:%vreg290,%vreg289 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#10>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#10
+
+BB#7: derived from LLVM BB %sw.bb3.i
+    Predecessors according to CFG: BB#104
+	%vreg287<def> = LD <fi#20>, 0; mem:LD4[%vpsel.i] CPURegs:%vreg287 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:127:4 ]
+	%vreg288<def> = MovGR %ZERO, 7; CPURegs:%vreg288
+	ST %vreg288<kill>, %vreg287<kill>, 0; mem:ST4[%10] CPURegs:%vreg288,%vreg287 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#10>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#10
+
+BB#8: derived from LLVM BB %sw.bb4.i
+    Predecessors according to CFG: BB#104
+	%vreg285<def> = LD <fi#20>, 0; mem:LD4[%vpsel.i] CPURegs:%vreg285 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:127:4 ]
+	%vreg286<def> = MovGR %ZERO, 15; CPURegs:%vreg286
+	ST %vreg286<kill>, %vreg285<kill>, 0; mem:ST4[%11] CPURegs:%vreg286,%vreg285 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#10>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#10
+
+BB#9: derived from LLVM BB %sw.default.i
+    Predecessors according to CFG: BB#3
+	%vreg296<def> = MovGR %ZERO, -1; CPURegs:%vreg296
+	ST %vreg296<kill>, <fi#18>, 0; mem:ST4[%retval.i] CPURegs:%vreg296 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:127:4 ]
+	Jmp <BB#11>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#11
+
+BB#10: derived from LLVM BB %sw.epilog.i
+    Predecessors according to CFG: BB#8 BB#7 BB#6 BB#5 BB#4
+	ST %vreg3, <fi#18>, 0; mem:ST4[%retval.i] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:127:4 ]
+    Successors according to CFG: BB#11
+
+BB#11: derived from LLVM BB %set_vpsel.exit
+    Predecessors according to CFG: BB#10 BB#9
+	%vreg297<def> = MovGR %ZERO, 0; CPURegs:%vreg297
+	ST %vreg297, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg297 dbg:..\fft_16x16.c:128:9
+    Successors according to CFG: BB#12
+
+BB#12: derived from LLVM BB %for.cond2
+    Predecessors according to CFG: BB#11 BB#16
+	%vreg298<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg298 dbg:..\fft_16x16.c:128:9
+	%vreg299<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg299 dbg:..\fft_16x16.c:128:9
+	%vreg300<def> = GE %vreg299<kill>, %vreg298<kill>; CPURegs:%vreg300,%vreg299,%vreg298 dbg:..\fft_16x16.c:128:9
+	JC %vreg300<kill>, <BB#79>; CPURegs:%vreg300 dbg:..\fft_16x16.c:128:9
+	Jmp <BB#13>; dbg:..\fft_16x16.c:128:9
+    Successors according to CFG: BB#13(124) BB#79(4)
+
+BB#13: derived from LLVM BB %for.body4
+    Predecessors according to CFG: BB#12
+	ST %vreg297, <fi#27>, 0; mem:ST4[%ia] CPURegs:%vreg297 dbg:..\fft_16x16.c:129:5
+	%vreg397<def> = MovGR %ZERO, 31; CPURegs:%vreg397
+	DBG_VALUE <fi#39>, 0, !"time"; line no:130
+	%vreg398<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg398 dbg:..\fft_16x16.c:131:5
+	%vreg399<def> = SRA %vreg398, %vreg397<kill>; CPURegs:%vreg399,%vreg398,%vreg397 dbg:..\fft_16x16.c:131:5
+	%vreg400<def> = MovGR %ZERO, 26; CPURegs:%vreg400
+	%vreg401<def> = SRL %vreg399<kill>, %vreg400<kill>; CPURegs:%vreg401,%vreg399,%vreg400 dbg:..\fft_16x16.c:131:5
+	%vreg402<def> = ADDu %vreg398, %vreg401<kill>; CPURegs:%vreg402,%vreg398,%vreg401 dbg:..\fft_16x16.c:131:5
+	%vreg403<def> = MovGR %ZERO, 6; CPURegs:%vreg403
+	%vreg404<def> = SRA %vreg402<kill>, %vreg403; CPURegs:%vreg404,%vreg402,%vreg403 dbg:..\fft_16x16.c:131:5
+	ST %vreg404<kill>, <fi#39>, 0; mem:ST4[%time] CPURegs:%vreg404 dbg:..\fft_16x16.c:131:5
+	ST %vreg297, <fi#28>, 0; mem:ST4[%i] CPURegs:%vreg297 dbg:..\fft_16x16.c:132:10
+    Successors according to CFG: BB#14
+
+BB#14: derived from LLVM BB %for.cond5
+    Predecessors according to CFG: BB#13 BB#15
+	%vreg405<def> = LD <fi#39>, 0; mem:LD4[%time] CPURegs:%vreg405 dbg:..\fft_16x16.c:132:10
+	%vreg406<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg406 dbg:..\fft_16x16.c:132:10
+	%vreg407<def> = GE %vreg406<kill>, %vreg405<kill>; CPURegs:%vreg407,%vreg406,%vreg405 dbg:..\fft_16x16.c:132:10
+	JC %vreg407<kill>, <BB#16>; CPURegs:%vreg407 dbg:..\fft_16x16.c:132:10
+	Jmp <BB#15>; dbg:..\fft_16x16.c:132:10
+    Successors according to CFG: BB#15(124) BB#16(4)
+
+BB#15: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#14
+	%vreg412<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg412 dbg:..\fft_16x16.c:133:6
+	%vreg413<def> = SHL %vreg412<kill>, %vreg403; CPURegs:%vreg413,%vreg412,%vreg403 dbg:..\fft_16x16.c:133:6
+	%vreg414<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg414 dbg:..\fft_16x16.c:133:6
+	%vreg415<def> = ADDu %vreg413<kill>, %vreg414<kill>; CPURegs:%vreg415,%vreg413,%vreg414 dbg:..\fft_16x16.c:133:6
+	ST %vreg415, <fi#32>, 0; mem:ST4[%m] CPURegs:%vreg415 dbg:..\fft_16x16.c:133:6
+	%vreg416<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg416 dbg:..\fft_16x16.c:134:6
+	%vreg417<def> = ADDu %vreg415, %vreg416<kill>; CPURegs:%vreg417,%vreg415,%vreg416 dbg:..\fft_16x16.c:134:6
+	ST %vreg417, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg417 dbg:..\fft_16x16.c:134:6
+	%vreg419<def> = LD <fi#27>, 0; mem:LD4[%ia] CPURegs:%vreg419 dbg:..\fft_16x16.c:135:6
+	%vreg420<def> = SHL %vreg419<kill>, %vreg5; CPURegs:%vreg420,%vreg419,%vreg5 dbg:..\fft_16x16.c:135:6
+	%vreg421<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg421 dbg:..\fft_16x16.c:135:6
+	%vreg422<def> = ADDu %vreg421<kill>, %vreg420<kill>; CPURegs:%vreg422,%vreg421,%vreg420 dbg:..\fft_16x16.c:135:6
+	%vreg423<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg423 dbg:..\fft_16x16.c:135:6
+	%vreg424<def> = LD <fi#32>, 0; mem:LD4[%m] CPURegs:%vreg424 dbg:..\fft_16x16.c:135:6
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:135:6
+	%vreg425<def> = COPY %SP; CPURegs:%vreg425 dbg:..\fft_16x16.c:135:6
+	ST %vreg422<kill>, %vreg425, 8; mem:ST4[<unknown>] CPURegs:%vreg422,%vreg425 dbg:..\fft_16x16.c:135:6
+	%vreg426<def> = SHL %vreg424<kill>, %vreg5; CPURegs:%vreg426,%vreg424,%vreg5 dbg:..\fft_16x16.c:135:6
+	%vreg427<def> = SHL %vreg417, %vreg5; CPURegs:%vreg427,%vreg417,%vreg5 dbg:..\fft_16x16.c:135:6
+	%vreg428<def> = ADDu %vreg423, %vreg427<kill>; CPURegs:%vreg428,%vreg423,%vreg427 dbg:..\fft_16x16.c:135:6
+	%vreg429<def> = ADDu %vreg423, %vreg426<kill>; CPURegs:%vreg429,%vreg423,%vreg426 dbg:..\fft_16x16.c:135:6
+	%A0<def> = COPY %vreg429; CPURegs:%vreg429 dbg:..\fft_16x16.c:135:6
+	%A1<def> = COPY %vreg428; CPURegs:%vreg428 dbg:..\fft_16x16.c:135:6
+	CALL <ga:@vmac_butterfly>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:135:6
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:135:6
+	%vreg431<def> = LD <fi#27>, 0; mem:LD4[%ia] CPURegs:%vreg431 dbg:..\fft_16x16.c:136:6
+	%vreg432<def> = ADDiu %vreg431<kill>, 64; CPURegs:%vreg432,%vreg431 dbg:..\fft_16x16.c:136:6
+	ST %vreg432<kill>, <fi#27>, 0; mem:ST4[%ia] CPURegs:%vreg432 dbg:..\fft_16x16.c:136:6
+	%vreg433<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg433 dbg:..\fft_16x16.c:132:25
+	%vreg434<def> = ADDiu %vreg433<kill>, 1; CPURegs:%vreg434,%vreg433 dbg:..\fft_16x16.c:132:25
+	ST %vreg434<kill>, <fi#28>, 0; mem:ST4[%i] CPURegs:%vreg434 dbg:..\fft_16x16.c:132:25
+	Jmp <BB#14>; dbg:..\fft_16x16.c:132:25
+    Successors according to CFG: BB#14
+
+BB#16: derived from LLVM BB %for.inc17
+    Predecessors according to CFG: BB#14
+	%vreg408<def> = LD <fi#24>, 0; mem:LD4[%n1] CPURegs:%vreg408 dbg:..\fft_16x16.c:128:22
+	%vreg409<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg409 dbg:..\fft_16x16.c:128:22
+	%vreg410<def> = ADDu %vreg409<kill>, %vreg408<kill>; CPURegs:%vreg410,%vreg409,%vreg408 dbg:..\fft_16x16.c:128:22
+	ST %vreg410<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg410 dbg:..\fft_16x16.c:128:22
+	Jmp <BB#12>; dbg:..\fft_16x16.c:128:22
+    Successors according to CFG: BB#12
+
+BB#17: derived from LLVM BB %if.else
+    Predecessors according to CFG: BB#2
+	%vreg16<def> = MovGR %ZERO, 16; CPURegs:%vreg16
+	%vreg17<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg17 dbg:..\fft_16x16.c:140:11
+	%vreg18<def> = LT %vreg17<kill>, %vreg16<kill>; CPURegs:%vreg18,%vreg17,%vreg16 dbg:..\fft_16x16.c:140:11
+	JC %vreg18<kill>, <BB#32>; CPURegs:%vreg18 dbg:..\fft_16x16.c:140:11
+	Jmp <BB#18>; dbg:..\fft_16x16.c:140:11
+    Successors according to CFG: BB#18(16) BB#32(16)
+
+BB#18: derived from LLVM BB %if.then21
+    Predecessors according to CFG: BB#17
+	ST %vreg3, <fi#16>, 0; mem:ST4[%vpnum.addr.i158] CPURegs:%vreg3 dbg:..\fft_16x16.c:141:4
+	%vreg211<def> = MovGR %ZERO, 8336896; CPURegs:%vreg211
+	DBG_VALUE <fi#17>, 0, !"vpsel"; line no:14
+	ST %vreg211<kill>, <fi#17>, 0; mem:ST4[%vpsel.i159] CPURegs:%vreg211 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:141:4 ]
+	%vreg212<def> = MovGR %ZERO, 4; CPURegs:%vreg212
+	%vreg209<def> = LD <fi#16>, 0; mem:LD4[%vpnum.addr.i158] CPURegs:%vreg209 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:141:4 ]
+	%vreg213<def> = GTU %vreg209, %vreg212; CPURegs:%vreg213,%vreg209,%vreg212 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:141:4 ]
+	JC %vreg213<kill>, <BB#24>; CPURegs:%vreg213 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#24(16) BB#103(16)
+
+BB#103: derived from LLVM BB %if.then21
+    Predecessors according to CFG: BB#18
+	%vreg215<def> = SHL %vreg209, %vreg5; CPURegs:%vreg215,%vreg209,%vreg5
+	%vreg216<def> = MovIGH %ZERO, <jt#4>[TF=3]; CPURegs:%vreg216
+	%vreg217<def,tied1> = MovIGL %vreg216<tied0>, <jt#4>[TF=4]; CPURegs:%vreg217,%vreg216
+	%vreg218<def> = ADDu %vreg215<kill>, %vreg217<kill>; CPURegs:%vreg218,%vreg215,%vreg217
+	%vreg219<def> = LD %vreg218<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg219,%vreg218
+	Jmpr %vreg219<kill>; CPURegs:%vreg219
+    Successors according to CFG: BB#19(16) BB#20(16) BB#21(16) BB#22(16) BB#23(16)
+
+BB#19: derived from LLVM BB %sw.bb.i160
+    Predecessors according to CFG: BB#103
+	%vreg228<def> = LD <fi#17>, 0; mem:LD4[%vpsel.i159] CPURegs:%vreg228 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:141:4 ]
+	%vreg229<def> = MovGR %ZERO, 0; CPURegs:%vreg229
+	ST %vreg229<kill>, %vreg228<kill>, 0; mem:ST4[%34] CPURegs:%vreg229,%vreg228 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#25>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#25
+
+BB#20: derived from LLVM BB %sw.bb1.i161
+    Predecessors according to CFG: BB#103
+	%vreg226<def> = LD <fi#17>, 0; mem:LD4[%vpsel.i159] CPURegs:%vreg226 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:141:4 ]
+	ST %vreg3, %vreg226<kill>, 0; mem:ST4[%35] CPURegs:%vreg3,%vreg226 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#25>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#25
+
+BB#21: derived from LLVM BB %sw.bb2.i162
+    Predecessors according to CFG: BB#103
+	%vreg224<def> = LD <fi#17>, 0; mem:LD4[%vpsel.i159] CPURegs:%vreg224 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:141:4 ]
+	%vreg225<def> = MovGR %ZERO, 3; CPURegs:%vreg225
+	ST %vreg225<kill>, %vreg224<kill>, 0; mem:ST4[%36] CPURegs:%vreg225,%vreg224 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#25>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#25
+
+BB#22: derived from LLVM BB %sw.bb3.i163
+    Predecessors according to CFG: BB#103
+	%vreg222<def> = LD <fi#17>, 0; mem:LD4[%vpsel.i159] CPURegs:%vreg222 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:141:4 ]
+	%vreg223<def> = MovGR %ZERO, 7; CPURegs:%vreg223
+	ST %vreg223<kill>, %vreg222<kill>, 0; mem:ST4[%37] CPURegs:%vreg223,%vreg222 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#25>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#25
+
+BB#23: derived from LLVM BB %sw.bb4.i164
+    Predecessors according to CFG: BB#103
+	%vreg220<def> = LD <fi#17>, 0; mem:LD4[%vpsel.i159] CPURegs:%vreg220 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:141:4 ]
+	%vreg221<def> = MovGR %ZERO, 15; CPURegs:%vreg221
+	ST %vreg221<kill>, %vreg220<kill>, 0; mem:ST4[%38] CPURegs:%vreg221,%vreg220 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#25>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#25
+
+BB#24: derived from LLVM BB %sw.default.i165
+    Predecessors according to CFG: BB#18
+	%vreg231<def> = MovGR %ZERO, -1; CPURegs:%vreg231
+	ST %vreg231<kill>, <fi#15>, 0; mem:ST4[%retval.i157] CPURegs:%vreg231 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:141:4 ]
+	Jmp <BB#26>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#26
+
+BB#25: derived from LLVM BB %sw.epilog.i166
+    Predecessors according to CFG: BB#23 BB#22 BB#21 BB#20 BB#19
+	ST %vreg3, <fi#15>, 0; mem:ST4[%retval.i157] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:141:4 ]
+    Successors according to CFG: BB#26
+
+BB#26: derived from LLVM BB %set_vpsel.exit167
+    Predecessors according to CFG: BB#25 BB#24
+	%vreg232<def> = MovGR %ZERO, 0; CPURegs:%vreg232
+	ST %vreg232, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg232 dbg:..\fft_16x16.c:142:9
+    Successors according to CFG: BB#27
+
+BB#27: derived from LLVM BB %for.cond23
+    Predecessors according to CFG: BB#26 BB#31
+	%vreg233<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg233 dbg:..\fft_16x16.c:142:9
+	%vreg234<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg234 dbg:..\fft_16x16.c:142:9
+	%vreg235<def> = GE %vreg234<kill>, %vreg233<kill>; CPURegs:%vreg235,%vreg234,%vreg233 dbg:..\fft_16x16.c:142:9
+	JC %vreg235<kill>, <BB#79>; CPURegs:%vreg235 dbg:..\fft_16x16.c:142:9
+	Jmp <BB#28>; dbg:..\fft_16x16.c:142:9
+    Successors according to CFG: BB#28(124) BB#79(4)
+
+BB#28: derived from LLVM BB %for.body25
+    Predecessors according to CFG: BB#27
+	ST %vreg232, <fi#27>, 0; mem:ST4[%ia] CPURegs:%vreg232 dbg:..\fft_16x16.c:143:5
+	%vreg237<def> = MovGR %ZERO, 31; CPURegs:%vreg237
+	DBG_VALUE <fi#40>, 0, !"time"; line no:144
+	%vreg238<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg238 dbg:..\fft_16x16.c:144:5
+	%vreg239<def> = SRA %vreg238, %vreg237<kill>; CPURegs:%vreg239,%vreg238,%vreg237 dbg:..\fft_16x16.c:144:5
+	%vreg240<def> = MovGR %ZERO, 28; CPURegs:%vreg240
+	%vreg241<def> = SRL %vreg239<kill>, %vreg240<kill>; CPURegs:%vreg241,%vreg239,%vreg240 dbg:..\fft_16x16.c:144:5
+	%vreg242<def> = ADDu %vreg238, %vreg241<kill>; CPURegs:%vreg242,%vreg238,%vreg241 dbg:..\fft_16x16.c:144:5
+	%vreg244<def> = SRA %vreg242<kill>, %vreg212; CPURegs:%vreg244,%vreg242,%vreg212 dbg:..\fft_16x16.c:144:5
+	ST %vreg244<kill>, <fi#40>, 0; mem:ST4[%time26] CPURegs:%vreg244 dbg:..\fft_16x16.c:144:5
+	ST %vreg232, <fi#28>, 0; mem:ST4[%i] CPURegs:%vreg232 dbg:..\fft_16x16.c:145:10
+    Successors according to CFG: BB#29
+
+BB#29: derived from LLVM BB %for.cond28
+    Predecessors according to CFG: BB#28 BB#30
+	%vreg245<def> = LD <fi#40>, 0; mem:LD4[%time26] CPURegs:%vreg245 dbg:..\fft_16x16.c:145:10
+	%vreg246<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg246 dbg:..\fft_16x16.c:145:10
+	%vreg247<def> = GE %vreg246<kill>, %vreg245<kill>; CPURegs:%vreg247,%vreg246,%vreg245 dbg:..\fft_16x16.c:145:10
+	JC %vreg247<kill>, <BB#31>; CPURegs:%vreg247 dbg:..\fft_16x16.c:145:10
+	Jmp <BB#30>; dbg:..\fft_16x16.c:145:10
+    Successors according to CFG: BB#30(124) BB#31(4)
+
+BB#30: derived from LLVM BB %for.inc42
+    Predecessors according to CFG: BB#29
+	%vreg252<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg252 dbg:..\fft_16x16.c:146:6
+	%vreg253<def> = SHL %vreg252<kill>, %vreg212; CPURegs:%vreg253,%vreg252,%vreg212 dbg:..\fft_16x16.c:146:6
+	%vreg254<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg254 dbg:..\fft_16x16.c:146:6
+	%vreg255<def> = ADDu %vreg253<kill>, %vreg254<kill>; CPURegs:%vreg255,%vreg253,%vreg254 dbg:..\fft_16x16.c:146:6
+	ST %vreg255, <fi#32>, 0; mem:ST4[%m] CPURegs:%vreg255 dbg:..\fft_16x16.c:146:6
+	%vreg256<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg256 dbg:..\fft_16x16.c:147:6
+	%vreg257<def> = ADDu %vreg255, %vreg256<kill>; CPURegs:%vreg257,%vreg255,%vreg256 dbg:..\fft_16x16.c:147:6
+	ST %vreg257, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg257 dbg:..\fft_16x16.c:147:6
+	%vreg259<def> = LD <fi#27>, 0; mem:LD4[%ia] CPURegs:%vreg259 dbg:..\fft_16x16.c:148:6
+	%vreg260<def> = SHL %vreg259<kill>, %vreg5; CPURegs:%vreg260,%vreg259,%vreg5 dbg:..\fft_16x16.c:148:6
+	%vreg261<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg261 dbg:..\fft_16x16.c:148:6
+	%vreg262<def> = ADDu %vreg261<kill>, %vreg260<kill>; CPURegs:%vreg262,%vreg261,%vreg260 dbg:..\fft_16x16.c:148:6
+	%vreg263<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg263 dbg:..\fft_16x16.c:148:6
+	%vreg264<def> = LD <fi#32>, 0; mem:LD4[%m] CPURegs:%vreg264 dbg:..\fft_16x16.c:148:6
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:148:6
+	%vreg265<def> = COPY %SP; CPURegs:%vreg265 dbg:..\fft_16x16.c:148:6
+	ST %vreg262<kill>, %vreg265, 8; mem:ST4[<unknown>] CPURegs:%vreg262,%vreg265 dbg:..\fft_16x16.c:148:6
+	%vreg266<def> = SHL %vreg264<kill>, %vreg5; CPURegs:%vreg266,%vreg264,%vreg5 dbg:..\fft_16x16.c:148:6
+	%vreg267<def> = SHL %vreg257, %vreg5; CPURegs:%vreg267,%vreg257,%vreg5 dbg:..\fft_16x16.c:148:6
+	%vreg268<def> = ADDu %vreg263, %vreg267<kill>; CPURegs:%vreg268,%vreg263,%vreg267 dbg:..\fft_16x16.c:148:6
+	%vreg269<def> = ADDu %vreg263, %vreg266<kill>; CPURegs:%vreg269,%vreg263,%vreg266 dbg:..\fft_16x16.c:148:6
+	%A0<def> = COPY %vreg269; CPURegs:%vreg269 dbg:..\fft_16x16.c:148:6
+	%A1<def> = COPY %vreg268; CPURegs:%vreg268 dbg:..\fft_16x16.c:148:6
+	CALL <ga:@vmac_butterfly>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:148:6
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:148:6
+	%vreg271<def> = LD <fi#27>, 0; mem:LD4[%ia] CPURegs:%vreg271 dbg:..\fft_16x16.c:149:6
+	%vreg272<def> = ADDiu %vreg271<kill>, 16; CPURegs:%vreg272,%vreg271 dbg:..\fft_16x16.c:149:6
+	ST %vreg272<kill>, <fi#27>, 0; mem:ST4[%ia] CPURegs:%vreg272 dbg:..\fft_16x16.c:149:6
+	%vreg273<def> = LD <fi#28>, 0; mem:LD4[%i] CPURegs:%vreg273 dbg:..\fft_16x16.c:145:25
+	%vreg274<def> = ADDiu %vreg273<kill>, 1; CPURegs:%vreg274,%vreg273 dbg:..\fft_16x16.c:145:25
+	ST %vreg274<kill>, <fi#28>, 0; mem:ST4[%i] CPURegs:%vreg274 dbg:..\fft_16x16.c:145:25
+	Jmp <BB#29>; dbg:..\fft_16x16.c:145:25
+    Successors according to CFG: BB#29
+
+BB#31: derived from LLVM BB %for.inc45
+    Predecessors according to CFG: BB#29
+	%vreg248<def> = LD <fi#24>, 0; mem:LD4[%n1] CPURegs:%vreg248 dbg:..\fft_16x16.c:142:22
+	%vreg249<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg249 dbg:..\fft_16x16.c:142:22
+	%vreg250<def> = ADDu %vreg249<kill>, %vreg248<kill>; CPURegs:%vreg250,%vreg249,%vreg248 dbg:..\fft_16x16.c:142:22
+	ST %vreg250<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg250 dbg:..\fft_16x16.c:142:22
+	Jmp <BB#27>; dbg:..\fft_16x16.c:142:22
+    Successors according to CFG: BB#27
+
+BB#32: derived from LLVM BB %if.else48
+    Predecessors according to CFG: BB#17
+	%vreg19<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg19 dbg:..\fft_16x16.c:153:11
+	%vreg20<def> = NEQI %vreg19<kill>, 8; CPURegs:%vreg20,%vreg19 dbg:..\fft_16x16.c:153:11
+	JC %vreg20<kill>, <BB#44>; CPURegs:%vreg20 dbg:..\fft_16x16.c:153:11
+	Jmp <BB#33>; dbg:..\fft_16x16.c:153:11
+    Successors according to CFG: BB#33(16) BB#44(16)
+
+BB#33: derived from LLVM BB %if.then50
+    Predecessors according to CFG: BB#32
+	ST %vreg3, <fi#1>, 0; mem:ST4[%vpnum.addr.i213] CPURegs:%vreg3 dbg:..\fft_16x16.c:154:4
+	%vreg165<def> = MovGR %ZERO, 8336896; CPURegs:%vreg165
+	DBG_VALUE <fi#2>, 0, !"vpsel"; line no:14
+	ST %vreg165<kill>, <fi#2>, 0; mem:ST4[%vpsel.i214] CPURegs:%vreg165 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:154:4 ]
+	%vreg166<def> = MovGR %ZERO, 4; CPURegs:%vreg166
+	%vreg163<def> = LD <fi#1>, 0; mem:LD4[%vpnum.addr.i213] CPURegs:%vreg163 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:154:4 ]
+	%vreg167<def> = GTU %vreg163, %vreg166<kill>; CPURegs:%vreg167,%vreg163,%vreg166 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:154:4 ]
+	JC %vreg167<kill>, <BB#39>; CPURegs:%vreg167 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#39(16) BB#102(16)
+
+BB#102: derived from LLVM BB %if.then50
+    Predecessors according to CFG: BB#33
+	%vreg169<def> = SHL %vreg163, %vreg5; CPURegs:%vreg169,%vreg163,%vreg5
+	%vreg170<def> = MovIGH %ZERO, <jt#3>[TF=3]; CPURegs:%vreg170
+	%vreg171<def,tied1> = MovIGL %vreg170<tied0>, <jt#3>[TF=4]; CPURegs:%vreg171,%vreg170
+	%vreg172<def> = ADDu %vreg169<kill>, %vreg171<kill>; CPURegs:%vreg172,%vreg169,%vreg171
+	%vreg173<def> = LD %vreg172<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg173,%vreg172
+	Jmpr %vreg173<kill>; CPURegs:%vreg173
+    Successors according to CFG: BB#34(16) BB#35(16) BB#36(16) BB#37(16) BB#38(16)
+
+BB#34: derived from LLVM BB %sw.bb.i215
+    Predecessors according to CFG: BB#102
+	%vreg182<def> = LD <fi#2>, 0; mem:LD4[%vpsel.i214] CPURegs:%vreg182 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:154:4 ]
+	%vreg183<def> = MovGR %ZERO, 0; CPURegs:%vreg183
+	ST %vreg183<kill>, %vreg182<kill>, 0; mem:ST4[%61] CPURegs:%vreg183,%vreg182 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#40>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#40
+
+BB#35: derived from LLVM BB %sw.bb1.i216
+    Predecessors according to CFG: BB#102
+	%vreg180<def> = LD <fi#2>, 0; mem:LD4[%vpsel.i214] CPURegs:%vreg180 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:154:4 ]
+	ST %vreg3, %vreg180<kill>, 0; mem:ST4[%62] CPURegs:%vreg3,%vreg180 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#40>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#40
+
+BB#36: derived from LLVM BB %sw.bb2.i217
+    Predecessors according to CFG: BB#102
+	%vreg178<def> = LD <fi#2>, 0; mem:LD4[%vpsel.i214] CPURegs:%vreg178 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:154:4 ]
+	%vreg179<def> = MovGR %ZERO, 3; CPURegs:%vreg179
+	ST %vreg179<kill>, %vreg178<kill>, 0; mem:ST4[%63] CPURegs:%vreg179,%vreg178 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#40>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#40
+
+BB#37: derived from LLVM BB %sw.bb3.i218
+    Predecessors according to CFG: BB#102
+	%vreg176<def> = LD <fi#2>, 0; mem:LD4[%vpsel.i214] CPURegs:%vreg176 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:154:4 ]
+	%vreg177<def> = MovGR %ZERO, 7; CPURegs:%vreg177
+	ST %vreg177<kill>, %vreg176<kill>, 0; mem:ST4[%64] CPURegs:%vreg177,%vreg176 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#40>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#40
+
+BB#38: derived from LLVM BB %sw.bb4.i219
+    Predecessors according to CFG: BB#102
+	%vreg174<def> = LD <fi#2>, 0; mem:LD4[%vpsel.i214] CPURegs:%vreg174 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:154:4 ]
+	%vreg175<def> = MovGR %ZERO, 15; CPURegs:%vreg175
+	ST %vreg175<kill>, %vreg174<kill>, 0; mem:ST4[%65] CPURegs:%vreg175,%vreg174 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#40>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#40
+
+BB#39: derived from LLVM BB %sw.default.i220
+    Predecessors according to CFG: BB#33
+	%vreg185<def> = MovGR %ZERO, -1; CPURegs:%vreg185
+	ST %vreg185<kill>, <fi#0>, 0; mem:ST4[%retval.i212] CPURegs:%vreg185 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:154:4 ]
+	Jmp <BB#41>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#41
+
+BB#40: derived from LLVM BB %sw.epilog.i221
+    Predecessors according to CFG: BB#38 BB#37 BB#36 BB#35 BB#34
+	ST %vreg3, <fi#0>, 0; mem:ST4[%retval.i212] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:154:4 ]
+    Successors according to CFG: BB#41
+
+BB#41: derived from LLVM BB %set_vpsel.exit222
+    Predecessors according to CFG: BB#40 BB#39
+	%vreg186<def> = MovGR %ZERO, 0; CPURegs:%vreg186
+	ST %vreg186<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg186 dbg:..\fft_16x16.c:155:9
+    Successors according to CFG: BB#42
+
+BB#42: derived from LLVM BB %for.cond52
+    Predecessors according to CFG: BB#41 BB#43
+	%vreg187<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg187 dbg:..\fft_16x16.c:155:9
+	%vreg188<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg188 dbg:..\fft_16x16.c:155:9
+	%vreg189<def> = GE %vreg188<kill>, %vreg187<kill>; CPURegs:%vreg189,%vreg188,%vreg187 dbg:..\fft_16x16.c:155:9
+	JC %vreg189<kill>, <BB#79>; CPURegs:%vreg189 dbg:..\fft_16x16.c:155:9
+	Jmp <BB#43>; dbg:..\fft_16x16.c:155:9
+    Successors according to CFG: BB#43(124) BB#79(4)
+
+BB#43: derived from LLVM BB %for.inc61
+    Predecessors according to CFG: BB#42
+	%vreg190<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg190 dbg:..\fft_16x16.c:156:5
+	%vreg191<def> = ADDiu %vreg190<kill>, 16; CPURegs:%vreg191,%vreg190 dbg:..\fft_16x16.c:156:5
+	ST %vreg191, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg191 dbg:..\fft_16x16.c:156:5
+	%vreg192<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg192 dbg:..\fft_16x16.c:157:5
+	%vreg193<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg193 dbg:..\fft_16x16.c:157:5
+	%vreg194<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg194 dbg:..\fft_16x16.c:157:5
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:157:5
+	%vreg195<def> = MovIGH %ZERO, <ga:@idx_8>[TF=3]; CPURegs:%vreg195 dbg:..\fft_16x16.c:157:5
+	%vreg196<def,tied1> = MovIGL %vreg195<tied0>, <ga:@idx_8>[TF=4]; CPURegs:%vreg196,%vreg195 dbg:..\fft_16x16.c:157:5
+	%vreg197<def> = COPY %SP; CPURegs:%vreg197 dbg:..\fft_16x16.c:157:5
+	%vreg198<def> = ADDiu %vreg196, 192; CPURegs:%vreg198,%vreg196 dbg:..\fft_16x16.c:157:5
+	ST %vreg198<kill>, %vreg197, 24; mem:ST4[<unknown>] CPURegs:%vreg198,%vreg197 dbg:..\fft_16x16.c:157:5
+	%vreg199<def> = ADDiu %vreg196, 128; CPURegs:%vreg199,%vreg196 dbg:..\fft_16x16.c:157:5
+	ST %vreg199<kill>, %vreg197, 20; mem:ST4[<unknown>] CPURegs:%vreg199,%vreg197 dbg:..\fft_16x16.c:157:5
+	%vreg200<def> = ADDiu %vreg196, 64; CPURegs:%vreg200,%vreg196 dbg:..\fft_16x16.c:157:5
+	ST %vreg200<kill>, %vreg197, 16; mem:ST4[<unknown>] CPURegs:%vreg200,%vreg197 dbg:..\fft_16x16.c:157:5
+	ST %vreg196, %vreg197, 12; mem:ST4[<unknown>] CPURegs:%vreg196,%vreg197 dbg:..\fft_16x16.c:157:5
+	ST %vreg194<kill>, %vreg197, 8; mem:ST4[<unknown>] CPURegs:%vreg194,%vreg197 dbg:..\fft_16x16.c:157:5
+	%vreg202<def> = SHL %vreg193<kill>, %vreg5; CPURegs:%vreg202,%vreg193,%vreg5 dbg:..\fft_16x16.c:157:5
+	%vreg203<def> = SHL %vreg191, %vreg5; CPURegs:%vreg203,%vreg191,%vreg5 dbg:..\fft_16x16.c:157:5
+	%vreg204<def> = ADDu %vreg192, %vreg203<kill>; CPURegs:%vreg204,%vreg192,%vreg203 dbg:..\fft_16x16.c:157:5
+	%vreg205<def> = ADDu %vreg192, %vreg202<kill>; CPURegs:%vreg205,%vreg192,%vreg202 dbg:..\fft_16x16.c:157:5
+	%A0<def> = COPY %vreg205; CPURegs:%vreg205 dbg:..\fft_16x16.c:157:5
+	%A1<def> = COPY %vreg204; CPURegs:%vreg204 dbg:..\fft_16x16.c:157:5
+	CALL <ga:@vmac_shuffle>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:157:5
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:157:5
+	%vreg207<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg207 dbg:..\fft_16x16.c:155:22
+	%vreg208<def> = ADDiu %vreg207<kill>, 32; CPURegs:%vreg208,%vreg207 dbg:..\fft_16x16.c:155:22
+	ST %vreg208<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg208 dbg:..\fft_16x16.c:155:22
+	Jmp <BB#42>; dbg:..\fft_16x16.c:155:22
+    Successors according to CFG: BB#42
+
+BB#44: derived from LLVM BB %if.else64
+    Predecessors according to CFG: BB#32
+	%vreg21<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg21 dbg:..\fft_16x16.c:160:11
+	%vreg22<def> = NEQI %vreg21<kill>, 4; CPURegs:%vreg22,%vreg21 dbg:..\fft_16x16.c:160:11
+	JC %vreg22<kill>, <BB#56>; CPURegs:%vreg22 dbg:..\fft_16x16.c:160:11
+	Jmp <BB#45>; dbg:..\fft_16x16.c:160:11
+    Successors according to CFG: BB#45(16) BB#56(16)
+
+BB#45: derived from LLVM BB %if.then66
+    Predecessors according to CFG: BB#44
+	ST %vreg3, <fi#4>, 0; mem:ST4[%vpnum.addr.i202] CPURegs:%vreg3 dbg:..\fft_16x16.c:161:4
+	%vreg119<def> = MovGR %ZERO, 8336896; CPURegs:%vreg119
+	DBG_VALUE <fi#5>, 0, !"vpsel"; line no:14
+	ST %vreg119<kill>, <fi#5>, 0; mem:ST4[%vpsel.i203] CPURegs:%vreg119 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:161:4 ]
+	%vreg120<def> = MovGR %ZERO, 4; CPURegs:%vreg120
+	%vreg117<def> = LD <fi#4>, 0; mem:LD4[%vpnum.addr.i202] CPURegs:%vreg117 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:161:4 ]
+	%vreg121<def> = GTU %vreg117, %vreg120<kill>; CPURegs:%vreg121,%vreg117,%vreg120 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:161:4 ]
+	JC %vreg121<kill>, <BB#51>; CPURegs:%vreg121 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#51(16) BB#101(16)
+
+BB#101: derived from LLVM BB %if.then66
+    Predecessors according to CFG: BB#45
+	%vreg123<def> = SHL %vreg117, %vreg5; CPURegs:%vreg123,%vreg117,%vreg5
+	%vreg124<def> = MovIGH %ZERO, <jt#2>[TF=3]; CPURegs:%vreg124
+	%vreg125<def,tied1> = MovIGL %vreg124<tied0>, <jt#2>[TF=4]; CPURegs:%vreg125,%vreg124
+	%vreg126<def> = ADDu %vreg123<kill>, %vreg125<kill>; CPURegs:%vreg126,%vreg123,%vreg125
+	%vreg127<def> = LD %vreg126<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg127,%vreg126
+	Jmpr %vreg127<kill>; CPURegs:%vreg127
+    Successors according to CFG: BB#46(16) BB#47(16) BB#48(16) BB#49(16) BB#50(16)
+
+BB#46: derived from LLVM BB %sw.bb.i204
+    Predecessors according to CFG: BB#101
+	%vreg136<def> = LD <fi#5>, 0; mem:LD4[%vpsel.i203] CPURegs:%vreg136 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:161:4 ]
+	%vreg137<def> = MovGR %ZERO, 0; CPURegs:%vreg137
+	ST %vreg137<kill>, %vreg136<kill>, 0; mem:ST4[%78] CPURegs:%vreg137,%vreg136 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#52>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#52
+
+BB#47: derived from LLVM BB %sw.bb1.i205
+    Predecessors according to CFG: BB#101
+	%vreg134<def> = LD <fi#5>, 0; mem:LD4[%vpsel.i203] CPURegs:%vreg134 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:161:4 ]
+	ST %vreg3, %vreg134<kill>, 0; mem:ST4[%79] CPURegs:%vreg3,%vreg134 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#52>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#52
+
+BB#48: derived from LLVM BB %sw.bb2.i206
+    Predecessors according to CFG: BB#101
+	%vreg132<def> = LD <fi#5>, 0; mem:LD4[%vpsel.i203] CPURegs:%vreg132 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:161:4 ]
+	%vreg133<def> = MovGR %ZERO, 3; CPURegs:%vreg133
+	ST %vreg133<kill>, %vreg132<kill>, 0; mem:ST4[%80] CPURegs:%vreg133,%vreg132 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#52>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#52
+
+BB#49: derived from LLVM BB %sw.bb3.i207
+    Predecessors according to CFG: BB#101
+	%vreg130<def> = LD <fi#5>, 0; mem:LD4[%vpsel.i203] CPURegs:%vreg130 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:161:4 ]
+	%vreg131<def> = MovGR %ZERO, 7; CPURegs:%vreg131
+	ST %vreg131<kill>, %vreg130<kill>, 0; mem:ST4[%81] CPURegs:%vreg131,%vreg130 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#52>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#52
+
+BB#50: derived from LLVM BB %sw.bb4.i208
+    Predecessors according to CFG: BB#101
+	%vreg128<def> = LD <fi#5>, 0; mem:LD4[%vpsel.i203] CPURegs:%vreg128 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:161:4 ]
+	%vreg129<def> = MovGR %ZERO, 15; CPURegs:%vreg129
+	ST %vreg129<kill>, %vreg128<kill>, 0; mem:ST4[%82] CPURegs:%vreg129,%vreg128 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#52>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#52
+
+BB#51: derived from LLVM BB %sw.default.i209
+    Predecessors according to CFG: BB#45
+	%vreg139<def> = MovGR %ZERO, -1; CPURegs:%vreg139
+	ST %vreg139<kill>, <fi#3>, 0; mem:ST4[%retval.i201] CPURegs:%vreg139 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:161:4 ]
+	Jmp <BB#53>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#53
+
+BB#52: derived from LLVM BB %sw.epilog.i210
+    Predecessors according to CFG: BB#50 BB#49 BB#48 BB#47 BB#46
+	ST %vreg3, <fi#3>, 0; mem:ST4[%retval.i201] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:161:4 ]
+    Successors according to CFG: BB#53
+
+BB#53: derived from LLVM BB %set_vpsel.exit211
+    Predecessors according to CFG: BB#52 BB#51
+	%vreg140<def> = MovGR %ZERO, 0; CPURegs:%vreg140
+	ST %vreg140<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg140 dbg:..\fft_16x16.c:162:8
+    Successors according to CFG: BB#54
+
+BB#54: derived from LLVM BB %for.cond68
+    Predecessors according to CFG: BB#53 BB#55
+	%vreg141<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg141 dbg:..\fft_16x16.c:162:8
+	%vreg142<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg142 dbg:..\fft_16x16.c:162:8
+	%vreg143<def> = GE %vreg142<kill>, %vreg141<kill>; CPURegs:%vreg143,%vreg142,%vreg141 dbg:..\fft_16x16.c:162:8
+	JC %vreg143<kill>, <BB#79>; CPURegs:%vreg143 dbg:..\fft_16x16.c:162:8
+	Jmp <BB#55>; dbg:..\fft_16x16.c:162:8
+    Successors according to CFG: BB#55(124) BB#79(4)
+
+BB#55: derived from LLVM BB %for.inc77
+    Predecessors according to CFG: BB#54
+	%vreg144<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg144 dbg:..\fft_16x16.c:163:5
+	%vreg145<def> = ADDiu %vreg144<kill>, 16; CPURegs:%vreg145,%vreg144 dbg:..\fft_16x16.c:163:5
+	ST %vreg145, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg145 dbg:..\fft_16x16.c:163:5
+	%vreg146<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg146 dbg:..\fft_16x16.c:164:5
+	%vreg147<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg147 dbg:..\fft_16x16.c:164:5
+	%vreg148<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg148 dbg:..\fft_16x16.c:164:5
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:164:5
+	%vreg149<def> = MovIGH %ZERO, <ga:@idx_4>[TF=3]; CPURegs:%vreg149 dbg:..\fft_16x16.c:164:5
+	%vreg150<def,tied1> = MovIGL %vreg149<tied0>, <ga:@idx_4>[TF=4]; CPURegs:%vreg150,%vreg149 dbg:..\fft_16x16.c:164:5
+	%vreg151<def> = COPY %SP; CPURegs:%vreg151 dbg:..\fft_16x16.c:164:5
+	%vreg152<def> = ADDiu %vreg150, 192; CPURegs:%vreg152,%vreg150 dbg:..\fft_16x16.c:164:5
+	ST %vreg152<kill>, %vreg151, 24; mem:ST4[<unknown>] CPURegs:%vreg152,%vreg151 dbg:..\fft_16x16.c:164:5
+	%vreg153<def> = ADDiu %vreg150, 128; CPURegs:%vreg153,%vreg150 dbg:..\fft_16x16.c:164:5
+	ST %vreg153<kill>, %vreg151, 20; mem:ST4[<unknown>] CPURegs:%vreg153,%vreg151 dbg:..\fft_16x16.c:164:5
+	%vreg154<def> = ADDiu %vreg150, 64; CPURegs:%vreg154,%vreg150 dbg:..\fft_16x16.c:164:5
+	ST %vreg154<kill>, %vreg151, 16; mem:ST4[<unknown>] CPURegs:%vreg154,%vreg151 dbg:..\fft_16x16.c:164:5
+	ST %vreg150, %vreg151, 12; mem:ST4[<unknown>] CPURegs:%vreg150,%vreg151 dbg:..\fft_16x16.c:164:5
+	ST %vreg148<kill>, %vreg151, 8; mem:ST4[<unknown>] CPURegs:%vreg148,%vreg151 dbg:..\fft_16x16.c:164:5
+	%vreg156<def> = SHL %vreg147<kill>, %vreg5; CPURegs:%vreg156,%vreg147,%vreg5 dbg:..\fft_16x16.c:164:5
+	%vreg157<def> = SHL %vreg145, %vreg5; CPURegs:%vreg157,%vreg145,%vreg5 dbg:..\fft_16x16.c:164:5
+	%vreg158<def> = ADDu %vreg146, %vreg157<kill>; CPURegs:%vreg158,%vreg146,%vreg157 dbg:..\fft_16x16.c:164:5
+	%vreg159<def> = ADDu %vreg146, %vreg156<kill>; CPURegs:%vreg159,%vreg146,%vreg156 dbg:..\fft_16x16.c:164:5
+	%A0<def> = COPY %vreg159; CPURegs:%vreg159 dbg:..\fft_16x16.c:164:5
+	%A1<def> = COPY %vreg158; CPURegs:%vreg158 dbg:..\fft_16x16.c:164:5
+	CALL <ga:@vmac_shuffle>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:164:5
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:164:5
+	%vreg161<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg161 dbg:..\fft_16x16.c:162:22
+	%vreg162<def> = ADDiu %vreg161<kill>, 32; CPURegs:%vreg162,%vreg161 dbg:..\fft_16x16.c:162:22
+	ST %vreg162<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg162 dbg:..\fft_16x16.c:162:22
+	Jmp <BB#54>; dbg:..\fft_16x16.c:162:22
+    Successors according to CFG: BB#54
+
+BB#56: derived from LLVM BB %if.else80
+    Predecessors according to CFG: BB#44
+	%vreg23<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg23 dbg:..\fft_16x16.c:167:11
+	%vreg24<def> = NEQI %vreg23<kill>, 2; CPURegs:%vreg24,%vreg23 dbg:..\fft_16x16.c:167:11
+	JC %vreg24<kill>, <BB#68>; CPURegs:%vreg24 dbg:..\fft_16x16.c:167:11
+	Jmp <BB#57>; dbg:..\fft_16x16.c:167:11
+    Successors according to CFG: BB#57(16) BB#68(16)
+
+BB#57: derived from LLVM BB %if.then82
+    Predecessors according to CFG: BB#56
+	ST %vreg3, <fi#7>, 0; mem:ST4[%vpnum.addr.i191] CPURegs:%vreg3 dbg:..\fft_16x16.c:168:4
+	%vreg73<def> = MovGR %ZERO, 8336896; CPURegs:%vreg73
+	DBG_VALUE <fi#8>, 0, !"vpsel"; line no:14
+	ST %vreg73<kill>, <fi#8>, 0; mem:ST4[%vpsel.i192] CPURegs:%vreg73 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:168:4 ]
+	%vreg74<def> = MovGR %ZERO, 4; CPURegs:%vreg74
+	%vreg71<def> = LD <fi#7>, 0; mem:LD4[%vpnum.addr.i191] CPURegs:%vreg71 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:168:4 ]
+	%vreg75<def> = GTU %vreg71, %vreg74<kill>; CPURegs:%vreg75,%vreg71,%vreg74 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:168:4 ]
+	JC %vreg75<kill>, <BB#63>; CPURegs:%vreg75 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#63(16) BB#100(16)
+
+BB#100: derived from LLVM BB %if.then82
+    Predecessors according to CFG: BB#57
+	%vreg77<def> = SHL %vreg71, %vreg5; CPURegs:%vreg77,%vreg71,%vreg5
+	%vreg78<def> = MovIGH %ZERO, <jt#1>[TF=3]; CPURegs:%vreg78
+	%vreg79<def,tied1> = MovIGL %vreg78<tied0>, <jt#1>[TF=4]; CPURegs:%vreg79,%vreg78
+	%vreg80<def> = ADDu %vreg77<kill>, %vreg79<kill>; CPURegs:%vreg80,%vreg77,%vreg79
+	%vreg81<def> = LD %vreg80<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg81,%vreg80
+	Jmpr %vreg81<kill>; CPURegs:%vreg81
+    Successors according to CFG: BB#58(16) BB#59(16) BB#60(16) BB#61(16) BB#62(16)
+
+BB#58: derived from LLVM BB %sw.bb.i193
+    Predecessors according to CFG: BB#100
+	%vreg90<def> = LD <fi#8>, 0; mem:LD4[%vpsel.i192] CPURegs:%vreg90 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:168:4 ]
+	%vreg91<def> = MovGR %ZERO, 0; CPURegs:%vreg91
+	ST %vreg91<kill>, %vreg90<kill>, 0; mem:ST4[%95] CPURegs:%vreg91,%vreg90 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#64>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#64
+
+BB#59: derived from LLVM BB %sw.bb1.i194
+    Predecessors according to CFG: BB#100
+	%vreg88<def> = LD <fi#8>, 0; mem:LD4[%vpsel.i192] CPURegs:%vreg88 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:168:4 ]
+	ST %vreg3, %vreg88<kill>, 0; mem:ST4[%96] CPURegs:%vreg3,%vreg88 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#64>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#64
+
+BB#60: derived from LLVM BB %sw.bb2.i195
+    Predecessors according to CFG: BB#100
+	%vreg86<def> = LD <fi#8>, 0; mem:LD4[%vpsel.i192] CPURegs:%vreg86 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:168:4 ]
+	%vreg87<def> = MovGR %ZERO, 3; CPURegs:%vreg87
+	ST %vreg87<kill>, %vreg86<kill>, 0; mem:ST4[%97] CPURegs:%vreg87,%vreg86 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#64>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#64
+
+BB#61: derived from LLVM BB %sw.bb3.i196
+    Predecessors according to CFG: BB#100
+	%vreg84<def> = LD <fi#8>, 0; mem:LD4[%vpsel.i192] CPURegs:%vreg84 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:168:4 ]
+	%vreg85<def> = MovGR %ZERO, 7; CPURegs:%vreg85
+	ST %vreg85<kill>, %vreg84<kill>, 0; mem:ST4[%98] CPURegs:%vreg85,%vreg84 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#64>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#64
+
+BB#62: derived from LLVM BB %sw.bb4.i197
+    Predecessors according to CFG: BB#100
+	%vreg82<def> = LD <fi#8>, 0; mem:LD4[%vpsel.i192] CPURegs:%vreg82 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:168:4 ]
+	%vreg83<def> = MovGR %ZERO, 15; CPURegs:%vreg83
+	ST %vreg83<kill>, %vreg82<kill>, 0; mem:ST4[%99] CPURegs:%vreg83,%vreg82 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#64>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#64
+
+BB#63: derived from LLVM BB %sw.default.i198
+    Predecessors according to CFG: BB#57
+	%vreg93<def> = MovGR %ZERO, -1; CPURegs:%vreg93
+	ST %vreg93<kill>, <fi#6>, 0; mem:ST4[%retval.i190] CPURegs:%vreg93 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:168:4 ]
+	Jmp <BB#65>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#65
+
+BB#64: derived from LLVM BB %sw.epilog.i199
+    Predecessors according to CFG: BB#62 BB#61 BB#60 BB#59 BB#58
+	ST %vreg3, <fi#6>, 0; mem:ST4[%retval.i190] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:168:4 ]
+    Successors according to CFG: BB#65
+
+BB#65: derived from LLVM BB %set_vpsel.exit200
+    Predecessors according to CFG: BB#64 BB#63
+	%vreg94<def> = MovGR %ZERO, 0; CPURegs:%vreg94
+	ST %vreg94<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg94 dbg:..\fft_16x16.c:169:8
+    Successors according to CFG: BB#66
+
+BB#66: derived from LLVM BB %for.cond84
+    Predecessors according to CFG: BB#65 BB#67
+	%vreg95<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg95 dbg:..\fft_16x16.c:169:8
+	%vreg96<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg96 dbg:..\fft_16x16.c:169:8
+	%vreg97<def> = GE %vreg96<kill>, %vreg95<kill>; CPURegs:%vreg97,%vreg96,%vreg95 dbg:..\fft_16x16.c:169:8
+	JC %vreg97<kill>, <BB#79>; CPURegs:%vreg97 dbg:..\fft_16x16.c:169:8
+	Jmp <BB#67>; dbg:..\fft_16x16.c:169:8
+    Successors according to CFG: BB#67(124) BB#79(4)
+
+BB#67: derived from LLVM BB %for.inc93
+    Predecessors according to CFG: BB#66
+	%vreg98<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg98 dbg:..\fft_16x16.c:170:5
+	%vreg99<def> = ADDiu %vreg98<kill>, 16; CPURegs:%vreg99,%vreg98 dbg:..\fft_16x16.c:170:5
+	ST %vreg99, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg99 dbg:..\fft_16x16.c:170:5
+	%vreg100<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg100 dbg:..\fft_16x16.c:171:5
+	%vreg101<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg101 dbg:..\fft_16x16.c:171:5
+	%vreg102<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg102 dbg:..\fft_16x16.c:171:5
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:171:5
+	%vreg103<def> = MovIGH %ZERO, <ga:@idx_2>[TF=3]; CPURegs:%vreg103 dbg:..\fft_16x16.c:171:5
+	%vreg104<def,tied1> = MovIGL %vreg103<tied0>, <ga:@idx_2>[TF=4]; CPURegs:%vreg104,%vreg103 dbg:..\fft_16x16.c:171:5
+	%vreg105<def> = COPY %SP; CPURegs:%vreg105 dbg:..\fft_16x16.c:171:5
+	%vreg106<def> = ADDiu %vreg104, 192; CPURegs:%vreg106,%vreg104 dbg:..\fft_16x16.c:171:5
+	ST %vreg106<kill>, %vreg105, 24; mem:ST4[<unknown>] CPURegs:%vreg106,%vreg105 dbg:..\fft_16x16.c:171:5
+	%vreg107<def> = ADDiu %vreg104, 128; CPURegs:%vreg107,%vreg104 dbg:..\fft_16x16.c:171:5
+	ST %vreg107<kill>, %vreg105, 20; mem:ST4[<unknown>] CPURegs:%vreg107,%vreg105 dbg:..\fft_16x16.c:171:5
+	%vreg108<def> = ADDiu %vreg104, 64; CPURegs:%vreg108,%vreg104 dbg:..\fft_16x16.c:171:5
+	ST %vreg108<kill>, %vreg105, 16; mem:ST4[<unknown>] CPURegs:%vreg108,%vreg105 dbg:..\fft_16x16.c:171:5
+	ST %vreg104, %vreg105, 12; mem:ST4[<unknown>] CPURegs:%vreg104,%vreg105 dbg:..\fft_16x16.c:171:5
+	ST %vreg102<kill>, %vreg105, 8; mem:ST4[<unknown>] CPURegs:%vreg102,%vreg105 dbg:..\fft_16x16.c:171:5
+	%vreg110<def> = SHL %vreg101<kill>, %vreg5; CPURegs:%vreg110,%vreg101,%vreg5 dbg:..\fft_16x16.c:171:5
+	%vreg111<def> = SHL %vreg99, %vreg5; CPURegs:%vreg111,%vreg99,%vreg5 dbg:..\fft_16x16.c:171:5
+	%vreg112<def> = ADDu %vreg100, %vreg111<kill>; CPURegs:%vreg112,%vreg100,%vreg111 dbg:..\fft_16x16.c:171:5
+	%vreg113<def> = ADDu %vreg100, %vreg110<kill>; CPURegs:%vreg113,%vreg100,%vreg110 dbg:..\fft_16x16.c:171:5
+	%A0<def> = COPY %vreg113; CPURegs:%vreg113 dbg:..\fft_16x16.c:171:5
+	%A1<def> = COPY %vreg112; CPURegs:%vreg112 dbg:..\fft_16x16.c:171:5
+	CALL <ga:@vmac_shuffle>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:171:5
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:171:5
+	%vreg115<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg115 dbg:..\fft_16x16.c:169:22
+	%vreg116<def> = ADDiu %vreg115<kill>, 32; CPURegs:%vreg116,%vreg115 dbg:..\fft_16x16.c:169:22
+	ST %vreg116<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg116 dbg:..\fft_16x16.c:169:22
+	Jmp <BB#66>; dbg:..\fft_16x16.c:169:22
+    Successors according to CFG: BB#66
+
+BB#68: derived from LLVM BB %if.else96
+    Predecessors according to CFG: BB#56
+	ST %vreg3, <fi#10>, 0; mem:ST4[%vpnum.addr.i180] CPURegs:%vreg3 dbg:..\fft_16x16.c:175:4
+	%vreg27<def> = MovGR %ZERO, 8336896; CPURegs:%vreg27
+	DBG_VALUE <fi#11>, 0, !"vpsel"; line no:14
+	ST %vreg27<kill>, <fi#11>, 0; mem:ST4[%vpsel.i181] CPURegs:%vreg27 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:175:4 ]
+	%vreg28<def> = MovGR %ZERO, 4; CPURegs:%vreg28
+	%vreg25<def> = LD <fi#10>, 0; mem:LD4[%vpnum.addr.i180] CPURegs:%vreg25 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:175:4 ]
+	%vreg29<def> = GTU %vreg25, %vreg28<kill>; CPURegs:%vreg29,%vreg25,%vreg28 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:175:4 ]
+	JC %vreg29<kill>, <BB#74>; CPURegs:%vreg29 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#74(16) BB#99(16)
+
+BB#99: derived from LLVM BB %if.else96
+    Predecessors according to CFG: BB#68
+	%vreg31<def> = SHL %vreg25, %vreg5; CPURegs:%vreg31,%vreg25,%vreg5
+	%vreg32<def> = MovIGH %ZERO, <jt#0>[TF=3]; CPURegs:%vreg32
+	%vreg33<def,tied1> = MovIGL %vreg32<tied0>, <jt#0>[TF=4]; CPURegs:%vreg33,%vreg32
+	%vreg34<def> = ADDu %vreg31<kill>, %vreg33<kill>; CPURegs:%vreg34,%vreg31,%vreg33
+	%vreg35<def> = LD %vreg34<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg35,%vreg34
+	Jmpr %vreg35<kill>; CPURegs:%vreg35
+    Successors according to CFG: BB#69(16) BB#70(16) BB#71(16) BB#72(16) BB#73(16)
+
+BB#69: derived from LLVM BB %sw.bb.i182
+    Predecessors according to CFG: BB#99
+	%vreg44<def> = LD <fi#11>, 0; mem:LD4[%vpsel.i181] CPURegs:%vreg44 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:175:4 ]
+	%vreg45<def> = MovGR %ZERO, 0; CPURegs:%vreg45
+	ST %vreg45<kill>, %vreg44<kill>, 0; mem:ST4[%111] CPURegs:%vreg45,%vreg44 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#75>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#75
+
+BB#70: derived from LLVM BB %sw.bb1.i183
+    Predecessors according to CFG: BB#99
+	%vreg42<def> = LD <fi#11>, 0; mem:LD4[%vpsel.i181] CPURegs:%vreg42 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:175:4 ]
+	ST %vreg3, %vreg42<kill>, 0; mem:ST4[%112] CPURegs:%vreg3,%vreg42 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#75>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#75
+
+BB#71: derived from LLVM BB %sw.bb2.i184
+    Predecessors according to CFG: BB#99
+	%vreg40<def> = LD <fi#11>, 0; mem:LD4[%vpsel.i181] CPURegs:%vreg40 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:175:4 ]
+	%vreg41<def> = MovGR %ZERO, 3; CPURegs:%vreg41
+	ST %vreg41<kill>, %vreg40<kill>, 0; mem:ST4[%113] CPURegs:%vreg41,%vreg40 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#75>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#75
+
+BB#72: derived from LLVM BB %sw.bb3.i185
+    Predecessors according to CFG: BB#99
+	%vreg38<def> = LD <fi#11>, 0; mem:LD4[%vpsel.i181] CPURegs:%vreg38 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:175:4 ]
+	%vreg39<def> = MovGR %ZERO, 7; CPURegs:%vreg39
+	ST %vreg39<kill>, %vreg38<kill>, 0; mem:ST4[%114] CPURegs:%vreg39,%vreg38 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#75>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#75
+
+BB#73: derived from LLVM BB %sw.bb4.i186
+    Predecessors according to CFG: BB#99
+	%vreg36<def> = LD <fi#11>, 0; mem:LD4[%vpsel.i181] CPURegs:%vreg36 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:175:4 ]
+	%vreg37<def> = MovGR %ZERO, 15; CPURegs:%vreg37
+	ST %vreg37<kill>, %vreg36<kill>, 0; mem:ST4[%115] CPURegs:%vreg37,%vreg36 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#75>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#75
+
+BB#74: derived from LLVM BB %sw.default.i187
+    Predecessors according to CFG: BB#68
+	%vreg47<def> = MovGR %ZERO, -1; CPURegs:%vreg47
+	ST %vreg47<kill>, <fi#9>, 0; mem:ST4[%retval.i179] CPURegs:%vreg47 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:175:4 ]
+	Jmp <BB#76>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#76
+
+BB#75: derived from LLVM BB %sw.epilog.i188
+    Predecessors according to CFG: BB#73 BB#72 BB#71 BB#70 BB#69
+	ST %vreg3, <fi#9>, 0; mem:ST4[%retval.i179] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:175:4 ]
+    Successors according to CFG: BB#76
+
+BB#76: derived from LLVM BB %set_vpsel.exit189
+    Predecessors according to CFG: BB#75 BB#74
+	%vreg48<def> = MovGR %ZERO, 0; CPURegs:%vreg48
+	ST %vreg48<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg48 dbg:..\fft_16x16.c:176:8
+    Successors according to CFG: BB#77
+
+BB#77: derived from LLVM BB %for.cond98
+    Predecessors according to CFG: BB#76 BB#78
+	%vreg49<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg49 dbg:..\fft_16x16.c:176:8
+	%vreg50<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg50 dbg:..\fft_16x16.c:176:8
+	%vreg51<def> = GE %vreg50<kill>, %vreg49<kill>; CPURegs:%vreg51,%vreg50,%vreg49 dbg:..\fft_16x16.c:176:8
+	JC %vreg51<kill>, <BB#79>; CPURegs:%vreg51 dbg:..\fft_16x16.c:176:8
+	Jmp <BB#78>; dbg:..\fft_16x16.c:176:8
+    Successors according to CFG: BB#78(124) BB#79(4)
+
+BB#78: derived from LLVM BB %for.inc107
+    Predecessors according to CFG: BB#77
+	%vreg52<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg52 dbg:..\fft_16x16.c:177:5
+	%vreg53<def> = ADDiu %vreg52<kill>, 16; CPURegs:%vreg53,%vreg52 dbg:..\fft_16x16.c:177:5
+	ST %vreg53, <fi#31>, 0; mem:ST4[%l] CPURegs:%vreg53 dbg:..\fft_16x16.c:177:5
+	%vreg54<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg54 dbg:..\fft_16x16.c:178:5
+	%vreg55<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg55 dbg:..\fft_16x16.c:178:5
+	%vreg56<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg56 dbg:..\fft_16x16.c:178:5
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:178:5
+	%vreg57<def> = MovIGH %ZERO, <ga:@idx_1>[TF=3]; CPURegs:%vreg57 dbg:..\fft_16x16.c:178:5
+	%vreg58<def,tied1> = MovIGL %vreg57<tied0>, <ga:@idx_1>[TF=4]; CPURegs:%vreg58,%vreg57 dbg:..\fft_16x16.c:178:5
+	%vreg59<def> = COPY %SP; CPURegs:%vreg59 dbg:..\fft_16x16.c:178:5
+	%vreg60<def> = ADDiu %vreg58, 192; CPURegs:%vreg60,%vreg58 dbg:..\fft_16x16.c:178:5
+	ST %vreg60<kill>, %vreg59, 24; mem:ST4[<unknown>] CPURegs:%vreg60,%vreg59 dbg:..\fft_16x16.c:178:5
+	%vreg61<def> = ADDiu %vreg58, 128; CPURegs:%vreg61,%vreg58 dbg:..\fft_16x16.c:178:5
+	ST %vreg61<kill>, %vreg59, 20; mem:ST4[<unknown>] CPURegs:%vreg61,%vreg59 dbg:..\fft_16x16.c:178:5
+	%vreg62<def> = ADDiu %vreg58, 64; CPURegs:%vreg62,%vreg58 dbg:..\fft_16x16.c:178:5
+	ST %vreg62<kill>, %vreg59, 16; mem:ST4[<unknown>] CPURegs:%vreg62,%vreg59 dbg:..\fft_16x16.c:178:5
+	ST %vreg58, %vreg59, 12; mem:ST4[<unknown>] CPURegs:%vreg58,%vreg59 dbg:..\fft_16x16.c:178:5
+	ST %vreg56<kill>, %vreg59, 8; mem:ST4[<unknown>] CPURegs:%vreg56,%vreg59 dbg:..\fft_16x16.c:178:5
+	%vreg64<def> = SHL %vreg55<kill>, %vreg5; CPURegs:%vreg64,%vreg55,%vreg5 dbg:..\fft_16x16.c:178:5
+	%vreg65<def> = SHL %vreg53, %vreg5; CPURegs:%vreg65,%vreg53,%vreg5 dbg:..\fft_16x16.c:178:5
+	%vreg66<def> = ADDu %vreg54, %vreg65<kill>; CPURegs:%vreg66,%vreg54,%vreg65 dbg:..\fft_16x16.c:178:5
+	%vreg67<def> = ADDu %vreg54, %vreg64<kill>; CPURegs:%vreg67,%vreg54,%vreg64 dbg:..\fft_16x16.c:178:5
+	%A0<def> = COPY %vreg67; CPURegs:%vreg67 dbg:..\fft_16x16.c:178:5
+	%A1<def> = COPY %vreg66; CPURegs:%vreg66 dbg:..\fft_16x16.c:178:5
+	CALL <ga:@vmac_shuffle>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:178:5
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:178:5
+	%vreg69<def> = LD <fi#29>, 0; mem:LD4[%j] CPURegs:%vreg69 dbg:..\fft_16x16.c:176:22
+	%vreg70<def> = ADDiu %vreg69<kill>, 32; CPURegs:%vreg70,%vreg69 dbg:..\fft_16x16.c:176:22
+	ST %vreg70<kill>, <fi#29>, 0; mem:ST4[%j] CPURegs:%vreg70 dbg:..\fft_16x16.c:176:22
+	Jmp <BB#77>; dbg:..\fft_16x16.c:176:22
+    Successors according to CFG: BB#77
+
+BB#79: derived from LLVM BB %if.end113
+    Predecessors according to CFG: BB#77 BB#66 BB#54 BB#42 BB#27 BB#12
+	%vreg301<def> = MovGR %ZERO, 16; CPURegs:%vreg301
+	%vreg302<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg302 dbg:..\fft_16x16.c:181:6
+	%vreg303<def> = LT %vreg302<kill>, %vreg301; CPURegs:%vreg303,%vreg302,%vreg301 dbg:..\fft_16x16.c:181:6
+	JC %vreg303<kill>, <BB#91>; CPURegs:%vreg303 dbg:..\fft_16x16.c:181:6
+	Jmp <BB#80>; dbg:..\fft_16x16.c:181:6
+    Successors according to CFG: BB#80(16) BB#91(16)
+
+BB#80: derived from LLVM BB %if.then115
+    Predecessors according to CFG: BB#79
+	DBG_VALUE <fi#41>, 0, !"step"; line no:182
+	%vreg328<def> = MovGR %ZERO, 0; CPURegs:%vreg328
+	ST %vreg328, <fi#41>, 0; mem:ST4[%step] CPURegs:%vreg328 dbg:..\fft_16x16.c:182:4
+	ST %vreg3, <fi#13>, 0; mem:ST4[%vpnum.addr.i169] CPURegs:%vreg3 dbg:..\fft_16x16.c:183:4
+	%vreg330<def> = MovGR %ZERO, 8336896; CPURegs:%vreg330
+	DBG_VALUE <fi#14>, 0, !"vpsel"; line no:14
+	ST %vreg330<kill>, <fi#14>, 0; mem:ST4[%vpsel.i170] CPURegs:%vreg330 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:14:2 @[ ..\fft_16x16.c:183:4 ]
+	%vreg331<def> = MovGR %ZERO, 4; CPURegs:%vreg331
+	%vreg327<def> = LD <fi#13>, 0; mem:LD4[%vpnum.addr.i169] CPURegs:%vreg327 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:183:4 ]
+	%vreg332<def> = GTU %vreg327, %vreg331<kill>; CPURegs:%vreg332,%vreg327,%vreg331 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:183:4 ]
+	JC %vreg332<kill>, <BB#86>; CPURegs:%vreg332 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:15:2 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#86(16) BB#105(16)
+
+BB#105: derived from LLVM BB %if.then115
+    Predecessors according to CFG: BB#80
+	%vreg334<def> = SHL %vreg327, %vreg5; CPURegs:%vreg334,%vreg327,%vreg5
+	%vreg335<def> = MovIGH %ZERO, <jt#6>[TF=3]; CPURegs:%vreg335
+	%vreg336<def,tied1> = MovIGL %vreg335<tied0>, <jt#6>[TF=4]; CPURegs:%vreg336,%vreg335
+	%vreg337<def> = ADDu %vreg334<kill>, %vreg336<kill>; CPURegs:%vreg337,%vreg334,%vreg336
+	%vreg338<def> = LD %vreg337<kill>, 0; mem:LD4[JumpTable] CPURegs:%vreg338,%vreg337
+	Jmpr %vreg338<kill>; CPURegs:%vreg338
+    Successors according to CFG: BB#81(16) BB#82(16) BB#83(16) BB#84(16) BB#85(16)
+
+BB#81: derived from LLVM BB %sw.bb.i171
+    Predecessors according to CFG: BB#105
+	%vreg347<def> = LD <fi#14>, 0; mem:LD4[%vpsel.i170] CPURegs:%vreg347 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:183:4 ]
+	ST %vreg328, %vreg347<kill>, 0; mem:ST4[%128] CPURegs:%vreg328,%vreg347 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:10 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#87>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:16:23 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#87
+
+BB#82: derived from LLVM BB %sw.bb1.i172
+    Predecessors according to CFG: BB#105
+	%vreg345<def> = LD <fi#14>, 0; mem:LD4[%vpsel.i170] CPURegs:%vreg345 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:183:4 ]
+	ST %vreg3, %vreg345<kill>, 0; mem:ST4[%129] CPURegs:%vreg3,%vreg345 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:10 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#87>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:17:23 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#87
+
+BB#83: derived from LLVM BB %sw.bb2.i173
+    Predecessors according to CFG: BB#105
+	%vreg343<def> = LD <fi#14>, 0; mem:LD4[%vpsel.i170] CPURegs:%vreg343 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:183:4 ]
+	%vreg344<def> = MovGR %ZERO, 3; CPURegs:%vreg344
+	ST %vreg344<kill>, %vreg343<kill>, 0; mem:ST4[%130] CPURegs:%vreg344,%vreg343 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:10 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#87>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:18:23 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#87
+
+BB#84: derived from LLVM BB %sw.bb3.i174
+    Predecessors according to CFG: BB#105
+	%vreg341<def> = LD <fi#14>, 0; mem:LD4[%vpsel.i170] CPURegs:%vreg341 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:183:4 ]
+	%vreg342<def> = MovGR %ZERO, 7; CPURegs:%vreg342
+	ST %vreg342<kill>, %vreg341<kill>, 0; mem:ST4[%131] CPURegs:%vreg342,%vreg341 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:10 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#87>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:19:23 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#87
+
+BB#85: derived from LLVM BB %sw.bb4.i175
+    Predecessors according to CFG: BB#105
+	%vreg339<def> = LD <fi#14>, 0; mem:LD4[%vpsel.i170] CPURegs:%vreg339 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:183:4 ]
+	%vreg340<def> = MovGR %ZERO, 15; CPURegs:%vreg340
+	ST %vreg340<kill>, %vreg339<kill>, 0; mem:ST4[%132] CPURegs:%vreg340,%vreg339 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:10 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#87>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:20:23 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#87
+
+BB#86: derived from LLVM BB %sw.default.i176
+    Predecessors according to CFG: BB#80
+	%vreg350<def> = MovGR %ZERO, -1; CPURegs:%vreg350
+	ST %vreg350<kill>, <fi#12>, 0; mem:ST4[%retval.i168] CPURegs:%vreg350 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:183:4 ]
+	Jmp <BB#88>; dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:22:3 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#88
+
+BB#87: derived from LLVM BB %sw.epilog.i177
+    Predecessors according to CFG: BB#85 BB#84 BB#83 BB#82 BB#81
+	ST %vreg3, <fi#12>, 0; mem:ST4[%retval.i168] CPURegs:%vreg3 dbg:D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h:24:2 @[ ..\fft_16x16.c:183:4 ]
+    Successors according to CFG: BB#88
+
+BB#88: derived from LLVM BB %set_vpsel.exit178
+    Predecessors according to CFG: BB#87 BB#86
+	DBG_VALUE <fi#42>, 0, !"p"; line no:184
+	ST %vreg328, <fi#42>, 0; mem:ST4[%p] CPURegs:%vreg328 dbg:..\fft_16x16.c:184:8
+    Successors according to CFG: BB#89
+
+BB#89: derived from LLVM BB %for.cond117
+    Predecessors according to CFG: BB#88 BB#90
+	%vreg352<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg352 dbg:..\fft_16x16.c:184:8
+	%vreg353<def> = LD <fi#42>, 0; mem:LD4[%p] CPURegs:%vreg353 dbg:..\fft_16x16.c:184:8
+	%vreg354<def> = GE %vreg353<kill>, %vreg352<kill>; CPURegs:%vreg354,%vreg353,%vreg352 dbg:..\fft_16x16.c:184:8
+	JC %vreg354<kill>, <BB#94>; CPURegs:%vreg354 dbg:..\fft_16x16.c:184:8
+	Jmp <BB#90>; dbg:..\fft_16x16.c:184:8
+    Successors according to CFG: BB#90(124) BB#94(4)
+
+BB#90: derived from LLVM BB %for.inc125
+    Predecessors according to CFG: BB#89
+	%vreg378<def> = LD <fi#42>, 0; mem:LD4[%p] CPURegs:%vreg378 dbg:..\fft_16x16.c:185:5
+	%vreg379<def> = LD <fi#41>, 0; mem:LD4[%step] CPURegs:%vreg379 dbg:..\fft_16x16.c:185:5
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:185:5
+	%vreg380<def> = MovIGH %ZERO, <ga:@idx>[TF=3]; CPURegs:%vreg380 dbg:..\fft_16x16.c:185:5
+	%vreg381<def,tied1> = MovIGL %vreg380<tied0>, <ga:@idx>[TF=4]; CPURegs:%vreg381,%vreg380 dbg:..\fft_16x16.c:185:5
+	%vreg382<def> = COPY %SP; CPURegs:%vreg382 dbg:..\fft_16x16.c:185:5
+	ST %vreg381<kill>, %vreg382, 8; mem:ST4[<unknown>] CPURegs:%vreg381,%vreg382 dbg:..\fft_16x16.c:185:5
+	%vreg384<def> = SHL %vreg379<kill>, %vreg3; CPURegs:%vreg384,%vreg379,%vreg3 dbg:..\fft_16x16.c:185:5
+	%vreg386<def> = SHL %vreg378<kill>, %vreg5; CPURegs:%vreg386,%vreg378,%vreg5 dbg:..\fft_16x16.c:185:5
+	%vreg387<def> = MovIGH %ZERO, <ga:@f>[TF=3]; CPURegs:%vreg387 dbg:..\fft_16x16.c:185:5
+	%vreg388<def,tied1> = MovIGL %vreg387<tied0>, <ga:@f>[TF=4]; CPURegs:%vreg388,%vreg387 dbg:..\fft_16x16.c:185:5
+	%vreg389<def> = ADDu %vreg388, %vreg386<kill>; CPURegs:%vreg389,%vreg388,%vreg386 dbg:..\fft_16x16.c:185:5
+	%vreg390<def> = ADDu %vreg388, %vreg384<kill>; CPURegs:%vreg390,%vreg388,%vreg384 dbg:..\fft_16x16.c:185:5
+	%A0<def> = COPY %vreg389; CPURegs:%vreg389 dbg:..\fft_16x16.c:185:5
+	%A1<def> = COPY %vreg390; CPURegs:%vreg390 dbg:..\fft_16x16.c:185:5
+	CALL <ga:@vmac_rotation_factor>, %A0, %A1, <regmask>, %SP<imp-def>, ...; dbg:..\fft_16x16.c:185:5
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:185:5
+	%vreg392<def> = LD <fi#41>, 0; mem:LD4[%step] CPURegs:%vreg392 dbg:..\fft_16x16.c:186:5
+	%vreg393<def> = ADDiu %vreg392<kill>, 16; CPURegs:%vreg393,%vreg392 dbg:..\fft_16x16.c:186:5
+	ST %vreg393<kill>, <fi#41>, 0; mem:ST4[%step] CPURegs:%vreg393 dbg:..\fft_16x16.c:186:5
+	%vreg394<def> = LD <fi#42>, 0; mem:LD4[%p] CPURegs:%vreg394 dbg:..\fft_16x16.c:184:27
+	%vreg395<def> = ADDiu %vreg394<kill>, 16; CPURegs:%vreg395,%vreg394 dbg:..\fft_16x16.c:184:27
+	ST %vreg395<kill>, <fi#42>, 0; mem:ST4[%p] CPURegs:%vreg395 dbg:..\fft_16x16.c:184:27
+	Jmp <BB#89>; dbg:..\fft_16x16.c:184:27
+    Successors according to CFG: BB#89
+
+BB#91: derived from LLVM BB %if.else128
+    Predecessors according to CFG: BB#79
+	DBG_VALUE <fi#43>, 0, !"p"; line no:190
+	%vreg304<def> = MovGR %ZERO, 0; CPURegs:%vreg304
+	ST %vreg304<kill>, <fi#43>, 0; mem:ST4[%p129] CPURegs:%vreg304 dbg:..\fft_16x16.c:190:9
+    Successors according to CFG: BB#92
+
+BB#92: derived from LLVM BB %for.cond130
+    Predecessors according to CFG: BB#91 BB#93
+	%vreg305<def> = LD <fi#25>, 0; mem:LD4[%n2] CPURegs:%vreg305 dbg:..\fft_16x16.c:190:9
+	%vreg306<def> = LD <fi#43>, 0; mem:LD4[%p129] CPURegs:%vreg306 dbg:..\fft_16x16.c:190:9
+	%vreg307<def> = GE %vreg306<kill>, %vreg305<kill>; CPURegs:%vreg307,%vreg306,%vreg305 dbg:..\fft_16x16.c:190:9
+	JC %vreg307<kill>, <BB#94>; CPURegs:%vreg307 dbg:..\fft_16x16.c:190:9
+	Jmp <BB#93>; dbg:..\fft_16x16.c:190:9
+    Successors according to CFG: BB#93(124) BB#94(4)
+
+BB#93: derived from LLVM BB %for.inc141
+    Predecessors according to CFG: BB#92
+	%vreg309<def> = LD <fi#43>, 0; mem:LD4[%p129] CPURegs:%vreg309 dbg:..\fft_16x16.c:191:7
+	%vreg310<def> = SHL %vreg309, %vreg3; CPURegs:%vreg310,%vreg309,%vreg3 dbg:..\fft_16x16.c:191:7
+	%vreg311<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg311 dbg:..\fft_16x16.c:191:7
+	%vreg312<def> = ADDu %vreg311, %vreg310<kill>; CPURegs:%vreg312,%vreg311,%vreg310 dbg:..\fft_16x16.c:191:7
+	%vreg314<def> = SHL %vreg309, %vreg5; CPURegs:%vreg314,%vreg309,%vreg5 dbg:..\fft_16x16.c:191:7
+	%vreg315<def> = ADDu %vreg311, %vreg314<kill>; CPURegs:%vreg315,%vreg311,%vreg314 dbg:..\fft_16x16.c:191:7
+	%vreg316<def> = LDH %vreg315<kill>, 0; mem:LD2[%arrayidx134] CPURegs:%vreg316,%vreg315 dbg:..\fft_16x16.c:191:7
+	STH %vreg316<kill>, %vreg312<kill>, 0; mem:ST2[%arrayidx135] CPURegs:%vreg316,%vreg312 dbg:..\fft_16x16.c:191:7
+	%vreg317<def> = LD <fi#43>, 0; mem:LD4[%p129] CPURegs:%vreg317 dbg:..\fft_16x16.c:192:7
+	%vreg318<def> = SHL %vreg317, %vreg5; CPURegs:%vreg318,%vreg317,%vreg5 dbg:..\fft_16x16.c:192:7
+	%vreg319<def> = ORu %vreg318<kill>, %vreg5; CPURegs:%vreg319,%vreg318,%vreg5 dbg:..\fft_16x16.c:192:7
+	%vreg320<def> = SHL %vreg317, %vreg3; CPURegs:%vreg320,%vreg317,%vreg3 dbg:..\fft_16x16.c:192:7
+	%vreg321<def> = LD <fi#22>, 0; mem:LD4[%w.addr] CPURegs:%vreg321 dbg:..\fft_16x16.c:192:7
+	%vreg322<def> = ADDu %vreg320<kill>, %vreg321; CPURegs:%vreg322,%vreg320,%vreg321 dbg:..\fft_16x16.c:192:7
+	%vreg323<def> = ADDu %vreg319<kill>, %vreg321; CPURegs:%vreg323,%vreg319,%vreg321 dbg:..\fft_16x16.c:192:7
+	%vreg324<def> = LDH %vreg323<kill>, 0; mem:LD2[%arrayidx138] CPURegs:%vreg324,%vreg323 dbg:..\fft_16x16.c:192:7
+	STH %vreg324<kill>, %vreg322<kill>, 2; mem:ST2[%arrayidx140] CPURegs:%vreg324,%vreg322 dbg:..\fft_16x16.c:192:7
+	%vreg325<def> = LD <fi#43>, 0; mem:LD4[%p129] CPURegs:%vreg325 dbg:..\fft_16x16.c:190:28
+	%vreg326<def> = ADDiu %vreg325<kill>, 2; CPURegs:%vreg326,%vreg325 dbg:..\fft_16x16.c:190:28
+	ST %vreg326<kill>, <fi#43>, 0; mem:ST4[%p129] CPURegs:%vreg326 dbg:..\fft_16x16.c:190:28
+	Jmp <BB#92>; dbg:..\fft_16x16.c:190:28
+    Successors according to CFG: BB#92
+
+BB#94: derived from LLVM BB %if.end144
+    Predecessors according to CFG: BB#92 BB#89
+	DBG_VALUE <fi#44>, 0, !"j"; line no:207
+	%vreg355<def> = MovGR %ZERO, 0; CPURegs:%vreg355
+	ST %vreg355, <fi#44>, 0; mem:ST4[%j145] CPURegs:%vreg355 dbg:..\fft_16x16.c:207:8
+    Successors according to CFG: BB#95
+
+BB#95: derived from LLVM BB %for.cond146
+    Predecessors according to CFG: BB#94 BB#96
+	%vreg356<def> = MovGR %ZERO, 511; CPURegs:%vreg356
+	%vreg357<def> = LD <fi#44>, 0; mem:LD4[%j145] CPURegs:%vreg357 dbg:..\fft_16x16.c:207:8
+	%vreg358<def> = GT %vreg357<kill>, %vreg356<kill>; CPURegs:%vreg358,%vreg357,%vreg356 dbg:..\fft_16x16.c:207:8
+	JC %vreg358<kill>, <BB#97>; CPURegs:%vreg358 dbg:..\fft_16x16.c:207:8
+	Jmp <BB#96>; dbg:..\fft_16x16.c:207:8
+    Successors according to CFG: BB#96(124) BB#97(4)
+
+BB#96: derived from LLVM BB %for.inc152
+    Predecessors according to CFG: BB#95
+	%vreg366<def> = LD <fi#44>, 0; mem:LD4[%j145] CPURegs:%vreg366 dbg:..\fft_16x16.c:208:5
+	%vreg367<def> = SHL %vreg366<kill>, %vreg3; CPURegs:%vreg367,%vreg366,%vreg3 dbg:..\fft_16x16.c:208:5
+	%vreg368<def> = MovIGH %ZERO, <ga:@data>[TF=3]; CPURegs:%vreg368 dbg:..\fft_16x16.c:208:5
+	%vreg369<def,tied1> = MovIGL %vreg368<tied0>, <ga:@data>[TF=4]; CPURegs:%vreg369,%vreg368 dbg:..\fft_16x16.c:208:5
+	%vreg370<def> = ADDu %vreg369<kill>, %vreg367<kill>; CPURegs:%vreg370,%vreg369,%vreg367 dbg:..\fft_16x16.c:208:5
+	%vreg371<def> = LDH %vreg370, 0; mem:LD2[%arrayidx149] CPURegs:%vreg371,%vreg370 dbg:..\fft_16x16.c:208:5
+	%vreg373<def> = SHL %vreg371<kill>, %vreg301; CPURegs:%vreg373,%vreg371,%vreg301 dbg:..\fft_16x16.c:208:5
+	%vreg374<def> = SRA %vreg373<kill>, %vreg301; CPURegs:%vreg374,%vreg373,%vreg301 dbg:..\fft_16x16.c:208:5
+	%vreg375<def> = SRL %vreg374<kill>, %vreg3; CPURegs:%vreg375,%vreg374,%vreg3 dbg:..\fft_16x16.c:208:5
+	STH %vreg375<kill>, %vreg370, 0; mem:ST2[%arrayidx149] CPURegs:%vreg375,%vreg370 dbg:..\fft_16x16.c:208:5
+	%vreg376<def> = LD <fi#44>, 0; mem:LD4[%j145] CPURegs:%vreg376 dbg:..\fft_16x16.c:207:28
+	%vreg377<def> = ADDiu %vreg376<kill>, 1; CPURegs:%vreg377,%vreg376 dbg:..\fft_16x16.c:207:28
+	ST %vreg377<kill>, <fi#44>, 0; mem:ST4[%j145] CPURegs:%vreg377 dbg:..\fft_16x16.c:207:28
+	Jmp <BB#95>; dbg:..\fft_16x16.c:207:28
+    Successors according to CFG: BB#95
+
+BB#97: derived from LLVM BB %for.inc154
+    Predecessors according to CFG: BB#95
+	%vreg359<def> = MovIGH %ZERO, <ga:@e_num>[TF=3]; CPURegs:%vreg359 dbg:..\fft_16x16.c:211:3
+	%vreg360<def,tied1> = MovIGL %vreg359<tied0>, <ga:@e_num>[TF=4]; CPURegs:%vreg360,%vreg359 dbg:..\fft_16x16.c:211:3
+	STH %vreg355, %vreg360<kill>, 0; mem:ST2[@e_num] CPURegs:%vreg355,%vreg360 dbg:..\fft_16x16.c:211:3
+	%vreg363<def> = LD <fi#30>, 0; mem:LD4[%k] CPURegs:%vreg363 dbg:..\fft_16x16.c:123:21
+	%vreg364<def> = SRA %vreg363<kill>, %vreg3; CPURegs:%vreg364,%vreg363,%vreg3 dbg:..\fft_16x16.c:123:21
+	ST %vreg364<kill>, <fi#30>, 0; mem:ST4[%k] CPURegs:%vreg364 dbg:..\fft_16x16.c:123:21
+	Jmp <BB#1>; dbg:..\fft_16x16.c:123:21
+    Successors according to CFG: BB#1
+
+BB#98: derived from LLVM BB %for.end156
+    Predecessors according to CFG: BB#1
+	%vreg8<def> = LD <fi#21>, 0; mem:LD4[%x.addr] CPURegs:%vreg8 dbg:..\fft_16x16.c:214:2
+	%vreg9<def> = LD <fi#23>, 0; mem:LD4[%nx.addr] CPURegs:%vreg9 dbg:..\fft_16x16.c:214:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:214:2
+	%A0<def> = COPY %vreg9; CPURegs:%vreg9 dbg:..\fft_16x16.c:214:2
+	%A1<def> = COPY %vreg8; CPURegs:%vreg8 dbg:..\fft_16x16.c:214:2
+	CALL <ga:@bit_reverse>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:214:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:214:2
+	RetLR; dbg:..\fft_16x16.c:215:1
+
+# End machine code for function fft_16x16.
+
+binary14 99e7b000
+1e
+1fc
+binary60 6df78fe2
+1e
+1f8
+binary60 ed378fc2
+1e
+1f4
+binary60 6d278fa2
+1e
+1f0
+binary60 ed178f82
+1e
+1ec
+binary60 ed078f62
+1e
+208
+binary30 48279042
+1e
+194
+binary60 6c478ca2
+1e
+190
+binary60 ec578c82
+binary4e 15000015
+1e
+18c
+binary60 6c278c62
+1e
+184
+binary60 ec278c22
+binary4d 95000001
+1e
+18c
+binary30 48278c62
+1e
+180
+binary60 ed078c02
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4d 94300001
+binary4e 94300005
+3
+0
+binary61 ec20c001
+1e
+170
+binary30 c8278b82
+binary57 80000000
+binary57 80000000
+binary5e 8420900a
+binary4e 15100025
+1e
+170
+binary60 ec278b82
+binary4d 15100001
+1e
+170
+binary30 c8278b82
+binary57 80000000
+binary3b 90009103
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary57 80000000
+1e
+188
+binary60 ec278c42
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary57 80000000
+binary5e 8420900a
+binary4e 14300405
+1e
+184
+binary60 ec278c22
+binary4d 94300001
+binary3b 90008303
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94300045
+binary4d 94300001
+binary4e 14236005
+1e
+19c
+binary60 ec378ce2
+binary4d 942007f1
+1e
+198
+binary60 ec278cc2
+1e
+19c
+binary30 c8278ce2
+binary2b 9000830a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1a0
+binary60 ec278d02
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200105
+binary4d 14200001
+1e
+184
+binary30 c8378c22
+binary3b 9000c203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 14236005
+1e
+1a8
+binary60 ed078d42
+binary4d 942007f1
+binary4e 15200045
+1e
+1a4
+binary60 ec278d22
+binary4d 15200001
+1e
+1a8
+binary30 c8278d42
+binary2b 9000920a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1ac
+binary60 ec278d62
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+198
+binary30 c8278cc2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary56 94008106
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 14236005
+1e
+1e4
+binary60 ed078f22
+binary4d 942007f1
+binary4e 14300045
+1e
+1e0
+binary60 ec278f02
+binary4d 14300001
+1e
+1e4
+binary30 c8278f22
+binary2b 9000830a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1e8
+binary60 ec278f42
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+1a4
+binary30 c8278d22
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary56 94008086
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 14236005
+1e
+1d8
+binary60 ed078ec2
+binary4d 942007f1
+binary4e 14300045
+1e
+1d4
+binary60 ec278ea2
+binary4d 14300001
+1e
+1d8
+binary30 c8278ec2
+binary2b 9000830a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1dc
+binary60 ec278ee2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+1e0
+binary30 c8278f02
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary56 94008046
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 14236005
+1e
+1cc
+binary60 ed078e62
+binary4d 942007f1
+binary4e 14300045
+1e
+1c8
+binary60 ec278e42
+binary4d 14300001
+1e
+1cc
+binary30 c8278e62
+binary2b 9000830a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1d0
+binary60 ec278e82
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+198
+binary30 c8278cc2
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+198
+binary30 c8278cc2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+198
+binary30 c8278cc2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+198
+binary30 c8278cc2
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1a0
+binary60 ed078d02
+binary4e 95200005
+binary4d 95200001
+1e
+174
+binary60 ed278ba2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+188
+binary30 c8278c42
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary57 80000000
+binary57 80000000
+binary15 8420c200
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 142001f5
+1e
+17c
+binary60 ed278be2
+binary4d 14200001
+1e
+184
+binary30 c8378c22
+binary57 80000000
+binary57 80000000
+binary5e 420c20a
+binary4e 944001a5
+binary4d 94400001
+binary5f 8420840b
+binary15 420c200
+binary4e 95300065
+binary4d 95300001
+binary5e 8420930a
+1e
+14c
+binary60 6c278a62
+1e
+178
+binary60 ed278bc2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+178
+binary30 c8278bc2
+binary57 80000000
+binary57 80000000
+binary5d 4209309
+1e
+174
+binary30 c8378ba2
+binary57 80000000
+binary57 80000000
+binary15 84208300
+1e
+184
+binary30 48378c22
+1e
+168
+binary60 ec278b42
+binary57 80000000
+binary57 80000000
+binary15 84208300
+1e
+17c
+binary30 48378be2
+1e
+16c
+binary60 ec278b62
+binary57 80000000
+binary57 80000000
+binary5d 430d109
+1e
+190
+binary30 c8478c82
+binary57 80000000
+binary57 80000000
+binary15 84310300
+1e
+194
+binary30 48478ca2
+1e
+168
+binary30 c8578b42
+binary57 80000000
+1e
+8
+binary60 ec378042
+binary5d 4315109
+binary5d 84209109
+binary15 84510200
+binary15 84410300
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+17c
+binary30 c8278be2
+binary57 80000000
+binary57 80000000
+binary14 98208200
+1e
+17c
+binary60 ec278be2
+1e
+178
+binary30 c8278bc2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+178
+binary60 ec278bc2
+1e
+14c
+binary30 c8278a62
+binary57 80000000
+1e
+178
+binary30 c8378bc2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+1d4
+binary30 c8278ea2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14236005
+1e
+1c0
+binary60 ed078e02
+binary4d 942007f1
+binary4e 14300045
+1e
+1bc
+binary60 ec278de2
+binary4d 14300001
+1e
+1c0
+binary30 c8278e02
+binary2b 9000830a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 942ffff5
+binary4d 942ffff1
+1e
+1c4
+binary60 ec278e22
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1a4
+binary30 c8278d22
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+1a4
+binary30 c8278d22
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+1a4
+binary30 c8278d22
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+1a4
+binary30 c8278d22
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1ac
+binary60 ed078d62
+binary4e 95300005
+binary4d 95300001
+1e
+174
+binary60 ed378ba2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+188
+binary30 c8278c42
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary57 80000000
+binary57 80000000
+binary15 8420c200
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 142001f5
+1e
+17c
+binary60 ed378be2
+binary4d 14200001
+1e
+184
+binary30 c8378c22
+binary57 80000000
+binary57 80000000
+binary5e 420c20a
+binary4e 944001c5
+binary4d 94400001
+binary5f 8420840b
+binary15 8420c200
+binary5e 8420920a
+1e
+148
+binary60 6c278a42
+1e
+178
+binary60 ed378bc2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+178
+binary30 c8278bc2
+binary57 80000000
+binary57 80000000
+binary5d 4209209
+1e
+174
+binary30 c8378ba2
+binary57 80000000
+binary57 80000000
+binary15 84208300
+1e
+184
+binary30 48378c22
+1e
+168
+binary60 ec278b42
+binary57 80000000
+binary57 80000000
+binary15 84208300
+1e
+17c
+binary30 48378be2
+1e
+16c
+binary60 ec278b62
+binary57 80000000
+binary57 80000000
+binary5d 430d109
+1e
+190
+binary30 c8478c82
+binary57 80000000
+binary57 80000000
+binary15 84310300
+1e
+194
+binary30 48478ca2
+1e
+168
+binary30 c8578b42
+binary57 80000000
+1e
+8
+binary60 ec378042
+binary5d 4315109
+binary5d 84209109
+binary15 84510200
+binary15 84410300
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+17c
+binary30 c8278be2
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+17c
+binary60 ec278be2
+1e
+178
+binary30 c8278bc2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+178
+binary60 ec278bc2
+1e
+148
+binary30 c8278a42
+binary57 80000000
+1e
+178
+binary30 c8378bc2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+1c8
+binary30 c8278e42
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 4209109
+binary4d 94300001
+binary4e 94300005
+binary15 84208300
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+binary2f 80008003
+binary57 80000000
+binary57 80000000
+binary4e 14300005
+1e
+1bc
+binary30 c8278de2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1e0
+binary30 c8278f02
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+1e0
+binary30 c8278f02
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+1e0
+binary30 c8278f02
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+1e0
+binary30 c8278f02
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1e8
+binary60 ed078f42
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+194
+binary30 48378ca2
+1e
+174
+binary30 48478ba2
+1e
+16c
+binary60 ec278b62
+binary4d 14600001
+1e
+190
+binary30 c8578c82
+binary4e 94600005
+binary14 98718600
+1e
+18
+binary60 ec7780c2
+binary14 98718400
+1e
+14
+binary60 ec7780a2
+binary14 98718200
+1e
+10
+binary60 ec778082
+1e
+c
+binary60 ec678062
+binary5d 4411109
+binary5d 4209109
+1e
+8
+binary60 ec578042
+binary15 450c200
+binary15 8440c400
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208100
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1d4
+binary30 c8278ea2
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+1d4
+binary30 c8278ea2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+1d4
+binary30 c8278ea2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+1d4
+binary30 c8278ea2
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1dc
+binary60 ed078ee2
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+194
+binary30 48378ca2
+1e
+174
+binary30 48478ba2
+1e
+16c
+binary60 ec278b62
+binary4d 14600001
+1e
+190
+binary30 c8578c82
+binary4e 94600005
+binary14 98718600
+1e
+18
+binary60 ec7780c2
+binary14 98718400
+1e
+14
+binary60 ec7780a2
+binary14 98718200
+1e
+10
+binary60 ec778082
+1e
+c
+binary60 ec678062
+binary5d 4411109
+binary5d 4209109
+1e
+8
+binary60 ec578042
+binary15 450c200
+binary15 8440c400
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208100
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1c8
+binary30 c8278e42
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1bc
+binary30 c8278de2
+binary57 80000000
+binary57 80000000
+2
+0
+binary60 ed008002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+1c8
+binary30 c8278e42
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+1c8
+binary30 c8278e42
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+1c8
+binary30 c8278e42
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1d0
+binary60 ed078e82
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+194
+binary30 48378ca2
+1e
+174
+binary30 48478ba2
+1e
+16c
+binary60 ec278b62
+binary4d 14600001
+1e
+190
+binary30 c8578c82
+binary4e 94600005
+binary14 98718600
+1e
+18
+binary60 ec7780c2
+binary14 98718400
+1e
+14
+binary60 ec7780a2
+binary14 98718200
+1e
+10
+binary60 ec778082
+1e
+c
+binary60 ec678062
+binary5d 4411109
+binary5d 4209109
+1e
+8
+binary60 ec578042
+binary15 450c200
+binary15 8440c400
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208100
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300035
+1e
+1bc
+binary30 c8278de2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14300075
+1e
+1bc
+binary30 c8278de2
+binary4d 94300001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 143000f5
+1e
+1bc
+binary30 c8278de2
+binary4d 94300001
+2
+0
+binary60 ec308002
+1e
+1c4
+binary60 ed078e22
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+194
+binary30 48378ca2
+1e
+174
+binary30 48478ba2
+1e
+16c
+binary60 ec278b62
+binary4d 14600001
+1e
+190
+binary30 c8578c82
+binary4e 94600005
+binary14 98718600
+1e
+18
+binary60 ec7780c2
+binary14 98718400
+1e
+14
+binary60 ec7780a2
+binary14 98718200
+1e
+10
+binary60 ec778082
+1e
+c
+binary60 ec678062
+binary5d 4411109
+binary5d 4209109
+1e
+8
+binary60 ec578042
+binary15 450c200
+binary15 8440c400
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+174
+binary30 c8278ba2
+binary57 80000000
+binary57 80000000
+binary14 98208100
+1e
+174
+binary60 ec278ba2
+1e
+18c
+binary30 c8278c62
+binary57 80000000
+1e
+174
+binary30 c8378ba2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 95200105
+binary4d 15200001
+1e
+184
+binary30 c8278c22
+binary57 80000000
+binary3b 90009203
+binary2c 80000005
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+binary4e 14336005
+1e
+144
+binary60 6c278a22
+1e
+1b4
+binary60 ed078da2
+binary4d 943007f1
+binary4e 14400045
+1e
+1b0
+binary60 ec378d82
+binary4d 14400001
+1e
+1b4
+binary30 c8378da2
+binary2b 9000c40a
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 943ffff5
+binary4d 943ffff1
+1e
+1b8
+binary60 ec378dc2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+13c
+binary30 c82789e2
+binary57 80000000
+binary57 80000000
+binary5d 4309009
+1e
+190
+binary30 c8478c82
+binary57 80000000
+binary57 80000000
+binary15 4310300
+binary5d 84209109
+binary15 84210200
+2
+0
+binary34 c8208001
+3
+0
+binary61 ec20c001
+1e
+13c
+binary30 c82789e2
+binary57 80000000
+binary57 80000000
+binary5d 84309109
+binary59 430d105
+binary5d 4209009
+1e
+190
+binary30 c8478c82
+binary57 80000000
+binary57 80000000
+binary15 4208400
+binary15 8430c400
+3
+0
+binary34 c830c001
+2
+2
+binary61 ec308021
+1e
+13c
+binary30 c82789e2
+binary57 80000000
+binary57 80000000
+binary14 98208010
+1e
+13c
+binary60 ec2789e2
+1e
+184
+binary30 c8278c22
+binary57 80000000
+1e
+13c
+binary30 c83789e2
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary5d 430d109
+binary4d 94400001
+binary4e 94400005
+binary15 8430c400
+3
+0
+binary30 c830c002
+binary57 80000000
+binary57 80000000
+binary2f 8000c003
+binary57 80000000
+binary57 80000000
+1e
+1b0
+binary30 c8378d82
+binary57 80000000
+binary57 80000000
+3
+0
+binary60 ec20c002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+1b0
+binary30 c8378d82
+binary57 80000000
+binary57 80000000
+3
+0
+binary60 ed00c002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14400035
+1e
+1b0
+binary30 c8378d82
+binary4d 94400001
+3
+0
+binary60 ec40c002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 14400075
+1e
+1b0
+binary30 c8378d82
+binary4d 94400001
+3
+0
+binary60 ec40c002
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 144000f5
+1e
+1b0
+binary30 c8378d82
+binary4d 94400001
+3
+0
+binary60 ec40c002
+1e
+1b8
+binary60 ed078dc2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4d 14400001
+1e
+140
+binary30 48278a02
+1e
+144
+binary30 c8378a22
+binary4e 94400005
+binary5d 430d009
+binary5d 4209109
+binary4d 54500001
+1e
+8
+binary60 ec478042
+binary4e 94500005
+binary15 84414200
+binary15 84514300
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+144
+binary30 c8278a22
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+144
+binary60 ec278a22
+1e
+140
+binary30 c8278a02
+binary57 80000000
+binary57 80000000
+binary14 98208080
+1e
+140
+binary60 ec278a02
+1e
+184
+binary30 c8278c22
+binary57 80000000
+1e
+140
+binary30 c8378a02
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary4d 94200001
+1e
+138
+binary60 ec2789c2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+138
+binary30 c83789c2
+binary57 80000000
+binary57 80000000
+binary5d 430d009
+binary4d 94400001
+binary4e 94400005
+binary15 84310300
+3
+0
+binary34 c840c001
+binary5d 84411209
+binary5e 8441120a
+binary5f 8441100b
+3
+0
+binary61 ec40c001
+1e
+138
+binary30 c83789c2
+binary57 80000000
+binary57 80000000
+binary14 9830c008
+1e
+138
+binary60 ec3789c2
+binary4e 94301ff5
+binary4d 14300001
+1e
+138
+binary30 c84789c2
+binary29 90010302
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+194
+binary30 c8578ca2
+binary57 80000000
+1e
+18c
+binary30 c8478c62
+binary57 80000000
+binary57 80000000
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+1e
+1ec
+binary30 49078f62
+1e
+1f0
+binary30 c9178f82
+1e
+1f4
+binary30 49278fa2
+1e
+1f8
+binary30 c9378fc2
+1e
+1fc
+binary30 c9f78fe2
+binary14 99e79000
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+RegsToPass.size()=2
+RegsToPass.size()=2
+op code is c
+op code is c
+# Machine code for function main: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+
+BB#0: derived from LLVM BB %entry
+	%vreg0<def> = MovGR %ZERO, 0; CPURegs:%vreg0
+	ST %vreg0, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg0
+	%vreg1<def> = MovGR %ZERO, 256; CPURegs:%vreg1
+	ST %vreg1, <fi#1>, 0; mem:ST4[%ndata] CPURegs:%vreg1 dbg:..\fft_16x16.c:219:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:220:2
+	%vreg2<def> = COPY %SP; CPURegs:%vreg2 dbg:..\fft_16x16.c:220:2
+	ST %vreg1, %vreg2, 8; mem:ST4[<unknown>] CPURegs:%vreg1,%vreg2 dbg:..\fft_16x16.c:220:2
+	%vreg3<def> = MovIGH %ZERO, <ga:@data>[TF=3]; CPURegs:%vreg3 dbg:..\fft_16x16.c:220:2
+	%vreg4<def,tied1> = MovIGL %vreg3<tied0>, <ga:@data>[TF=4]; CPURegs:%vreg4,%vreg3 dbg:..\fft_16x16.c:220:2
+	%vreg5<def> = MovIGH %ZERO, <ga:@f>[TF=3]; CPURegs:%vreg5 dbg:..\fft_16x16.c:220:2
+	%vreg6<def,tied1> = MovIGL %vreg5<tied0>, <ga:@f>[TF=4]; CPURegs:%vreg6,%vreg5 dbg:..\fft_16x16.c:220:2
+	%A0<def> = COPY %vreg4; CPURegs:%vreg4 dbg:..\fft_16x16.c:220:2
+	%A1<def> = COPY %vreg6; CPURegs:%vreg6 dbg:..\fft_16x16.c:220:2
+	CALL <ga:@fft_16x16>, %A0, %A1, <regmask>, %SP<imp-def>; dbg:..\fft_16x16.c:220:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:220:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:221:2
+	%vreg7<def> = COPY %SP; CPURegs:%vreg7 dbg:..\fft_16x16.c:221:2
+	%vreg8<def> = MovGR %ZERO, 2; CPURegs:%vreg8
+	ST %vreg8<kill>, %vreg7, 8; mem:ST4[<unknown>] CPURegs:%vreg8,%vreg7 dbg:..\fft_16x16.c:221:2
+	%vreg9<def> = MovGR %ZERO, 512; CPURegs:%vreg9
+	%A0<def> = COPY %vreg4; CPURegs:%vreg4 dbg:..\fft_16x16.c:221:2
+	%A1<def> = COPY %vreg9; CPURegs:%vreg9 dbg:..\fft_16x16.c:221:2
+	CALL <ga:@dbg_output>, %A0, %A1, <regmask>, %SP<imp-def>, %V0<imp-def>; dbg:..\fft_16x16.c:221:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\fft_16x16.c:221:2
+	%V0<def> = COPY %vreg0; CPURegs:%vreg0 dbg:..\fft_16x16.c:222:2
+	RetLR %V0<imp-use>; dbg:..\fft_16x16.c:222:2
+
+# End machine code for function main.
+
+copy phy reg
+copy phy reg
+copy phy reg
+binary14 99e7b000
+1e
+1fc
+binary60 6df78fe2
+1e
+1f8
+binary60 ed178fc2
+1e
+1f4
+binary60 ed078fa2
+binary4e 95000005
+binary4d 95000001
+binary4e 14201005
+1e
+1f0
+binary60 ed078f82
+binary4d 94200001
+1e
+1ec
+binary60 ec278f62
+binary4d 15100001
+1e
+8
+binary60 ec278042
+binary4e 15100005
+binary4d 94500001
+binary4e 14500005
+binary48 90444080
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary4e 94200025
+binary4d 94200001
+binary4e 14502005
+1e
+8
+binary60 ec278042
+binary4d 14500001
+binary48 90444080
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary48 90240080
+1e
+1f4
+binary30 49078fa2
+1e
+1f8
+binary30 c9178fc2
+1e
+1fc
+binary30 c9f78fe2
+binary14 99e79000
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\ld.exe" -L "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\lib" -T link_8slots.x -M=linkMapFile -o fft_16x16.out dsp_maxval_asm.o dsp_minval_asm.o fft_16x16.o fft_16x16_asm.o fft_16x16_rotation_factor_asm.o fft_16x16_shuffle_asm.o -lc 
+!!!ldfile.cï¼?162
+!!!ldfile.cï¼?162
+is relocated by HI16 **
+symbol 0x8c	added 0	 p 0x20050c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x8c	added 0	 p 0x200510
+value = (addend + symbol) : 0x8c
+value<<4 : 0x8c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x8c	added 0	 p 0x2005a0
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x8c	added 0	 p 0x2005a8
+value = (addend + symbol) : 0x8c
+value<<4 : 0x8c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x8c	added 0	 p 0x200638
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x8c	added 0	 p 0x200640
+value = (addend + symbol) : 0x8c
+value<<4 : 0x8c0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x90	added 0	 p 0x2007bc
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x90	added 0	 p 0x2007c8
+value = (addend + symbol) : 0x90
+value<<4 : 0x900	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x2020c8	addend 0	 p 0x2007d0
+value = (s + (-4) - p) : 0x18f4
+value >> 2 << 5: 0xc7a0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x200460	addend 0	 p 0x200870
+value = (s + (-4) - p) : 0xfffffbec
+value >> 2 << 5: 0xffffdf60	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x190	added 0	 p 0x200ad4
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x190	added 0	 p 0x200ae0
+value = (addend + symbol) : 0x190
+value<<4 : 0x1900	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x2020c8	addend 0	 p 0x200ae8
+value = (s + (-4) - p) : 0x15dc
+value >> 2 << 5: 0xaee0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x20043c	addend 0	 p 0x200b88
+value = (s + (-4) - p) : 0xfffff8b0
+value >> 2 << 5: 0xffffc580	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0xcdc	added 0	 p 0x20102c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xcdc	added 0	 p 0x201030
+value = (addend + symbol) : 0xcdc
+value<<4 : 0xcdc0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x64	added 0	 p 0x201150
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x64	added 0	 p 0x201154
+value = (addend + symbol) : 0x64
+value<<4 : 0x640	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x50	added 0	 p 0x2011ec
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x50	added 0	 p 0x2011f0
+value = (addend + symbol) : 0x50
+value<<4 : 0x500	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x3c	added 0	 p 0x201288
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x3c	added 0	 p 0x20128c
+value = (addend + symbol) : 0x3c
+value<<4 : 0x3c0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x201fb0	addend 0	 p 0x201494
+value = (s + (-4) - p) : 0xb18
+value >> 2 << 5: 0x58c0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x28	added 0	 p 0x2014f4
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x28	added 0	 p 0x2014f8
+value = (addend + symbol) : 0x28
+value<<4 : 0x280	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x201fb0	addend 0	 p 0x2016e0
+value = (s + (-4) - p) : 0x8cc
+value >> 2 << 5: 0x4660	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x14	added 0	 p 0x201740
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x14	added 0	 p 0x201744
+value = (addend + symbol) : 0x14
+value<<4 : 0x140	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0	added 0	 p 0x201780
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0	added 0	 p 0x201784
+value = (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x898	added 0	 p 0x20184c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x898	added 0	 p 0x201854
+value = (addend + symbol) : 0x898
+value<<4 : 0x8980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x202028	addend 0	 p 0x201888
+value = (s + (-4) - p) : 0x79c
+value >> 2 << 5: 0x3ce0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x998	added 0	 p 0x201960
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x998	added 0	 p 0x201968
+value = (addend + symbol) : 0x998
+value<<4 : 0x9980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x202028	addend 0	 p 0x20199c
+value = (s + (-4) - p) : 0x688
+value >> 2 << 5: 0x3440	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0xa98	added 0	 p 0x201a90
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xa98	added 0	 p 0x201a98
+value = (addend + symbol) : 0xa98
+value<<4 : 0xa980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x202028	addend 0	 p 0x201acc
+value = (s + (-4) - p) : 0x558
+value >> 2 << 5: 0x2ac0	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0xb98	added 0	 p 0x201b88
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xb98	added 0	 p 0x201b90
+value = (addend + symbol) : 0xb98
+value<<4 : 0xb980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x202028	addend 0	 p 0x201bc4
+value = (s + (-4) - p) : 0x460
+value >> 2 << 5: 0x2300	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x78	added 0	 p 0x201d28
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x78	added 0	 p 0x201d2c
+value = (addend + symbol) : 0x78
+value<<4 : 0x780	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0xc98	added 0	 p 0x201ddc
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0xc98	added 0	 p 0x201de8
+value = (addend + symbol) : 0xc98
+value<<4 : 0xc980	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x698	added 0	 p 0x201df4
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x698	added 0	 p 0x201dfc
+value = (addend + symbol) : 0x698
+value<<4 : 0x6980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x201ff4	addend 0	 p 0x201e08
+value = (s + (-4) - p) : 0x1e8
+value >> 2 << 5: 0xf40	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x298	added 0	 p 0x201e80
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x298	added 0	 p 0x201e84
+value = (addend + symbol) : 0x298
+value<<4 : 0x2980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x200dbc	addend 0	 p 0x201ef0
+value = (s + (-4) - p) : 0xffffeec8
+value >> 2 << 5: 0xffff7640	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x298	added 0	 p 0x201f48
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x298	added 0	 p 0x201f50
+value = (addend + symbol) : 0x298
+value<<4 : 0x2980	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x698	added 0	 p 0x201f54
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x698	added 0	 p 0x201f58
+value = (addend + symbol) : 0x698
+value<<4 : 0x6980	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x200fe0	addend 0	 p 0x201f60
+value = (s + (-4) - p) : 0xfffff07c
+value >> 2 << 5: 0xffff83e0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x200484	addend 0	 p 0x201f84
+value = (s + (-4) - p) : 0xffffe4fc
+value >> 2 << 5: 0xffff27e0	dst_mask : 0x3ffffe0
+(func) is relocated by PC26_S2! **
+symbol 0x201f20	addend 0	 p 0x200418
+value = (s + (-4) - p) : 0x1b04
+value >> 2 << 5: 0xd820	dst_mask : 0x3ffffe0
+
+15:12:42 Build Finished. 0 errors, 0 warnings. (took 1s.819ms)
+

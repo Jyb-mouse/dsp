@@ -1,0 +1,276 @@
+10:31:21 **** Incremental Build of configuration Release for project math_sqrt ****
+Info: Internal Builder is used for build
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\clang.exe" -gdwarf-2 -emit-llvm -S -target dsp -I "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\include" "..\\math_sqrt.c" -o math_sqrt.ll 
+'' is not a recognized processor for this target (ignoring processor)
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\llc.exe" -march=dsp -mcpu=dspse -relocation-model=static -filetype=obj math_sqrt.ll -o math_sqrt.o 
+abstract
+val1,result!!0 ArgReg= 13
+val1,result!!1 ArgReg= 14
+val2,result!!2 FI= -1
+val6,result!!1
+op code is 154
+# Machine code for function dsp_sqrt: SSA
+Frame Objects:
+  fi#-1: size=4, align=8, fixed, at location [SP+8]
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+  fi#3: size=4, align=4, at location [SP]
+  fi#4: size=4, align=4, at location [SP]
+Function Live Ins: %A0 in %vreg0, %A1 in %vreg1
+
+BB#0: derived from LLVM BB %entry
+    Live Ins: %A0 %A1
+	%vreg1<def> = COPY %A1; CPURegs:%vreg1
+	%vreg0<def> = COPY %A0; CPURegs:%vreg0
+	DBG_VALUE %noreg, 0, !"c"; line no:74
+	DBG_VALUE %noreg, 0, !"m"; line no:74
+	DBG_VALUE %noreg, 0, !"num"; line no:74
+	%vreg2<def> = LD <fi#-1>, 0; mem:LD4[FixedStack-1](align=8) CPURegs:%vreg2
+	ST %vreg0, <fi#0>, 0; mem:ST4[%c.addr] CPURegs:%vreg0
+	ST %vreg1, <fi#1>, 0; mem:ST4[%m.addr] CPURegs:%vreg1
+	ST %vreg2<kill>, <fi#2>, 0; mem:ST4[%num.addr] CPURegs:%vreg2
+	%vreg3<def> = MovGR %ZERO, 0; CPURegs:%vreg3
+	ST %vreg3<kill>, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg3 dbg:..\math_sqrt.c:75:6
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#3
+	%vreg4<def> = LD <fi#2>, 0; mem:LD4[%num.addr] CPURegs:%vreg4 dbg:..\math_sqrt.c:75:6
+	%vreg5<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg5 dbg:..\math_sqrt.c:75:6
+	%vreg6<def> = GE %vreg5<kill>, %vreg4<kill>; CPURegs:%vreg6,%vreg5,%vreg4 dbg:..\math_sqrt.c:75:6
+	JC %vreg6<kill>, <BB#4>; CPURegs:%vreg6 dbg:..\math_sqrt.c:75:6
+	Jmp <BB#2>; dbg:..\math_sqrt.c:75:6
+    Successors according to CFG: BB#2(124) BB#4(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	DBG_VALUE <fi#4>, 0, !"mid"; line no:76
+	%vreg8<def> = MovGR %ZERO, 2; CPURegs:%vreg8
+	%vreg9<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg9 dbg:..\math_sqrt.c:77:3
+	%vreg10<def> = SHL %vreg9<kill>, %vreg8; CPURegs:%vreg10,%vreg9,%vreg8 dbg:..\math_sqrt.c:77:3
+	%vreg11<def> = LD <fi#0>, 0; mem:LD4[%c.addr] CPURegs:%vreg11 dbg:..\math_sqrt.c:77:3
+	%vreg12<def> = ADDu %vreg11<kill>, %vreg10<kill>; CPURegs:%vreg12,%vreg11,%vreg10 dbg:..\math_sqrt.c:77:3
+	%vreg13<def> = LD %vreg12<kill>, 0; mem:LD4[%arrayidx] CPURegs:%vreg13,%vreg12 dbg:..\math_sqrt.c:77:3
+	ST %vreg13, <fi#4>, 0; mem:ST4[%mid] CPURegs:%vreg13 dbg:..\math_sqrt.c:77:3
+	%vreg14<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg14 dbg:..\math_sqrt.c:78:3
+	%vreg15<def> = SHL %vreg14<kill>, %vreg8; CPURegs:%vreg15,%vreg14,%vreg8 dbg:..\math_sqrt.c:78:3
+	%vreg16<def> = LD <fi#0>, 0; mem:LD4[%c.addr] CPURegs:%vreg16 dbg:..\math_sqrt.c:78:3
+	%vreg17<def> = ADDu %vreg16<kill>, %vreg15<kill>; CPURegs:%vreg17,%vreg16,%vreg15 dbg:..\math_sqrt.c:78:3
+	%vreg18<def> = SHL %vreg13, %vreg8; CPURegs:%vreg18,%vreg13,%vreg8 dbg:..\math_sqrt.c:78:3
+	%vreg19<def> = LD <fi#1>, 0; mem:LD4[%m.addr] CPURegs:%vreg19 dbg:..\math_sqrt.c:78:3
+	%vreg20<def> = ADDu %vreg19<kill>, %vreg18<kill>; CPURegs:%vreg20,%vreg19,%vreg18 dbg:..\math_sqrt.c:78:3
+	%vreg21<def> = LD %vreg20<kill>, 0; mem:LD4[%arrayidx1] CPURegs:%vreg21,%vreg20 dbg:..\math_sqrt.c:78:3
+	ST %vreg21<kill>, %vreg17<kill>, 0; mem:ST4[%arrayidx2] CPURegs:%vreg21,%vreg17 dbg:..\math_sqrt.c:78:3
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#2
+	%vreg22<def> = LD <fi#3>, 0; mem:LD4[%i] CPURegs:%vreg22 dbg:..\math_sqrt.c:75:24
+	%vreg23<def> = ADDiu %vreg22<kill>, 1; CPURegs:%vreg23,%vreg22 dbg:..\math_sqrt.c:75:24
+	ST %vreg23<kill>, <fi#3>, 0; mem:ST4[%i] CPURegs:%vreg23 dbg:..\math_sqrt.c:75:24
+	Jmp <BB#1>; dbg:..\math_sqrt.c:75:24
+    Successors according to CFG: BB#1
+
+BB#4: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#1
+	%vreg7<def> = MovGR %ZERO, 0; CPURegs:%vreg7
+	%V0<def> = COPY %vreg7; CPURegs:%vreg7 dbg:..\math_sqrt.c:80:2
+	RetLR %V0<imp-use>; dbg:..\math_sqrt.c:80:2
+
+# End machine code for function dsp_sqrt.
+
+binary20 99e7b800
+1e
+108
+binary30 48278842
+1e
+fc
+binary60 6c4787e2
+1e
+f8
+binary60 ec5787c2
+1e
+f4
+binary60 ec2787a2
+binary4e 94200005
+binary4d 94200001
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+binary4e 94200025
+binary4d 14200001
+1e
+f0
+binary30 c8378782
+binary57 80000000
+binary57 80000000
+binary5d 430c209
+1e
+fc
+binary30 c84787e2
+binary57 80000000
+binary57 80000000
+binary15 84310300
+3
+0
+binary30 c830c002
+binary57 80000000
+binary57 80000000
+1e
+f0
+binary30 48478782
+1e
+ec
+binary60 ec378762
+binary57 80000000
+27
+binary57 80000000
+28
+binary5d 4410209
+1e
+fc
+binary30 c85787e2
+binary57 80000000
+binary57 80000000
+binary15 4414400
+binary5d 8420c209
+1e
+f8
+binary30 c83787c2
+binary57 80000000
+binary57 80000000
+binary15 8420c200
+2
+0
+binary30 c8208002
+binary57 80000000
+binary57 80000000
+4
+0
+binary60 ec210002
+1e
+f0
+binary30 c8278782
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+f0
+binary60 ec278782
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+1e
+f0
+binary30 c8378782
+binary26 9000c204
+binary2d 80000009
+binary57 80000000
+binary57 80000000
+binary4e 94200005
+binary14 19e78800
+binary4d 94200001
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+RegsToPass.size()=2
+op code is c
+op code is c
+# Machine code for function main: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+
+BB#0: derived from LLVM BB %entry
+	%vreg0<def> = MovGR %ZERO, 0; CPURegs:%vreg0
+	ST %vreg0, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg0
+	%vreg1<def> = MovGR %ZERO, 13; CPURegs:%vreg1
+	ST %vreg1, <fi#1>, 0; mem:ST4[%ndata] CPURegs:%vreg1 dbg:..\math_sqrt.c:84:2
+	ADJCALLSTACKDOWN 256, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\math_sqrt.c:85:2
+	%vreg2<def> = COPY %SP; CPURegs:%vreg2 dbg:..\math_sqrt.c:85:2
+	ST %vreg1, %vreg2, 8; mem:ST4[<unknown>] CPURegs:%vreg1,%vreg2 dbg:..\math_sqrt.c:85:2
+	%vreg3<def> = MovIGH %ZERO, <ga:@data>[TF=3]; CPURegs:%vreg3 dbg:..\math_sqrt.c:85:2
+	%vreg4<def,tied1> = MovIGL %vreg3<tied0>, <ga:@data>[TF=4]; CPURegs:%vreg4,%vreg3 dbg:..\math_sqrt.c:85:2
+	%vreg5<def> = MovIGH %ZERO, <ga:@a>[TF=3]; CPURegs:%vreg5 dbg:..\math_sqrt.c:85:2
+	%vreg6<def,tied1> = MovIGL %vreg5<tied0>, <ga:@a>[TF=4]; CPURegs:%vreg6,%vreg5 dbg:..\math_sqrt.c:85:2
+	%A0<def> = COPY %vreg4; CPURegs:%vreg4 dbg:..\math_sqrt.c:85:2
+	%A1<def> = COPY %vreg6; CPURegs:%vreg6 dbg:..\math_sqrt.c:85:2
+	CALL <ga:@dsp_sqrt>, %A0, %A1, <regmask>, %SP<imp-def>, %V0<imp-def>; dbg:..\math_sqrt.c:85:2
+	ADJCALLSTACKUP 256, 0, %SP<imp-def,dead>, %SP<imp-use>; dbg:..\math_sqrt.c:85:2
+	%V0<def> = COPY %vreg0; CPURegs:%vreg0 dbg:..\math_sqrt.c:86:2
+	RetLR %V0<imp-use>; dbg:..\math_sqrt.c:86:2
+
+# End machine code for function main.
+
+copy phy reg
+binary14 99e7b000
+1e
+1fc
+binary60 6df78fe2
+1e
+1f8
+binary60 ed078fc2
+binary4e 95000005
+binary4d 95000001
+binary4e 142000d5
+1e
+1f4
+binary60 ed078fa2
+binary4d 94200001
+1e
+1f0
+binary60 ec278f82
+binary4d 14400001
+1e
+8
+binary60 ec278042
+binary4e 14400005
+binary4d 94500001
+binary4e 94500005
+kind is2
+binary1e 8000000d
+binary57 80000000
+binary57 80000000
+binary48 90240080
+1e
+1f8
+binary30 49078fc2
+1e
+1fc
+binary30 c9f78fe2
+binary14 99e79000
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\ld.exe" -L "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\lib" -T link_8slots.x -M=linkMapFile -o math_sqrt.out math_sqrt.o -lc 
+!!!ldfile.cï¼?162
+!!!ldfile.cï¼?162
+(func) is relocated by PC26_S2! **
+symbol 0x200528	addend 0	 p 0x200418
+value = (s + (-4) - p) : 0x10c
+value >> 2 << 5: 0x860	dst_mask : 0x3ffffe0
+is relocated by HI16 **
+symbol 0x20008	added 0	 p 0x20054c
+value = mips_elf_high (addend + symbol) : 0x2
+value<<4 : 0x20	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x20008	added 0	 p 0x200554
+value = (addend + symbol) : 0x20008
+value<<4 : 0x200080	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0x8	added 0	 p 0x200558
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0x8	added 0	 p 0x20055c
+value = (addend + symbol) : 0x8
+value<<4 : 0x80	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x20043c	addend 0	 p 0x200560
+value = (s + (-4) - p) : 0xfffffed8
+value >> 2 << 5: 0xfffff6c0	dst_mask : 0x3ffffe0
+
+10:31:23 Build Finished. 0 errors, 0 warnings. (took 1s.906ms)
+

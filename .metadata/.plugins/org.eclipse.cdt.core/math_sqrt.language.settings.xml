@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<configuration id="example.toolchain.configuration.release.121596083" name="Release">
+		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
+			<provider id="org.eclipse.cdt.ui.UserLanguageSettingsProvider">
+				<resource project-relative-path="">
+					<entry kind="includePath" name="D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include"/>
+					<entry kind="macroFile" name="D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\gccmacros_c.h">
+						<flag value="LOCAL"/>
+					</entry>
+				</resource>
+			</provider>
+		</extension>
+	</configuration>
+</project>

@@ -1,0 +1,252 @@
+17:03:06 **** Rebuild of configuration Release for project addtion ****
+Info: Internal Builder is used for build
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\clang.exe" -gdwarf-2 -emit-llvm -S -target dsp -I "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\include" "..\\addition.c" -o addition.ll 
+'' is not a recognized processor for this target (ignoring processor)
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\llc.exe" -march=dsp -mcpu=dspse -relocation-model=static -filetype=obj addition.ll -o addition.o 
+abstract
+op code is 154
+# Machine code for function main: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+
+BB#0: derived from LLVM BB %entry
+	%vreg0<def> = MovGR %ZERO, 0; CPURegs:%vreg0
+	ST %vreg0, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg0
+	%vreg1<def> = MovGR %ZERO, 1; CPURegs:%vreg1
+	ST %vreg1<kill>, <fi#1>, 0; mem:ST4[%a] CPURegs:%vreg1 dbg:..\addition.c:14:5
+	ST %vreg0, <fi#2>, 0; mem:ST4[%i] CPURegs:%vreg0 dbg:..\addition.c:15:10
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#3
+	%vreg2<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg2 dbg:..\addition.c:15:10
+	%vreg3<def> = LTI %vreg2<kill>, 64; CPURegs:%vreg3,%vreg2 dbg:..\addition.c:15:10
+	JNC %vreg3<kill>, <BB#4>; CPURegs:%vreg3 dbg:..\addition.c:15:10
+	Jmp <BB#2>; dbg:..\addition.c:15:10
+    Successors according to CFG: BB#2(124) BB#4(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	%vreg5<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg5 dbg:..\addition.c:16:9
+	%vreg6<def> = LD <fi#1>, 0; mem:LD4[%a] CPURegs:%vreg6 dbg:..\addition.c:16:9
+	%vreg7<def> = ADDu %vreg6<kill>, %vreg5<kill>; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\addition.c:16:9
+	ST %vreg7<kill>, <fi#1>, 0; mem:ST4[%a] CPURegs:%vreg7 dbg:..\addition.c:16:9
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#2
+	%vreg8<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg8 dbg:..\addition.c:15:29
+	%vreg9<def> = ADDiu %vreg8<kill>, 1; CPURegs:%vreg9,%vreg8 dbg:..\addition.c:15:29
+	ST %vreg9<kill>, <fi#2>, 0; mem:ST4[%i] CPURegs:%vreg9 dbg:..\addition.c:15:29
+	Jmp <BB#1>; dbg:..\addition.c:15:29
+    Successors according to CFG: BB#1
+
+BB#4: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#1
+	%vreg4<def> = MovGR %ZERO, 0; CPURegs:%vreg4
+	%V0<def> = COPY %vreg4; CPURegs:%vreg4 dbg:..\addition.c:22:5
+	RetLR %V0<imp-use>; dbg:..\addition.c:22:5
+
+# End machine code for function main.
+
+binary20 99e7b800
+binary4e 94200005
+binary4d 94200001
+binary4e 14300015
+1e
+fc
+binary60 ec2787e2
+binary4d 94300001
+1e
+f8
+binary60 ec3787c2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+1e
+f8
+binary30 c83787c2
+binary57 80000000
+binary57 80000000
+binary15 8420c200
+1e
+f8
+binary60 ec2787c2
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+f4
+binary60 ec2787a2
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+binary3c 9400880e
+binary2c 80000005
+27
+binary57 80000000
+28
+binary57 80000000
+binary4e 94200005
+binary14 19e78800
+binary4d 94200001
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\ld.exe" -L "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\lib" -T link_8slots.x -M=linkMapFile -o addtion.out addition.o -lc 
+!!!ldfile.cï¼?162
+!!!ldfile.cï¼?162
+(func) is relocated by PC26_S2! **
+symbol 0x20043c	addend 0	 p 0x200418
+value = (s + (-4) - p) : 0x20
+value >> 2 << 5: 0x100	dst_mask : 0x3ffffe0
+Info: Nothing to build for addtion
+17:09:17 **** Incremental Build of configuration Release for project fft_32x32 ****
+Info: Internal Builder is used for build
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\clang.exe" -gdwarf-2 -emit-llvm -S -target dsp -I "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\include" "..\\addition.c" -o addition.ll 
+'' is not a recognized processor for this target (ignoring processor)
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\llc.exe" -march=dsp -mcpu=dspse -relocation-model=static -filetype=obj addition.ll -o addition.o 
+abstract
+op code is 154
+# Machine code for function main: SSA
+Frame Objects:
+  fi#0: size=4, align=4, at location [SP]
+  fi#1: size=4, align=4, at location [SP]
+  fi#2: size=4, align=4, at location [SP]
+
+BB#0: derived from LLVM BB %entry
+	%vreg0<def> = MovGR %ZERO, 0; CPURegs:%vreg0
+	ST %vreg0, <fi#0>, 0; mem:ST4[%retval] CPURegs:%vreg0
+	%vreg1<def> = MovGR %ZERO, 1; CPURegs:%vreg1
+	ST %vreg1<kill>, <fi#1>, 0; mem:ST4[%a] CPURegs:%vreg1 dbg:..\addition.c:14:5
+	ST %vreg0, <fi#2>, 0; mem:ST4[%i] CPURegs:%vreg0 dbg:..\addition.c:15:10
+    Successors according to CFG: BB#1
+
+BB#1: derived from LLVM BB %for.cond
+    Predecessors according to CFG: BB#0 BB#3
+	%vreg2<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg2 dbg:..\addition.c:15:10
+	%vreg3<def> = LTI %vreg2<kill>, 64; CPURegs:%vreg3,%vreg2 dbg:..\addition.c:15:10
+	JNC %vreg3<kill>, <BB#4>; CPURegs:%vreg3 dbg:..\addition.c:15:10
+	Jmp <BB#2>; dbg:..\addition.c:15:10
+    Successors according to CFG: BB#2(124) BB#4(4)
+
+BB#2: derived from LLVM BB %for.body
+    Predecessors according to CFG: BB#1
+	%vreg5<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg5 dbg:..\addition.c:16:9
+	%vreg6<def> = LD <fi#1>, 0; mem:LD4[%a] CPURegs:%vreg6 dbg:..\addition.c:16:9
+	%vreg7<def> = ADDu %vreg6<kill>, %vreg5<kill>; CPURegs:%vreg7,%vreg6,%vreg5 dbg:..\addition.c:16:9
+	ST %vreg7<kill>, <fi#1>, 0; mem:ST4[%a] CPURegs:%vreg7 dbg:..\addition.c:16:9
+    Successors according to CFG: BB#3
+
+BB#3: derived from LLVM BB %for.inc
+    Predecessors according to CFG: BB#2
+	%vreg8<def> = LD <fi#2>, 0; mem:LD4[%i] CPURegs:%vreg8 dbg:..\addition.c:15:29
+	%vreg9<def> = ADDiu %vreg8<kill>, 1; CPURegs:%vreg9,%vreg8 dbg:..\addition.c:15:29
+	ST %vreg9<kill>, <fi#2>, 0; mem:ST4[%i] CPURegs:%vreg9 dbg:..\addition.c:15:29
+	Jmp <BB#1>; dbg:..\addition.c:15:29
+    Successors according to CFG: BB#1
+
+BB#4: derived from LLVM BB %for.end
+    Predecessors according to CFG: BB#1
+	%vreg4<def> = MovGR %ZERO, 0; CPURegs:%vreg4
+	%V0<def> = COPY %vreg4; CPURegs:%vreg4 dbg:..\addition.c:22:5
+	RetLR %V0<imp-use>; dbg:..\addition.c:22:5
+
+# End machine code for function main.
+
+binary20 99e7b800
+binary4e 94200005
+binary4d 94200001
+binary4e 14300015
+1e
+fc
+binary60 ec2787e2
+binary4d 94300001
+1e
+f8
+binary60 ec3787c2
+binary2e 80000001
+binary57 80000000
+binary57 80000000
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+1e
+f8
+binary30 c83787c2
+binary57 80000000
+binary57 80000000
+binary15 8420c200
+1e
+f8
+binary60 ec2787c2
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+binary57 80000000
+binary14 98208008
+1e
+f4
+binary60 ec2787a2
+1e
+f4
+binary30 c82787a2
+binary57 80000000
+binary3c 9400880e
+binary2c 80000005
+27
+binary57 80000000
+28
+binary57 80000000
+binary4e 94200005
+binary14 19e78800
+binary4d 94200001
+binary5a 80000004
+binary57 80000000
+binary57 80000000
+"D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\ld.exe" -L "D:\\CIC\\Swift_IDE_Toolchain\\toolchain_8slot\\lib" -T link_8slots.x -M=linkMapFile -o fft_32x32.out addition.o fft_32x32.o -lc 
+!!!ldfile.cï¼?162
+fft_32x32.o: In function `main':
+D:\eclipse\workspace\fft_32x32\Release/../fft_32x32.c:11: multiple definition of `main'
+addition.o:D:\eclipse\workspace\fft_32x32\Release/../addition.c:13: first defined here
+!!!ldfile.cï¼?162
+is relocated by HI16 **
+symbol 0	added 0	 p 0x20054c
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0	added 0	 p 0x200550
+value = (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0	added 0	 p 0x2005e0
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0	added 0	 p 0x2005e8
+value = (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by HI16 **
+symbol 0	added 0	 p 0x200678
+value = mips_elf_high (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+is relocated by LO16 **
+symbol 0	added 0	 p 0x200680
+value = (addend + symbol) : 0
+value<<4 : 0	dst_mask : 0xffff0
+(func) is relocated by PC26_S2! **
+symbol 0x20043c	addend 0	 p 0x200418
+value = (s + (-4) - p) : 0x20
+value >> 2 << 5: 0x100	dst_mask : 0x3ffffe0

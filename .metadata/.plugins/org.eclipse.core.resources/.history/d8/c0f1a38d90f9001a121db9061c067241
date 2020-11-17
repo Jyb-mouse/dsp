@@ -1,0 +1,21 @@
+/*
+ * rotation_factor_asm.s
+ *
+ *  Created on: 2020Äê9ÔÂ16ÈÕ
+ *      Author: Jyb_mouse
+ */
+
+.global vmac_rotation_factor
+_begin:
+
+.text
+
+vmac_rotation_factor:
+||||vload16 vr0 gr4 0|vload16 vr1 gr5 0||
+|||||load32 gr10 gr30 2||
+||||vload16 vr2 gr10 0|||
+||vsfl vr3 vr2 vr0|||||
+||||||vstore20 vr3 gr5 0|
+ret|||||||
+nop|||||||
+nop|||||||

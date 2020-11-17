@@ -1,0 +1,1542 @@
+; ModuleID = '..\fft_16x16.c'
+target datalayout = "e-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+target triple = "dsp"
+
+@dbg_addr = constant i32* inttoptr (i64 2684354560 to i32*), align 4
+@data = global [512 x i16] [i16 2, i16 14, i16 2, i16 11, i16 1, i16 12, i16 2, i16 11, i16 4, i16 10, i16 3, i16 12, i16 1, i16 14, i16 3, i16 16, i16 5, i16 13, i16 7, i16 15, i16 10, i16 18, i16 12, i16 13, i16 10, i16 13, i16 11, i16 10, i16 11, i16 13, i16 13, i16 11, i16 10, i16 11, i16 10, i16 15, i16 15, i16 12, i16 14, i16 11, i16 17, i16 15, i16 20, i16 9, i16 12, i16 6, i16 18, i16 8, i16 17, i16 4, i16 16, i16 6, i16 13, i16 8, i16 15, i16 5, i16 15, i16 3, i16 14, i16 6, i16 20, i16 7, i16 18, i16 1, i16 12, i16 -2, i16 15, i16 1, i16 15, i16 -5, i16 13, i16 -2, i16 9, i16 -4, i16 7, i16 0, i16 11, i16 -3, i16 12, i16 -4, i16 13, i16 -2, i16 12, i16 -7, i16 6, i16 -11, i16 6, i16 -8, i16 10, i16 -12, i16 3, i16 -12, i16 2, i16 -7, i16 1, i16 -9, i16 1, i16 -12, i16 4, i16 -10, i16 7, i16 -12, i16 3, i16 -17, i16 -7, i16 -16, i16 -2, i16 -16, i16 -2, i16 -22, i16 -10, i16 -18, i16 -7, i16 -12, i16 -9, i16 -16, i16 -10, i16 -17, i16 -8, i16 -22, i16 -11, i16 -20, i16 -13, i16 -18, i16 -16, i16 -22, i16 -20, i16 -21, i16 -19, i16 -24, i16 -23, i16 -21, i16 -25, i16 -14, i16 -21, i16 -20, i16 -29, i16 -19, i16 -25, i16 -20, i16 -28, i16 -17, i16 -27, i16 -15, i16 -31, i16 -18, i16 -35, i16 -15, i16 -32, i16 -18, i16 -37, i16 -10, i16 -34, i16 -4, i16 -31, i16 -9, i16 -40, i16 -9, i16 -34, i16 -2, i16 -30, i16 -2, i16 -31, i16 -1, i16 -33, i16 1, i16 -33, i16 2, i16 -31, i16 3, i16 -30, i16 7, i16 -28, i16 12, i16 -26, i16 13, i16 -25, i16 12, i16 -21, i16 18, i16 -13, i16 15, i16 -18, i16 15, i16 -18, i16 19, i16 -14, i16 20, i16 -9, i16 19, i16 -8, i16 21, i16 -7, i16 26, i16 -6, i16 24, i16 -6, i16 24, i16 2, i16 29, i16 9, i16 22, i16 2, i16 22, i16 4, i16 27, i16 6, i16 23, i16 10, i16 21, i16 10, i16 23, i16 10, i16 25, i16 11, i16 25, i16 10, i16 22, i16 15, i16 22, i16 19, i16 23, i16 17, i16 19, i16 15, i16 23, i16 18, i16 16, i16 15, i16 15, i16 18, i16 15, i16 16, i16 18, i16 15, i16 20, i16 17, i16 18, i16 18, i16 15, i16 23, i16 13, i16 18, i16 11, i16 16, i16 17, i16 21, i16 8, i16 13, i16 6, i16 17, i16 10, i16 16, i16 11, i16 17, i16 11, i16 14, i16 8, i16 15, i16 6, i16 19, i16 5, i16 15, i16 3, i16 11, i16 8, i16 15, i16 3, i16 8, i16 -2, i16 12, i16 5, i16 12, i16 2, i16 9, i16 5, i16 10, i16 2, i16 9, i16 -2, i16 8, i16 -1, i16 7, i16 0, i16 5, i16 2, i16 6, i16 0, i16 3, i16 -6, i16 3, i16 1, i16 6, i16 0, i16 1, i16 2, i16 2, i16 0, i16 2, i16 -1, i16 3, i16 0, i16 3, i16 1, i16 1, i16 3, i16 2, i16 1, i16 0, i16 -2, i16 -2, i16 4, i16 5, i16 4, i16 0, i16 2, i16 1, i16 4, i16 1, i16 1, i16 4, i16 5, i16 5, i16 3, i16 2, i16 2, i16 2, i16 2, i16 1, i16 2, i16 4, i16 6, i16 7, i16 3, i16 2, i16 4, i16 5, i16 6, i16 6, i16 0, i16 7, i16 2, i16 7, i16 2, i16 3, i16 2, i16 3, i16 3, i16 6, i16 2, i16 7, i16 2, i16 7, i16 2, i16 6, i16 1, i16 5, i16 1, i16 7, i16 -1, i16 6, i16 -2, i16 6, i16 -1, i16 2, i16 -1, i16 4, i16 0, i16 5, i16 -3, i16 4, i16 -2, i16 4, i16 -2, i16 3, i16 -2, i16 3, i16 -2, i16 5, i16 -5, i16 1, i16 -5, i16 3, i16 -1, i16 2, i16 -4, i16 2, i16 -4, i16 1, i16 -5, i16 1, i16 -4, i16 1, i16 -4, i16 -2, i16 -4, i16 0, i16 -3, i16 1, i16 -5, i16 0, i16 -5, i16 0, i16 -4, i16 -1, i16 -5, i16 -3, i16 -5, i16 -1, i16 -5, i16 -2, i16 -6, i16 -2, i16 -4, i16 -2, i16 -3, i16 -2, i16 -5, i16 -3, i16 -6, i16 -2, i16 -5, i16 -2, i16 -5, i16 -5, i16 -6, i16 -5, i16 -4, i16 -2, i16 -7, i16 -5, i16 -7, i16 -5, i16 -3, i16 -4, i16 -6, i16 -6, i16 -6, i16 -4, i16 -6, i16 -4, i16 -7, i16 -7, i16 -7, i16 -7, i16 -5, i16 -7, i16 -5, i16 -6, i16 -7, i16 -7, i16 -7, i16 -8, i16 -7, i16 -9, i16 -7, i16 -10, i16 -6, i16 -8, i16 -5, i16 -9, i16 -6, i16 -7, i16 -6, i16 -11, i16 -6, i16 -11, i16 -5, i16 -10, i16 -6, i16 -12, i16 -6, i16 -12, i16 -4, i16 -11, i16 -2, i16 -12, i16 -5, i16 -13, i16 -2, i16 -10, i16 -4, i16 -11, i16 -4, i16 -14, i16 -3, i16 -12, i16 -1, i16 -11, i16 -5, i16 -15, i16 -2, i16 -13, i16 2, i16 -12, i16 -1, i16 -13, i16 -1, i16 -13, i16 2, i16 -9, i16 -1, i16 -15, i16 1, i16 -11, i16 2, i16 -13, i16 1, i16 -13, i16 1, i16 -13, i16 4], align 2
+@f = global [256 x i16] [i16 0, i16 32767, i16 -804, i16 32757, i16 -1607, i16 32727, i16 -2410, i16 32678, i16 -3211, i16 32609, i16 -4011, i16 32520, i16 -4807, i16 32412, i16 -5601, i16 32284, i16 -6392, i16 32137, i16 -7179, i16 31970, i16 -7961, i16 31785, i16 -8739, i16 31580, i16 -9511, i16 31356, i16 -10278, i16 31113, i16 -11038, i16 30851, i16 -11792, i16 30571, i16 -12539, i16 30272, i16 -13278, i16 29955, i16 -14009, i16 29621, i16 -14732, i16 29268, i16 -15446, i16 28897, i16 -16150, i16 28510, i16 -16845, i16 28105, i16 -17530, i16 27683, i16 -18204, i16 27244, i16 -18867, i16 26789, i16 -19519, i16 26318, i16 -20159, i16 25831, i16 -20787, i16 25329, i16 -21402, i16 24811, i16 -22004, i16 24278, i16 -22594, i16 23731, i16 -23169, i16 23169, i16 -23731, i16 22594, i16 -24278, i16 22004, i16 -24811, i16 21402, i16 -25329, i16 20787, i16 -25831, i16 20159, i16 -26318, i16 19519, i16 -26789, i16 18867, i16 -27244, i16 18204, i16 -27683, i16 17530, i16 -28105, i16 16845, i16 -28510, i16 16150, i16 -28897, i16 15446, i16 -29268, i16 14732, i16 -29621, i16 14009, i16 -29955, i16 13278, i16 -30272, i16 12539, i16 -30571, i16 11792, i16 -30851, i16 11038, i16 -31113, i16 10278, i16 -31356, i16 9511, i16 -31580, i16 8739, i16 -31785, i16 7961, i16 -31970, i16 7179, i16 -32137, i16 6392, i16 -32284, i16 5601, i16 -32412, i16 4807, i16 -32520, i16 4011, i16 -32609, i16 3211, i16 -32678, i16 2410, i16 -32727, i16 1607, i16 -32757, i16 804, i16 -32767, i16 0, i16 -32757, i16 -804, i16 -32727, i16 -1607, i16 -32678, i16 -2410, i16 -32609, i16 -3211, i16 -32520, i16 -4011, i16 -32412, i16 -4807, i16 -32284, i16 -5601, i16 -32137, i16 -6392, i16 -31970, i16 -7179, i16 -31785, i16 -7961, i16 -31580, i16 -8739, i16 -31356, i16 -9511, i16 -31113, i16 -10278, i16 -30851, i16 -11038, i16 -30571, i16 -11792, i16 -30272, i16 -12539, i16 -29955, i16 -13278, i16 -29621, i16 -14009, i16 -29268, i16 -14732, i16 -28897, i16 -15446, i16 -28510, i16 -16150, i16 -28105, i16 -16845, i16 -27683, i16 -17530, i16 -27244, i16 -18204, i16 -26789, i16 -18867, i16 -26318, i16 -19519, i16 -25831, i16 -20159, i16 -25329, i16 -20787, i16 -24811, i16 -21402, i16 -24278, i16 -22004, i16 -23731, i16 -22594, i16 -23169, i16 -23169, i16 -22594, i16 -23731, i16 -22004, i16 -24278, i16 -21402, i16 -24811, i16 -20787, i16 -25329, i16 -20159, i16 -25831, i16 -19519, i16 -26318, i16 -18867, i16 -26789, i16 -18204, i16 -27244, i16 -17530, i16 -27683, i16 -16845, i16 -28105, i16 -16150, i16 -28510, i16 -15446, i16 -28897, i16 -14732, i16 -29268, i16 -14009, i16 -29621, i16 -13278, i16 -29955, i16 -12539, i16 -30272, i16 -11792, i16 -30571, i16 -11038, i16 -30851, i16 -10278, i16 -31113, i16 -9511, i16 -31356, i16 -8739, i16 -31580, i16 -7961, i16 -31785, i16 -7179, i16 -31970, i16 -6392, i16 -32137, i16 -5601, i16 -32284, i16 -4807, i16 -32412, i16 -4011, i16 -32520, i16 -3211, i16 -32609, i16 -2410, i16 -32678, i16 -1607, i16 -32727, i16 -804, i16 -32757], align 2
+@idx_8 = global [128 x i16] [i16 16, i16 17, i16 18, i16 19, i16 20, i16 21, i16 22, i16 23, i16 24, i16 25, i16 26, i16 27, i16 28, i16 29, i16 30, i16 31, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 0, i16 1, i16 2, i16 3, i16 4, i16 5, i16 6, i16 7, i16 8, i16 9, i16 10, i16 11, i16 12, i16 13, i16 14, i16 15, i16 0, i16 1, i16 2, i16 3, i16 4, i16 5, i16 6, i16 7, i16 8, i16 9, i16 10, i16 11, i16 12, i16 13, i16 14, i16 15, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 16, i16 17, i16 18, i16 19, i16 20, i16 21, i16 22, i16 23, i16 24, i16 25, i16 26, i16 27, i16 28, i16 29, i16 30, i16 31], align 2
+@idx_4 = global [128 x i16] [i16 8, i16 9, i16 10, i16 11, i16 12, i16 13, i16 14, i16 15, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 24, i16 25, i16 26, i16 27, i16 28, i16 29, i16 30, i16 31, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 0, i16 1, i16 2, i16 3, i16 4, i16 5, i16 6, i16 7, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 16, i16 17, i16 18, i16 19, i16 20, i16 21, i16 22, i16 23, i16 0, i16 1, i16 2, i16 3, i16 4, i16 5, i16 6, i16 7, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 16, i16 17, i16 18, i16 19, i16 20, i16 21, i16 22, i16 23, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 8, i16 9, i16 10, i16 11, i16 12, i16 13, i16 14, i16 15, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 24, i16 25, i16 26, i16 27, i16 28, i16 29, i16 30, i16 31], align 2
+@idx_2 = global [128 x i16] [i16 4, i16 5, i16 6, i16 7, i16 32, i16 32, i16 32, i16 32, i16 12, i16 13, i16 14, i16 15, i16 32, i16 32, i16 32, i16 32, i16 20, i16 21, i16 22, i16 23, i16 32, i16 32, i16 32, i16 32, i16 28, i16 29, i16 30, i16 31, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 0, i16 1, i16 2, i16 3, i16 32, i16 32, i16 32, i16 32, i16 8, i16 9, i16 10, i16 11, i16 32, i16 32, i16 32, i16 32, i16 16, i16 17, i16 18, i16 19, i16 32, i16 32, i16 32, i16 32, i16 24, i16 25, i16 26, i16 27, i16 0, i16 1, i16 2, i16 3, i16 32, i16 32, i16 32, i16 32, i16 8, i16 9, i16 10, i16 11, i16 32, i16 32, i16 32, i16 32, i16 16, i16 17, i16 18, i16 19, i16 32, i16 32, i16 32, i16 32, i16 24, i16 25, i16 26, i16 27, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 4, i16 5, i16 6, i16 7, i16 32, i16 32, i16 32, i16 32, i16 12, i16 13, i16 14, i16 15, i16 32, i16 32, i16 32, i16 32, i16 20, i16 21, i16 22, i16 23, i16 32, i16 32, i16 32, i16 32, i16 28, i16 29, i16 30, i16 31], align 2
+@idx_1 = global [128 x i16] [i16 2, i16 3, i16 32, i16 32, i16 6, i16 7, i16 32, i16 32, i16 10, i16 11, i16 32, i16 32, i16 14, i16 15, i16 32, i16 32, i16 18, i16 19, i16 32, i16 32, i16 22, i16 23, i16 32, i16 32, i16 26, i16 27, i16 32, i16 32, i16 30, i16 31, i16 32, i16 32, i16 32, i16 32, i16 0, i16 1, i16 32, i16 32, i16 4, i16 5, i16 32, i16 32, i16 8, i16 9, i16 32, i16 32, i16 12, i16 13, i16 32, i16 32, i16 16, i16 17, i16 32, i16 32, i16 20, i16 21, i16 32, i16 32, i16 24, i16 25, i16 32, i16 32, i16 28, i16 29, i16 0, i16 1, i16 32, i16 32, i16 4, i16 5, i16 32, i16 32, i16 8, i16 9, i16 32, i16 32, i16 12, i16 13, i16 32, i16 32, i16 16, i16 17, i16 32, i16 32, i16 20, i16 21, i16 32, i16 32, i16 24, i16 25, i16 32, i16 32, i16 28, i16 29, i16 32, i16 32, i16 32, i16 32, i16 2, i16 3, i16 32, i16 32, i16 6, i16 7, i16 32, i16 32, i16 10, i16 11, i16 32, i16 32, i16 14, i16 15, i16 32, i16 32, i16 18, i16 19, i16 32, i16 32, i16 22, i16 23, i16 32, i16 32, i16 26, i16 27, i16 32, i16 32, i16 30, i16 31], align 2
+@idx = global [32 x i16] [i16 0, i16 1, i16 4, i16 5, i16 8, i16 9, i16 12, i16 13, i16 16, i16 17, i16 20, i16 21, i16 24, i16 25, i16 28, i16 29, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32, i16 32], align 2
+
+; Function Attrs: nounwind
+define i32 @dbg_output(i8* %base, i32 %num, i32 %wid) #0 {
+entry:
+  %retval = alloca i32, align 4
+  %base.addr = alloca i8*, align 4
+  %num.addr = alloca i32, align 4
+  %wid.addr = alloca i32, align 4
+  %i = alloca i32, align 4
+  %i2 = alloca i32, align 4
+  %i13 = alloca i32, align 4
+  store i8* %base, i8** %base.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i8** %base.addr}, metadata !55), !dbg !56
+  store i32 %num, i32* %num.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i32* %num.addr}, metadata !57), !dbg !58
+  store i32 %wid, i32* %wid.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i32* %wid.addr}, metadata !59), !dbg !60
+  %0 = load i32* %wid.addr, align 4, !dbg !61
+  switch i32 %0, label %sw.default [
+    i32 1, label %sw.bb
+    i32 2, label %sw.bb1
+    i32 4, label %sw.bb12
+  ], !dbg !61
+
+sw.bb:                                            ; preds = %entry
+  call void @llvm.dbg.declare(metadata !{i32* %i}, metadata !62), !dbg !65
+  store i32 0, i32* %i, align 4, !dbg !66
+  br label %for.cond, !dbg !66
+
+for.cond:                                         ; preds = %for.inc, %sw.bb
+  %1 = load i32* %i, align 4, !dbg !66
+  %2 = load i32* %num.addr, align 4, !dbg !66
+  %cmp = icmp slt i32 %1, %2, !dbg !66
+  br i1 %cmp, label %for.body, label %for.end, !dbg !66
+
+for.body:                                         ; preds = %for.cond
+  %3 = load i32* %i, align 4, !dbg !67
+  %4 = load i8** %base.addr, align 4, !dbg !67
+  %arrayidx = getelementptr inbounds i8* %4, i32 %3, !dbg !67
+  %5 = load i8* %arrayidx, align 1, !dbg !67
+  %conv = sext i8 %5 to i32, !dbg !67
+  %6 = load i32** @dbg_addr, align 4, !dbg !67
+  store i32 %conv, i32* %6, align 4, !dbg !67
+  br label %for.inc, !dbg !67
+
+for.inc:                                          ; preds = %for.body
+  %7 = load i32* %i, align 4, !dbg !68
+  %inc = add nsw i32 %7, 1, !dbg !68
+  store i32 %inc, i32* %i, align 4, !dbg !68
+  br label %for.cond, !dbg !68
+
+for.end:                                          ; preds = %for.cond
+  store i32 0, i32* %retval, !dbg !69
+  br label %return, !dbg !69
+
+sw.bb1:                                           ; preds = %entry
+  call void @llvm.dbg.declare(metadata !{i32* %i2}, metadata !70), !dbg !72
+  store i32 0, i32* %i2, align 4, !dbg !73
+  br label %for.cond3, !dbg !73
+
+for.cond3:                                        ; preds = %for.inc9, %sw.bb1
+  %8 = load i32* %i2, align 4, !dbg !73
+  %9 = load i32* %num.addr, align 4, !dbg !73
+  %cmp4 = icmp slt i32 %8, %9, !dbg !73
+  br i1 %cmp4, label %for.body6, label %for.end11, !dbg !73
+
+for.body6:                                        ; preds = %for.cond3
+  %10 = load i32* %i2, align 4, !dbg !74
+  %11 = load i8** %base.addr, align 4, !dbg !74
+  %12 = bitcast i8* %11 to i16*, !dbg !74
+  %arrayidx7 = getelementptr inbounds i16* %12, i32 %10, !dbg !74
+  %13 = load i16* %arrayidx7, align 2, !dbg !74
+  %conv8 = sext i16 %13 to i32, !dbg !74
+  %14 = load i32** @dbg_addr, align 4, !dbg !74
+  store i32 %conv8, i32* %14, align 4, !dbg !74
+  br label %for.inc9, !dbg !74
+
+for.inc9:                                         ; preds = %for.body6
+  %15 = load i32* %i2, align 4, !dbg !75
+  %inc10 = add nsw i32 %15, 1, !dbg !75
+  store i32 %inc10, i32* %i2, align 4, !dbg !75
+  br label %for.cond3, !dbg !75
+
+for.end11:                                        ; preds = %for.cond3
+  store i32 0, i32* %retval, !dbg !76
+  br label %return, !dbg !76
+
+sw.bb12:                                          ; preds = %entry
+  call void @llvm.dbg.declare(metadata !{i32* %i13}, metadata !77), !dbg !79
+  store i32 0, i32* %i13, align 4, !dbg !80
+  br label %for.cond14, !dbg !80
+
+for.cond14:                                       ; preds = %for.inc19, %sw.bb12
+  %16 = load i32* %i13, align 4, !dbg !80
+  %17 = load i32* %num.addr, align 4, !dbg !80
+  %cmp15 = icmp slt i32 %16, %17, !dbg !80
+  br i1 %cmp15, label %for.body17, label %for.end21, !dbg !80
+
+for.body17:                                       ; preds = %for.cond14
+  %18 = load i32* %i13, align 4, !dbg !81
+  %19 = load i8** %base.addr, align 4, !dbg !81
+  %20 = bitcast i8* %19 to i32*, !dbg !81
+  %arrayidx18 = getelementptr inbounds i32* %20, i32 %18, !dbg !81
+  %21 = load i32* %arrayidx18, align 4, !dbg !81
+  %22 = load i32** @dbg_addr, align 4, !dbg !81
+  store i32 %21, i32* %22, align 4, !dbg !81
+  br label %for.inc19, !dbg !81
+
+for.inc19:                                        ; preds = %for.body17
+  %23 = load i32* %i13, align 4, !dbg !82
+  %inc20 = add nsw i32 %23, 1, !dbg !82
+  store i32 %inc20, i32* %i13, align 4, !dbg !82
+  br label %for.cond14, !dbg !82
+
+for.end21:                                        ; preds = %for.cond14
+  store i32 0, i32* %retval, !dbg !83
+  br label %return, !dbg !83
+
+sw.default:                                       ; preds = %entry
+  store i32 -1, i32* %retval, !dbg !84
+  br label %return, !dbg !84
+
+return:                                           ; preds = %sw.default, %for.end21, %for.end11, %for.end
+  %24 = load i32* %retval, !dbg !85
+  ret i32 %24, !dbg !85
+}
+
+; Function Attrs: nounwind readnone
+declare void @llvm.dbg.declare(metadata, metadata) #1
+
+; Function Attrs: nounwind
+define void @bit_reverse(i32 %n, i16* %x) #0 {
+entry:
+  %n.addr = alloca i32, align 4
+  %x.addr = alloca i16*, align 4
+  %temp = alloca i16, align 2
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %k = alloca i32, align 4
+  store i32 %n, i32* %n.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i32* %n.addr}, metadata !86), !dbg !87
+  store i16* %x, i16** %x.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i16** %x.addr}, metadata !88), !dbg !89
+  call void @llvm.dbg.declare(metadata !{i16* %temp}, metadata !90), !dbg !91
+  call void @llvm.dbg.declare(metadata !{i32* %i}, metadata !92), !dbg !94
+  store i32 0, i32* %i, align 4, !dbg !95
+  call void @llvm.dbg.declare(metadata !{i32* %j}, metadata !96), !dbg !97
+  store i32 1, i32* %j, align 4, !dbg !95
+  br label %for.cond, !dbg !95
+
+for.cond:                                         ; preds = %for.inc23, %entry
+  %0 = load i32* %j, align 4, !dbg !95
+  %1 = load i32* %n.addr, align 4, !dbg !95
+  %sub = sub nsw i32 %1, 1, !dbg !95
+  %cmp = icmp slt i32 %0, %sub, !dbg !95
+  br i1 %cmp, label %for.body, label %for.end24, !dbg !95
+
+for.body:                                         ; preds = %for.cond
+  call void @llvm.dbg.declare(metadata !{i32* %k}, metadata !98), !dbg !101
+  %2 = load i32* %n.addr, align 4, !dbg !102
+  %shr = ashr i32 %2, 1, !dbg !102
+  store i32 %shr, i32* %k, align 4, !dbg !102
+  br label %for.cond1, !dbg !102
+
+for.cond1:                                        ; preds = %for.inc, %for.body
+  %3 = load i32* %k, align 4, !dbg !102
+  %4 = load i32* %k, align 4, !dbg !102
+  %5 = load i32* %i, align 4, !dbg !102
+  %xor = xor i32 %5, %4, !dbg !102
+  store i32 %xor, i32* %i, align 4, !dbg !102
+  %cmp2 = icmp sgt i32 %3, %xor, !dbg !102
+  br i1 %cmp2, label %for.body3, label %for.end, !dbg !102
+
+for.body3:                                        ; preds = %for.cond1
+  br label %for.inc, !dbg !102
+
+for.inc:                                          ; preds = %for.body3
+  %6 = load i32* %k, align 4, !dbg !103
+  %shr4 = ashr i32 %6, 1, !dbg !103
+  store i32 %shr4, i32* %k, align 4, !dbg !103
+  br label %for.cond1, !dbg !103
+
+for.end:                                          ; preds = %for.cond1
+  %7 = load i32* %i, align 4, !dbg !104
+  %8 = load i32* %j, align 4, !dbg !104
+  %cmp5 = icmp slt i32 %7, %8, !dbg !104
+  br i1 %cmp5, label %if.then, label %if.end, !dbg !104
+
+if.then:                                          ; preds = %for.end
+  %9 = load i32* %i, align 4, !dbg !106
+  %mul = mul nsw i32 2, %9, !dbg !106
+  %10 = load i16** %x.addr, align 4, !dbg !106
+  %arrayidx = getelementptr inbounds i16* %10, i32 %mul, !dbg !106
+  %11 = load i16* %arrayidx, align 2, !dbg !106
+  store i16 %11, i16* %temp, align 2, !dbg !106
+  %12 = load i32* %j, align 4, !dbg !108
+  %mul6 = mul nsw i32 2, %12, !dbg !108
+  %13 = load i16** %x.addr, align 4, !dbg !108
+  %arrayidx7 = getelementptr inbounds i16* %13, i32 %mul6, !dbg !108
+  %14 = load i16* %arrayidx7, align 2, !dbg !108
+  %15 = load i32* %i, align 4, !dbg !108
+  %mul8 = mul nsw i32 2, %15, !dbg !108
+  %16 = load i16** %x.addr, align 4, !dbg !108
+  %arrayidx9 = getelementptr inbounds i16* %16, i32 %mul8, !dbg !108
+  store i16 %14, i16* %arrayidx9, align 2, !dbg !108
+  %17 = load i16* %temp, align 2, !dbg !109
+  %18 = load i32* %j, align 4, !dbg !109
+  %mul10 = mul nsw i32 2, %18, !dbg !109
+  %19 = load i16** %x.addr, align 4, !dbg !109
+  %arrayidx11 = getelementptr inbounds i16* %19, i32 %mul10, !dbg !109
+  store i16 %17, i16* %arrayidx11, align 2, !dbg !109
+  %20 = load i32* %i, align 4, !dbg !110
+  %mul12 = mul nsw i32 2, %20, !dbg !110
+  %add = add nsw i32 %mul12, 1, !dbg !110
+  %21 = load i16** %x.addr, align 4, !dbg !110
+  %arrayidx13 = getelementptr inbounds i16* %21, i32 %add, !dbg !110
+  %22 = load i16* %arrayidx13, align 2, !dbg !110
+  store i16 %22, i16* %temp, align 2, !dbg !110
+  %23 = load i32* %j, align 4, !dbg !111
+  %mul14 = mul nsw i32 2, %23, !dbg !111
+  %add15 = add nsw i32 %mul14, 1, !dbg !111
+  %24 = load i16** %x.addr, align 4, !dbg !111
+  %arrayidx16 = getelementptr inbounds i16* %24, i32 %add15, !dbg !111
+  %25 = load i16* %arrayidx16, align 2, !dbg !111
+  %26 = load i32* %i, align 4, !dbg !111
+  %mul17 = mul nsw i32 2, %26, !dbg !111
+  %add18 = add nsw i32 %mul17, 1, !dbg !111
+  %27 = load i16** %x.addr, align 4, !dbg !111
+  %arrayidx19 = getelementptr inbounds i16* %27, i32 %add18, !dbg !111
+  store i16 %25, i16* %arrayidx19, align 2, !dbg !111
+  %28 = load i16* %temp, align 2, !dbg !112
+  %29 = load i32* %j, align 4, !dbg !112
+  %mul20 = mul nsw i32 2, %29, !dbg !112
+  %add21 = add nsw i32 %mul20, 1, !dbg !112
+  %30 = load i16** %x.addr, align 4, !dbg !112
+  %arrayidx22 = getelementptr inbounds i16* %30, i32 %add21, !dbg !112
+  store i16 %28, i16* %arrayidx22, align 2, !dbg !112
+  br label %if.end, !dbg !113
+
+if.end:                                           ; preds = %if.then, %for.end
+  br label %for.inc23, !dbg !114
+
+for.inc23:                                        ; preds = %if.end
+  %31 = load i32* %j, align 4, !dbg !115
+  %inc = add nsw i32 %31, 1, !dbg !115
+  store i32 %inc, i32* %j, align 4, !dbg !115
+  br label %for.cond, !dbg !115
+
+for.end24:                                        ; preds = %for.cond
+  ret void, !dbg !116
+}
+
+; Function Attrs: nounwind
+define void @fft_16x16(i16* %x, i16* %w, i32 %nx) #0 {
+entry:
+  %retval.i203 = alloca i32, align 4, !dbg !117
+  %vpnum.addr.i204 = alloca i32, align 4, !dbg !117
+  %vpsel.i205 = alloca i32*, align 4, !dbg !117
+  %retval.i192 = alloca i32, align 4, !dbg !124
+  %vpnum.addr.i193 = alloca i32, align 4, !dbg !124
+  %vpsel.i194 = alloca i32*, align 4, !dbg !124
+  %retval.i181 = alloca i32, align 4, !dbg !127
+  %vpnum.addr.i182 = alloca i32, align 4, !dbg !127
+  %vpsel.i183 = alloca i32*, align 4, !dbg !127
+  %retval.i170 = alloca i32, align 4, !dbg !130
+  %vpnum.addr.i171 = alloca i32, align 4, !dbg !130
+  %vpsel.i172 = alloca i32*, align 4, !dbg !130
+  %retval.i159 = alloca i32, align 4, !dbg !132
+  %vpnum.addr.i160 = alloca i32, align 4, !dbg !132
+  %vpsel.i161 = alloca i32*, align 4, !dbg !132
+  %retval.i148 = alloca i32, align 4, !dbg !135
+  %vpnum.addr.i149 = alloca i32, align 4, !dbg !135
+  %vpsel.i150 = alloca i32*, align 4, !dbg !135
+  %retval.i = alloca i32, align 4, !dbg !137
+  %vpnum.addr.i = alloca i32, align 4, !dbg !137
+  %vpsel.i = alloca i32*, align 4, !dbg !137
+  %x.addr = alloca i16*, align 4
+  %w.addr = alloca i16*, align 4
+  %nx.addr = alloca i32, align 4
+  %n1 = alloca i32, align 4
+  %n2 = alloca i32, align 4
+  %ie = alloca i32, align 4
+  %ia = alloca i32, align 4
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %k = alloca i32, align 4
+  %l = alloca i32, align 4
+  %m = alloca i32, align 4
+  %xt = alloca i32, align 4
+  %yt = alloca i32, align 4
+  %c = alloca i32, align 4
+  %s = alloca i32, align 4
+  %mid_a = alloca i32, align 4
+  %mid_b = alloca i32, align 4
+  %time = alloca i32, align 4
+  %time26 = alloca i32, align 4
+  %step = alloca i32, align 4
+  %p = alloca i32, align 4
+  %p129 = alloca i32, align 4
+  store i16* %x, i16** %x.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i16** %x.addr}, metadata !139), !dbg !140
+  store i16* %w, i16** %w.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i16** %w.addr}, metadata !141), !dbg !142
+  store i32 %nx, i32* %nx.addr, align 4
+  call void @llvm.dbg.declare(metadata !{i32* %nx.addr}, metadata !143), !dbg !144
+  call void @llvm.dbg.declare(metadata !{i32* %n1}, metadata !145), !dbg !146
+  call void @llvm.dbg.declare(metadata !{i32* %n2}, metadata !147), !dbg !148
+  call void @llvm.dbg.declare(metadata !{i32* %ie}, metadata !149), !dbg !150
+  call void @llvm.dbg.declare(metadata !{i32* %ia}, metadata !151), !dbg !152
+  call void @llvm.dbg.declare(metadata !{i32* %i}, metadata !153), !dbg !154
+  call void @llvm.dbg.declare(metadata !{i32* %j}, metadata !155), !dbg !156
+  call void @llvm.dbg.declare(metadata !{i32* %k}, metadata !157), !dbg !158
+  call void @llvm.dbg.declare(metadata !{i32* %l}, metadata !159), !dbg !160
+  call void @llvm.dbg.declare(metadata !{i32* %m}, metadata !161), !dbg !162
+  call void @llvm.dbg.declare(metadata !{i32* %xt}, metadata !163), !dbg !164
+  call void @llvm.dbg.declare(metadata !{i32* %yt}, metadata !165), !dbg !166
+  call void @llvm.dbg.declare(metadata !{i32* %c}, metadata !167), !dbg !168
+  call void @llvm.dbg.declare(metadata !{i32* %s}, metadata !169), !dbg !170
+  call void @llvm.dbg.declare(metadata !{i32* %mid_a}, metadata !171), !dbg !172
+  call void @llvm.dbg.declare(metadata !{i32* %mid_b}, metadata !173), !dbg !174
+  %0 = load i32* %nx.addr, align 4, !dbg !175
+  store i32 %0, i32* %n2, align 4, !dbg !175
+  store i32 1, i32* %ie, align 4, !dbg !176
+  %1 = load i32* %nx.addr, align 4, !dbg !177
+  store i32 %1, i32* %k, align 4, !dbg !177
+  br label %for.cond, !dbg !177
+
+for.cond:                                         ; preds = %for.inc145, %entry
+  %2 = load i32* %k, align 4, !dbg !177
+  %cmp = icmp sgt i32 %2, 1, !dbg !177
+  br i1 %cmp, label %for.body, label %for.end147, !dbg !177
+
+for.body:                                         ; preds = %for.cond
+  %3 = load i32* %n2, align 4, !dbg !178
+  store i32 %3, i32* %n1, align 4, !dbg !178
+  %4 = load i32* %n2, align 4, !dbg !179
+  %shr = ashr i32 %4, 1, !dbg !179
+  store i32 %shr, i32* %n2, align 4, !dbg !179
+  %5 = load i32* %n2, align 4, !dbg !180
+  %cmp1 = icmp sge i32 %5, 64, !dbg !180
+  br i1 %cmp1, label %if.then, label %if.else, !dbg !180
+
+if.then:                                          ; preds = %for.body
+  store i32 4, i32* %vpnum.addr.i, align 4, !dbg !137
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i}, metadata !181), !dbg !182
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i}, metadata !183), !dbg !184
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i, align 4, !dbg !185
+  %6 = load i32* %vpnum.addr.i, align 4, !dbg !186
+  switch i32 %6, label %sw.default.i [
+    i32 0, label %sw.bb.i
+    i32 1, label %sw.bb1.i
+    i32 2, label %sw.bb2.i
+    i32 3, label %sw.bb3.i
+    i32 4, label %sw.bb4.i
+  ], !dbg !186
+
+sw.bb.i:                                          ; preds = %if.then
+  %7 = load i32** %vpsel.i, align 4, !dbg !187
+  store i32 0, i32* %7, align 4, !dbg !187
+  br label %sw.epilog.i, !dbg !189
+
+sw.bb1.i:                                         ; preds = %if.then
+  %8 = load i32** %vpsel.i, align 4, !dbg !190
+  store i32 1, i32* %8, align 4, !dbg !190
+  br label %sw.epilog.i, !dbg !191
+
+sw.bb2.i:                                         ; preds = %if.then
+  %9 = load i32** %vpsel.i, align 4, !dbg !192
+  store i32 3, i32* %9, align 4, !dbg !192
+  br label %sw.epilog.i, !dbg !193
+
+sw.bb3.i:                                         ; preds = %if.then
+  %10 = load i32** %vpsel.i, align 4, !dbg !194
+  store i32 7, i32* %10, align 4, !dbg !194
+  br label %sw.epilog.i, !dbg !195
+
+sw.bb4.i:                                         ; preds = %if.then
+  %11 = load i32** %vpsel.i, align 4, !dbg !196
+  store i32 15, i32* %11, align 4, !dbg !196
+  br label %sw.epilog.i, !dbg !197
+
+sw.default.i:                                     ; preds = %if.then
+  store i32 -1, i32* %retval.i, !dbg !198
+  br label %set_vpsel.exit, !dbg !198
+
+sw.epilog.i:                                      ; preds = %sw.bb4.i, %sw.bb3.i, %sw.bb2.i, %sw.bb1.i, %sw.bb.i
+  store i32 1, i32* %retval.i, !dbg !199
+  br label %set_vpsel.exit, !dbg !199
+
+set_vpsel.exit:                                   ; preds = %sw.default.i, %sw.epilog.i
+  %12 = load i32* %retval.i, !dbg !200
+  store i32 0, i32* %j, align 4, !dbg !201
+  br label %for.cond2, !dbg !201
+
+for.cond2:                                        ; preds = %for.inc17, %set_vpsel.exit
+  %13 = load i32* %j, align 4, !dbg !201
+  %14 = load i32* %nx.addr, align 4, !dbg !201
+  %cmp3 = icmp slt i32 %13, %14, !dbg !201
+  br i1 %cmp3, label %for.body4, label %for.end19, !dbg !201
+
+for.body4:                                        ; preds = %for.cond2
+  store i32 0, i32* %ia, align 4, !dbg !203
+  call void @llvm.dbg.declare(metadata !{i32* %time}, metadata !205), !dbg !206
+  %15 = load i32* %n2, align 4, !dbg !207
+  %div = sdiv i32 %15, 64, !dbg !207
+  store i32 %div, i32* %time, align 4, !dbg !207
+  store i32 0, i32* %i, align 4, !dbg !208
+  br label %for.cond5, !dbg !208
+
+for.cond5:                                        ; preds = %for.inc, %for.body4
+  %16 = load i32* %i, align 4, !dbg !208
+  %17 = load i32* %time, align 4, !dbg !208
+  %cmp6 = icmp slt i32 %16, %17, !dbg !208
+  br i1 %cmp6, label %for.body7, label %for.end, !dbg !208
+
+for.body7:                                        ; preds = %for.cond5
+  %18 = load i32* %i, align 4, !dbg !210
+  %mul = mul nsw i32 %18, 64, !dbg !210
+  %19 = load i32* %j, align 4, !dbg !210
+  %add = add nsw i32 %mul, %19, !dbg !210
+  store i32 %add, i32* %m, align 4, !dbg !210
+  %20 = load i32* %m, align 4, !dbg !212
+  %21 = load i32* %n2, align 4, !dbg !212
+  %add8 = add nsw i32 %20, %21, !dbg !212
+  store i32 %add8, i32* %l, align 4, !dbg !212
+  %22 = load i32* %m, align 4, !dbg !213
+  %mul9 = mul nsw i32 2, %22, !dbg !213
+  %23 = load i16** %x.addr, align 4, !dbg !213
+  %arrayidx = getelementptr inbounds i16* %23, i32 %mul9, !dbg !213
+  %24 = load i32* %l, align 4, !dbg !213
+  %mul10 = mul nsw i32 2, %24, !dbg !213
+  %25 = load i16** %x.addr, align 4, !dbg !213
+  %arrayidx11 = getelementptr inbounds i16* %25, i32 %mul10, !dbg !213
+  %26 = load i32* %ia, align 4, !dbg !213
+  %mul12 = mul nsw i32 2, %26, !dbg !213
+  %27 = load i16** %w.addr, align 4, !dbg !213
+  %arrayidx13 = getelementptr inbounds i16* %27, i32 %mul12, !dbg !213
+  %call14 = call signext i16 @vmac_butterfly(i16* %arrayidx, i16* %arrayidx11, i16* %arrayidx13), !dbg !213
+  %28 = load i32* %ia, align 4, !dbg !214
+  %add15 = add nsw i32 %28, 64, !dbg !214
+  store i32 %add15, i32* %ia, align 4, !dbg !214
+  br label %for.inc, !dbg !215
+
+for.inc:                                          ; preds = %for.body7
+  %29 = load i32* %i, align 4, !dbg !216
+  %add16 = add nsw i32 %29, 1, !dbg !216
+  store i32 %add16, i32* %i, align 4, !dbg !216
+  br label %for.cond5, !dbg !216
+
+for.end:                                          ; preds = %for.cond5
+  br label %for.inc17, !dbg !217
+
+for.inc17:                                        ; preds = %for.end
+  %30 = load i32* %n1, align 4, !dbg !218
+  %31 = load i32* %j, align 4, !dbg !218
+  %add18 = add nsw i32 %31, %30, !dbg !218
+  store i32 %add18, i32* %j, align 4, !dbg !218
+  br label %for.cond2, !dbg !218
+
+for.end19:                                        ; preds = %for.cond2
+  br label %if.end113, !dbg !219
+
+if.else:                                          ; preds = %for.body
+  %32 = load i32* %n2, align 4, !dbg !220
+  %cmp20 = icmp sge i32 %32, 16, !dbg !220
+  br i1 %cmp20, label %if.then21, label %if.else48, !dbg !220
+
+if.then21:                                        ; preds = %if.else
+  store i32 1, i32* %vpnum.addr.i149, align 4, !dbg !135
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i149}, metadata !181), !dbg !221
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i150}, metadata !183), !dbg !222
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i150, align 4, !dbg !223
+  %33 = load i32* %vpnum.addr.i149, align 4, !dbg !224
+  switch i32 %33, label %sw.default.i156 [
+    i32 0, label %sw.bb.i151
+    i32 1, label %sw.bb1.i152
+    i32 2, label %sw.bb2.i153
+    i32 3, label %sw.bb3.i154
+    i32 4, label %sw.bb4.i155
+  ], !dbg !224
+
+sw.bb.i151:                                       ; preds = %if.then21
+  %34 = load i32** %vpsel.i150, align 4, !dbg !225
+  store i32 0, i32* %34, align 4, !dbg !225
+  br label %sw.epilog.i157, !dbg !226
+
+sw.bb1.i152:                                      ; preds = %if.then21
+  %35 = load i32** %vpsel.i150, align 4, !dbg !227
+  store i32 1, i32* %35, align 4, !dbg !227
+  br label %sw.epilog.i157, !dbg !228
+
+sw.bb2.i153:                                      ; preds = %if.then21
+  %36 = load i32** %vpsel.i150, align 4, !dbg !229
+  store i32 3, i32* %36, align 4, !dbg !229
+  br label %sw.epilog.i157, !dbg !230
+
+sw.bb3.i154:                                      ; preds = %if.then21
+  %37 = load i32** %vpsel.i150, align 4, !dbg !231
+  store i32 7, i32* %37, align 4, !dbg !231
+  br label %sw.epilog.i157, !dbg !232
+
+sw.bb4.i155:                                      ; preds = %if.then21
+  %38 = load i32** %vpsel.i150, align 4, !dbg !233
+  store i32 15, i32* %38, align 4, !dbg !233
+  br label %sw.epilog.i157, !dbg !234
+
+sw.default.i156:                                  ; preds = %if.then21
+  store i32 -1, i32* %retval.i148, !dbg !235
+  br label %set_vpsel.exit158, !dbg !235
+
+sw.epilog.i157:                                   ; preds = %sw.bb4.i155, %sw.bb3.i154, %sw.bb2.i153, %sw.bb1.i152, %sw.bb.i151
+  store i32 1, i32* %retval.i148, !dbg !236
+  br label %set_vpsel.exit158, !dbg !236
+
+set_vpsel.exit158:                                ; preds = %sw.default.i156, %sw.epilog.i157
+  %39 = load i32* %retval.i148, !dbg !237
+  store i32 0, i32* %j, align 4, !dbg !238
+  br label %for.cond23, !dbg !238
+
+for.cond23:                                       ; preds = %for.inc45, %set_vpsel.exit158
+  %40 = load i32* %j, align 4, !dbg !238
+  %41 = load i32* %nx.addr, align 4, !dbg !238
+  %cmp24 = icmp slt i32 %40, %41, !dbg !238
+  br i1 %cmp24, label %for.body25, label %for.end47, !dbg !238
+
+for.body25:                                       ; preds = %for.cond23
+  store i32 0, i32* %ia, align 4, !dbg !240
+  call void @llvm.dbg.declare(metadata !{i32* %time26}, metadata !242), !dbg !243
+  %42 = load i32* %n2, align 4, !dbg !244
+  %div27 = sdiv i32 %42, 16, !dbg !244
+  store i32 %div27, i32* %time26, align 4, !dbg !244
+  store i32 0, i32* %i, align 4, !dbg !245
+  br label %for.cond28, !dbg !245
+
+for.cond28:                                       ; preds = %for.inc42, %for.body25
+  %43 = load i32* %i, align 4, !dbg !245
+  %44 = load i32* %time26, align 4, !dbg !245
+  %cmp29 = icmp slt i32 %43, %44, !dbg !245
+  br i1 %cmp29, label %for.body30, label %for.end44, !dbg !245
+
+for.body30:                                       ; preds = %for.cond28
+  %45 = load i32* %i, align 4, !dbg !247
+  %mul31 = mul nsw i32 %45, 16, !dbg !247
+  %46 = load i32* %j, align 4, !dbg !247
+  %add32 = add nsw i32 %mul31, %46, !dbg !247
+  store i32 %add32, i32* %m, align 4, !dbg !247
+  %47 = load i32* %m, align 4, !dbg !249
+  %48 = load i32* %n2, align 4, !dbg !249
+  %add33 = add nsw i32 %47, %48, !dbg !249
+  store i32 %add33, i32* %l, align 4, !dbg !249
+  %49 = load i32* %m, align 4, !dbg !250
+  %mul34 = mul nsw i32 2, %49, !dbg !250
+  %50 = load i16** %x.addr, align 4, !dbg !250
+  %arrayidx35 = getelementptr inbounds i16* %50, i32 %mul34, !dbg !250
+  %51 = load i32* %l, align 4, !dbg !250
+  %mul36 = mul nsw i32 2, %51, !dbg !250
+  %52 = load i16** %x.addr, align 4, !dbg !250
+  %arrayidx37 = getelementptr inbounds i16* %52, i32 %mul36, !dbg !250
+  %53 = load i32* %ia, align 4, !dbg !250
+  %mul38 = mul nsw i32 2, %53, !dbg !250
+  %54 = load i16** %w.addr, align 4, !dbg !250
+  %arrayidx39 = getelementptr inbounds i16* %54, i32 %mul38, !dbg !250
+  %call40 = call signext i16 @vmac_butterfly(i16* %arrayidx35, i16* %arrayidx37, i16* %arrayidx39), !dbg !250
+  %55 = load i32* %ia, align 4, !dbg !251
+  %add41 = add nsw i32 %55, 16, !dbg !251
+  store i32 %add41, i32* %ia, align 4, !dbg !251
+  br label %for.inc42, !dbg !252
+
+for.inc42:                                        ; preds = %for.body30
+  %56 = load i32* %i, align 4, !dbg !253
+  %add43 = add nsw i32 %56, 1, !dbg !253
+  store i32 %add43, i32* %i, align 4, !dbg !253
+  br label %for.cond28, !dbg !253
+
+for.end44:                                        ; preds = %for.cond28
+  br label %for.inc45, !dbg !254
+
+for.inc45:                                        ; preds = %for.end44
+  %57 = load i32* %n1, align 4, !dbg !255
+  %58 = load i32* %j, align 4, !dbg !255
+  %add46 = add nsw i32 %58, %57, !dbg !255
+  store i32 %add46, i32* %j, align 4, !dbg !255
+  br label %for.cond23, !dbg !255
+
+for.end47:                                        ; preds = %for.cond23
+  br label %if.end112, !dbg !256
+
+if.else48:                                        ; preds = %if.else
+  %59 = load i32* %n2, align 4, !dbg !257
+  %cmp49 = icmp eq i32 %59, 8, !dbg !257
+  br i1 %cmp49, label %if.then50, label %if.else64, !dbg !257
+
+if.then50:                                        ; preds = %if.else48
+  store i32 1, i32* %vpnum.addr.i204, align 4, !dbg !117
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i204}, metadata !181), !dbg !258
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i205}, metadata !183), !dbg !259
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i205, align 4, !dbg !260
+  %60 = load i32* %vpnum.addr.i204, align 4, !dbg !261
+  switch i32 %60, label %sw.default.i211 [
+    i32 0, label %sw.bb.i206
+    i32 1, label %sw.bb1.i207
+    i32 2, label %sw.bb2.i208
+    i32 3, label %sw.bb3.i209
+    i32 4, label %sw.bb4.i210
+  ], !dbg !261
+
+sw.bb.i206:                                       ; preds = %if.then50
+  %61 = load i32** %vpsel.i205, align 4, !dbg !262
+  store i32 0, i32* %61, align 4, !dbg !262
+  br label %sw.epilog.i212, !dbg !263
+
+sw.bb1.i207:                                      ; preds = %if.then50
+  %62 = load i32** %vpsel.i205, align 4, !dbg !264
+  store i32 1, i32* %62, align 4, !dbg !264
+  br label %sw.epilog.i212, !dbg !265
+
+sw.bb2.i208:                                      ; preds = %if.then50
+  %63 = load i32** %vpsel.i205, align 4, !dbg !266
+  store i32 3, i32* %63, align 4, !dbg !266
+  br label %sw.epilog.i212, !dbg !267
+
+sw.bb3.i209:                                      ; preds = %if.then50
+  %64 = load i32** %vpsel.i205, align 4, !dbg !268
+  store i32 7, i32* %64, align 4, !dbg !268
+  br label %sw.epilog.i212, !dbg !269
+
+sw.bb4.i210:                                      ; preds = %if.then50
+  %65 = load i32** %vpsel.i205, align 4, !dbg !270
+  store i32 15, i32* %65, align 4, !dbg !270
+  br label %sw.epilog.i212, !dbg !271
+
+sw.default.i211:                                  ; preds = %if.then50
+  store i32 -1, i32* %retval.i203, !dbg !272
+  br label %set_vpsel.exit213, !dbg !272
+
+sw.epilog.i212:                                   ; preds = %sw.bb4.i210, %sw.bb3.i209, %sw.bb2.i208, %sw.bb1.i207, %sw.bb.i206
+  store i32 1, i32* %retval.i203, !dbg !273
+  br label %set_vpsel.exit213, !dbg !273
+
+set_vpsel.exit213:                                ; preds = %sw.default.i211, %sw.epilog.i212
+  %66 = load i32* %retval.i203, !dbg !274
+  store i32 0, i32* %j, align 4, !dbg !275
+  br label %for.cond52, !dbg !275
+
+for.cond52:                                       ; preds = %for.inc61, %set_vpsel.exit213
+  %67 = load i32* %j, align 4, !dbg !275
+  %68 = load i32* %nx.addr, align 4, !dbg !275
+  %cmp53 = icmp slt i32 %67, %68, !dbg !275
+  br i1 %cmp53, label %for.body54, label %for.end63, !dbg !275
+
+for.body54:                                       ; preds = %for.cond52
+  %69 = load i32* %j, align 4, !dbg !277
+  %add55 = add nsw i32 %69, 16, !dbg !277
+  store i32 %add55, i32* %l, align 4, !dbg !277
+  %70 = load i32* %j, align 4, !dbg !279
+  %mul56 = mul nsw i32 2, %70, !dbg !279
+  %71 = load i16** %x.addr, align 4, !dbg !279
+  %arrayidx57 = getelementptr inbounds i16* %71, i32 %mul56, !dbg !279
+  %72 = load i32* %l, align 4, !dbg !279
+  %mul58 = mul nsw i32 2, %72, !dbg !279
+  %73 = load i16** %x.addr, align 4, !dbg !279
+  %arrayidx59 = getelementptr inbounds i16* %73, i32 %mul58, !dbg !279
+  %74 = load i16** %w.addr, align 4, !dbg !279
+  %call60 = call signext i16 @vmac_shuffle(i16* %arrayidx57, i16* %arrayidx59, i16* %74, i16* getelementptr inbounds ([128 x i16]* @idx_8, i32 0, i32 0), i16* getelementptr inbounds ([128 x i16]* @idx_8, i32 0, i32 32), i16* getelementptr inbounds ([128 x i16]* @idx_8, i32 0, i32 64), i16* getelementptr inbounds ([128 x i16]* @idx_8, i32 0, i32 96)), !dbg !279
+  br label %for.inc61, !dbg !280
+
+for.inc61:                                        ; preds = %for.body54
+  %75 = load i32* %j, align 4, !dbg !281
+  %add62 = add nsw i32 %75, 32, !dbg !281
+  store i32 %add62, i32* %j, align 4, !dbg !281
+  br label %for.cond52, !dbg !281
+
+for.end63:                                        ; preds = %for.cond52
+  br label %if.end111, !dbg !282
+
+if.else64:                                        ; preds = %if.else48
+  %76 = load i32* %n2, align 4, !dbg !283
+  %cmp65 = icmp eq i32 %76, 4, !dbg !283
+  br i1 %cmp65, label %if.then66, label %if.else80, !dbg !283
+
+if.then66:                                        ; preds = %if.else64
+  store i32 1, i32* %vpnum.addr.i193, align 4, !dbg !124
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i193}, metadata !181), !dbg !284
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i194}, metadata !183), !dbg !285
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i194, align 4, !dbg !286
+  %77 = load i32* %vpnum.addr.i193, align 4, !dbg !287
+  switch i32 %77, label %sw.default.i200 [
+    i32 0, label %sw.bb.i195
+    i32 1, label %sw.bb1.i196
+    i32 2, label %sw.bb2.i197
+    i32 3, label %sw.bb3.i198
+    i32 4, label %sw.bb4.i199
+  ], !dbg !287
+
+sw.bb.i195:                                       ; preds = %if.then66
+  %78 = load i32** %vpsel.i194, align 4, !dbg !288
+  store i32 0, i32* %78, align 4, !dbg !288
+  br label %sw.epilog.i201, !dbg !289
+
+sw.bb1.i196:                                      ; preds = %if.then66
+  %79 = load i32** %vpsel.i194, align 4, !dbg !290
+  store i32 1, i32* %79, align 4, !dbg !290
+  br label %sw.epilog.i201, !dbg !291
+
+sw.bb2.i197:                                      ; preds = %if.then66
+  %80 = load i32** %vpsel.i194, align 4, !dbg !292
+  store i32 3, i32* %80, align 4, !dbg !292
+  br label %sw.epilog.i201, !dbg !293
+
+sw.bb3.i198:                                      ; preds = %if.then66
+  %81 = load i32** %vpsel.i194, align 4, !dbg !294
+  store i32 7, i32* %81, align 4, !dbg !294
+  br label %sw.epilog.i201, !dbg !295
+
+sw.bb4.i199:                                      ; preds = %if.then66
+  %82 = load i32** %vpsel.i194, align 4, !dbg !296
+  store i32 15, i32* %82, align 4, !dbg !296
+  br label %sw.epilog.i201, !dbg !297
+
+sw.default.i200:                                  ; preds = %if.then66
+  store i32 -1, i32* %retval.i192, !dbg !298
+  br label %set_vpsel.exit202, !dbg !298
+
+sw.epilog.i201:                                   ; preds = %sw.bb4.i199, %sw.bb3.i198, %sw.bb2.i197, %sw.bb1.i196, %sw.bb.i195
+  store i32 1, i32* %retval.i192, !dbg !299
+  br label %set_vpsel.exit202, !dbg !299
+
+set_vpsel.exit202:                                ; preds = %sw.default.i200, %sw.epilog.i201
+  %83 = load i32* %retval.i192, !dbg !300
+  store i32 0, i32* %j, align 4, !dbg !301
+  br label %for.cond68, !dbg !301
+
+for.cond68:                                       ; preds = %for.inc77, %set_vpsel.exit202
+  %84 = load i32* %j, align 4, !dbg !301
+  %85 = load i32* %nx.addr, align 4, !dbg !301
+  %cmp69 = icmp slt i32 %84, %85, !dbg !301
+  br i1 %cmp69, label %for.body70, label %for.end79, !dbg !301
+
+for.body70:                                       ; preds = %for.cond68
+  %86 = load i32* %j, align 4, !dbg !303
+  %add71 = add nsw i32 %86, 16, !dbg !303
+  store i32 %add71, i32* %l, align 4, !dbg !303
+  %87 = load i32* %j, align 4, !dbg !305
+  %mul72 = mul nsw i32 2, %87, !dbg !305
+  %88 = load i16** %x.addr, align 4, !dbg !305
+  %arrayidx73 = getelementptr inbounds i16* %88, i32 %mul72, !dbg !305
+  %89 = load i32* %l, align 4, !dbg !305
+  %mul74 = mul nsw i32 2, %89, !dbg !305
+  %90 = load i16** %x.addr, align 4, !dbg !305
+  %arrayidx75 = getelementptr inbounds i16* %90, i32 %mul74, !dbg !305
+  %91 = load i16** %w.addr, align 4, !dbg !305
+  %call76 = call signext i16 @vmac_shuffle(i16* %arrayidx73, i16* %arrayidx75, i16* %91, i16* getelementptr inbounds ([128 x i16]* @idx_4, i32 0, i32 0), i16* getelementptr inbounds ([128 x i16]* @idx_4, i32 0, i32 32), i16* getelementptr inbounds ([128 x i16]* @idx_4, i32 0, i32 64), i16* getelementptr inbounds ([128 x i16]* @idx_4, i32 0, i32 96)), !dbg !305
+  br label %for.inc77, !dbg !306
+
+for.inc77:                                        ; preds = %for.body70
+  %92 = load i32* %j, align 4, !dbg !307
+  %add78 = add nsw i32 %92, 32, !dbg !307
+  store i32 %add78, i32* %j, align 4, !dbg !307
+  br label %for.cond68, !dbg !307
+
+for.end79:                                        ; preds = %for.cond68
+  br label %if.end110, !dbg !308
+
+if.else80:                                        ; preds = %if.else64
+  %93 = load i32* %n2, align 4, !dbg !309
+  %cmp81 = icmp eq i32 %93, 2, !dbg !309
+  br i1 %cmp81, label %if.then82, label %if.else96, !dbg !309
+
+if.then82:                                        ; preds = %if.else80
+  store i32 1, i32* %vpnum.addr.i182, align 4, !dbg !127
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i182}, metadata !181), !dbg !310
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i183}, metadata !183), !dbg !311
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i183, align 4, !dbg !312
+  %94 = load i32* %vpnum.addr.i182, align 4, !dbg !313
+  switch i32 %94, label %sw.default.i189 [
+    i32 0, label %sw.bb.i184
+    i32 1, label %sw.bb1.i185
+    i32 2, label %sw.bb2.i186
+    i32 3, label %sw.bb3.i187
+    i32 4, label %sw.bb4.i188
+  ], !dbg !313
+
+sw.bb.i184:                                       ; preds = %if.then82
+  %95 = load i32** %vpsel.i183, align 4, !dbg !314
+  store i32 0, i32* %95, align 4, !dbg !314
+  br label %sw.epilog.i190, !dbg !315
+
+sw.bb1.i185:                                      ; preds = %if.then82
+  %96 = load i32** %vpsel.i183, align 4, !dbg !316
+  store i32 1, i32* %96, align 4, !dbg !316
+  br label %sw.epilog.i190, !dbg !317
+
+sw.bb2.i186:                                      ; preds = %if.then82
+  %97 = load i32** %vpsel.i183, align 4, !dbg !318
+  store i32 3, i32* %97, align 4, !dbg !318
+  br label %sw.epilog.i190, !dbg !319
+
+sw.bb3.i187:                                      ; preds = %if.then82
+  %98 = load i32** %vpsel.i183, align 4, !dbg !320
+  store i32 7, i32* %98, align 4, !dbg !320
+  br label %sw.epilog.i190, !dbg !321
+
+sw.bb4.i188:                                      ; preds = %if.then82
+  %99 = load i32** %vpsel.i183, align 4, !dbg !322
+  store i32 15, i32* %99, align 4, !dbg !322
+  br label %sw.epilog.i190, !dbg !323
+
+sw.default.i189:                                  ; preds = %if.then82
+  store i32 -1, i32* %retval.i181, !dbg !324
+  br label %set_vpsel.exit191, !dbg !324
+
+sw.epilog.i190:                                   ; preds = %sw.bb4.i188, %sw.bb3.i187, %sw.bb2.i186, %sw.bb1.i185, %sw.bb.i184
+  store i32 1, i32* %retval.i181, !dbg !325
+  br label %set_vpsel.exit191, !dbg !325
+
+set_vpsel.exit191:                                ; preds = %sw.default.i189, %sw.epilog.i190
+  %100 = load i32* %retval.i181, !dbg !326
+  store i32 0, i32* %j, align 4, !dbg !327
+  br label %for.cond84, !dbg !327
+
+for.cond84:                                       ; preds = %for.inc93, %set_vpsel.exit191
+  %101 = load i32* %j, align 4, !dbg !327
+  %102 = load i32* %nx.addr, align 4, !dbg !327
+  %cmp85 = icmp slt i32 %101, %102, !dbg !327
+  br i1 %cmp85, label %for.body86, label %for.end95, !dbg !327
+
+for.body86:                                       ; preds = %for.cond84
+  %103 = load i32* %j, align 4, !dbg !329
+  %add87 = add nsw i32 %103, 16, !dbg !329
+  store i32 %add87, i32* %l, align 4, !dbg !329
+  %104 = load i32* %j, align 4, !dbg !331
+  %mul88 = mul nsw i32 2, %104, !dbg !331
+  %105 = load i16** %x.addr, align 4, !dbg !331
+  %arrayidx89 = getelementptr inbounds i16* %105, i32 %mul88, !dbg !331
+  %106 = load i32* %l, align 4, !dbg !331
+  %mul90 = mul nsw i32 2, %106, !dbg !331
+  %107 = load i16** %x.addr, align 4, !dbg !331
+  %arrayidx91 = getelementptr inbounds i16* %107, i32 %mul90, !dbg !331
+  %108 = load i16** %w.addr, align 4, !dbg !331
+  %call92 = call signext i16 @vmac_shuffle(i16* %arrayidx89, i16* %arrayidx91, i16* %108, i16* getelementptr inbounds ([128 x i16]* @idx_2, i32 0, i32 0), i16* getelementptr inbounds ([128 x i16]* @idx_2, i32 0, i32 32), i16* getelementptr inbounds ([128 x i16]* @idx_2, i32 0, i32 64), i16* getelementptr inbounds ([128 x i16]* @idx_2, i32 0, i32 96)), !dbg !331
+  br label %for.inc93, !dbg !332
+
+for.inc93:                                        ; preds = %for.body86
+  %109 = load i32* %j, align 4, !dbg !333
+  %add94 = add nsw i32 %109, 32, !dbg !333
+  store i32 %add94, i32* %j, align 4, !dbg !333
+  br label %for.cond84, !dbg !333
+
+for.end95:                                        ; preds = %for.cond84
+  br label %if.end, !dbg !334
+
+if.else96:                                        ; preds = %if.else80
+  store i32 1, i32* %vpnum.addr.i171, align 4, !dbg !130
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i171}, metadata !181), !dbg !335
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i172}, metadata !183), !dbg !336
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i172, align 4, !dbg !337
+  %110 = load i32* %vpnum.addr.i171, align 4, !dbg !338
+  switch i32 %110, label %sw.default.i178 [
+    i32 0, label %sw.bb.i173
+    i32 1, label %sw.bb1.i174
+    i32 2, label %sw.bb2.i175
+    i32 3, label %sw.bb3.i176
+    i32 4, label %sw.bb4.i177
+  ], !dbg !338
+
+sw.bb.i173:                                       ; preds = %if.else96
+  %111 = load i32** %vpsel.i172, align 4, !dbg !339
+  store i32 0, i32* %111, align 4, !dbg !339
+  br label %sw.epilog.i179, !dbg !340
+
+sw.bb1.i174:                                      ; preds = %if.else96
+  %112 = load i32** %vpsel.i172, align 4, !dbg !341
+  store i32 1, i32* %112, align 4, !dbg !341
+  br label %sw.epilog.i179, !dbg !342
+
+sw.bb2.i175:                                      ; preds = %if.else96
+  %113 = load i32** %vpsel.i172, align 4, !dbg !343
+  store i32 3, i32* %113, align 4, !dbg !343
+  br label %sw.epilog.i179, !dbg !344
+
+sw.bb3.i176:                                      ; preds = %if.else96
+  %114 = load i32** %vpsel.i172, align 4, !dbg !345
+  store i32 7, i32* %114, align 4, !dbg !345
+  br label %sw.epilog.i179, !dbg !346
+
+sw.bb4.i177:                                      ; preds = %if.else96
+  %115 = load i32** %vpsel.i172, align 4, !dbg !347
+  store i32 15, i32* %115, align 4, !dbg !347
+  br label %sw.epilog.i179, !dbg !348
+
+sw.default.i178:                                  ; preds = %if.else96
+  store i32 -1, i32* %retval.i170, !dbg !349
+  br label %set_vpsel.exit180, !dbg !349
+
+sw.epilog.i179:                                   ; preds = %sw.bb4.i177, %sw.bb3.i176, %sw.bb2.i175, %sw.bb1.i174, %sw.bb.i173
+  store i32 1, i32* %retval.i170, !dbg !350
+  br label %set_vpsel.exit180, !dbg !350
+
+set_vpsel.exit180:                                ; preds = %sw.default.i178, %sw.epilog.i179
+  %116 = load i32* %retval.i170, !dbg !351
+  store i32 0, i32* %j, align 4, !dbg !352
+  br label %for.cond98, !dbg !352
+
+for.cond98:                                       ; preds = %for.inc107, %set_vpsel.exit180
+  %117 = load i32* %j, align 4, !dbg !352
+  %118 = load i32* %nx.addr, align 4, !dbg !352
+  %cmp99 = icmp slt i32 %117, %118, !dbg !352
+  br i1 %cmp99, label %for.body100, label %for.end109, !dbg !352
+
+for.body100:                                      ; preds = %for.cond98
+  %119 = load i32* %j, align 4, !dbg !354
+  %add101 = add nsw i32 %119, 16, !dbg !354
+  store i32 %add101, i32* %l, align 4, !dbg !354
+  %120 = load i32* %j, align 4, !dbg !356
+  %mul102 = mul nsw i32 2, %120, !dbg !356
+  %121 = load i16** %x.addr, align 4, !dbg !356
+  %arrayidx103 = getelementptr inbounds i16* %121, i32 %mul102, !dbg !356
+  %122 = load i32* %l, align 4, !dbg !356
+  %mul104 = mul nsw i32 2, %122, !dbg !356
+  %123 = load i16** %x.addr, align 4, !dbg !356
+  %arrayidx105 = getelementptr inbounds i16* %123, i32 %mul104, !dbg !356
+  %124 = load i16** %w.addr, align 4, !dbg !356
+  %call106 = call signext i16 @vmac_shuffle(i16* %arrayidx103, i16* %arrayidx105, i16* %124, i16* getelementptr inbounds ([128 x i16]* @idx_1, i32 0, i32 0), i16* getelementptr inbounds ([128 x i16]* @idx_1, i32 0, i32 32), i16* getelementptr inbounds ([128 x i16]* @idx_1, i32 0, i32 64), i16* getelementptr inbounds ([128 x i16]* @idx_1, i32 0, i32 96)), !dbg !356
+  br label %for.inc107, !dbg !357
+
+for.inc107:                                       ; preds = %for.body100
+  %125 = load i32* %j, align 4, !dbg !358
+  %add108 = add nsw i32 %125, 32, !dbg !358
+  store i32 %add108, i32* %j, align 4, !dbg !358
+  br label %for.cond98, !dbg !358
+
+for.end109:                                       ; preds = %for.cond98
+  br label %if.end
+
+if.end:                                           ; preds = %for.end109, %for.end95
+  br label %if.end110
+
+if.end110:                                        ; preds = %if.end, %for.end79
+  br label %if.end111
+
+if.end111:                                        ; preds = %if.end110, %for.end63
+  br label %if.end112
+
+if.end112:                                        ; preds = %if.end111, %for.end47
+  br label %if.end113
+
+if.end113:                                        ; preds = %if.end112, %for.end19
+  %126 = load i32* %n2, align 4, !dbg !359
+  %cmp114 = icmp sge i32 %126, 16, !dbg !359
+  br i1 %cmp114, label %if.then115, label %if.else128, !dbg !359
+
+if.then115:                                       ; preds = %if.end113
+  call void @llvm.dbg.declare(metadata !{i32* %step}, metadata !360), !dbg !361
+  store i32 0, i32* %step, align 4, !dbg !362
+  store i32 1, i32* %vpnum.addr.i160, align 4, !dbg !132
+  call void @llvm.dbg.declare(metadata !{i32* %vpnum.addr.i160}, metadata !181), !dbg !363
+  call void @llvm.dbg.declare(metadata !{i32** %vpsel.i161}, metadata !183), !dbg !364
+  store i32* inttoptr (i32 8336896 to i32*), i32** %vpsel.i161, align 4, !dbg !365
+  %127 = load i32* %vpnum.addr.i160, align 4, !dbg !366
+  switch i32 %127, label %sw.default.i167 [
+    i32 0, label %sw.bb.i162
+    i32 1, label %sw.bb1.i163
+    i32 2, label %sw.bb2.i164
+    i32 3, label %sw.bb3.i165
+    i32 4, label %sw.bb4.i166
+  ], !dbg !366
+
+sw.bb.i162:                                       ; preds = %if.then115
+  %128 = load i32** %vpsel.i161, align 4, !dbg !367
+  store i32 0, i32* %128, align 4, !dbg !367
+  br label %sw.epilog.i168, !dbg !368
+
+sw.bb1.i163:                                      ; preds = %if.then115
+  %129 = load i32** %vpsel.i161, align 4, !dbg !369
+  store i32 1, i32* %129, align 4, !dbg !369
+  br label %sw.epilog.i168, !dbg !370
+
+sw.bb2.i164:                                      ; preds = %if.then115
+  %130 = load i32** %vpsel.i161, align 4, !dbg !371
+  store i32 3, i32* %130, align 4, !dbg !371
+  br label %sw.epilog.i168, !dbg !372
+
+sw.bb3.i165:                                      ; preds = %if.then115
+  %131 = load i32** %vpsel.i161, align 4, !dbg !373
+  store i32 7, i32* %131, align 4, !dbg !373
+  br label %sw.epilog.i168, !dbg !374
+
+sw.bb4.i166:                                      ; preds = %if.then115
+  %132 = load i32** %vpsel.i161, align 4, !dbg !375
+  store i32 15, i32* %132, align 4, !dbg !375
+  br label %sw.epilog.i168, !dbg !376
+
+sw.default.i167:                                  ; preds = %if.then115
+  store i32 -1, i32* %retval.i159, !dbg !377
+  br label %set_vpsel.exit169, !dbg !377
+
+sw.epilog.i168:                                   ; preds = %sw.bb4.i166, %sw.bb3.i165, %sw.bb2.i164, %sw.bb1.i163, %sw.bb.i162
+  store i32 1, i32* %retval.i159, !dbg !378
+  br label %set_vpsel.exit169, !dbg !378
+
+set_vpsel.exit169:                                ; preds = %sw.default.i167, %sw.epilog.i168
+  %133 = load i32* %retval.i159, !dbg !379
+  call void @llvm.dbg.declare(metadata !{i32* %p}, metadata !380), !dbg !382
+  store i32 0, i32* %p, align 4, !dbg !383
+  br label %for.cond117, !dbg !383
+
+for.cond117:                                      ; preds = %for.inc125, %set_vpsel.exit169
+  %134 = load i32* %p, align 4, !dbg !383
+  %135 = load i32* %n2, align 4, !dbg !383
+  %cmp118 = icmp slt i32 %134, %135, !dbg !383
+  br i1 %cmp118, label %for.body119, label %for.end127, !dbg !383
+
+for.body119:                                      ; preds = %for.cond117
+  %136 = load i32* %p, align 4, !dbg !384
+  %mul120 = mul nsw i32 %136, 2, !dbg !384
+  %arrayidx121 = getelementptr inbounds [256 x i16]* @f, i32 0, i32 %mul120, !dbg !384
+  %137 = load i32* %step, align 4, !dbg !384
+  %arrayidx122 = getelementptr inbounds [256 x i16]* @f, i32 0, i32 %137, !dbg !384
+  %call123 = call signext i16 @vmac_rotation_factor(i16* %arrayidx121, i16* %arrayidx122, i16* getelementptr inbounds ([32 x i16]* @idx, i32 0, i32 0)), !dbg !384
+  %138 = load i32* %step, align 4, !dbg !386
+  %add124 = add nsw i32 %138, 16, !dbg !386
+  store i32 %add124, i32* %step, align 4, !dbg !386
+  br label %for.inc125, !dbg !387
+
+for.inc125:                                       ; preds = %for.body119
+  %139 = load i32* %p, align 4, !dbg !388
+  %add126 = add nsw i32 %139, 16, !dbg !388
+  store i32 %add126, i32* %p, align 4, !dbg !388
+  br label %for.cond117, !dbg !388
+
+for.end127:                                       ; preds = %for.cond117
+  br label %if.end144, !dbg !389
+
+if.else128:                                       ; preds = %if.end113
+  call void @llvm.dbg.declare(metadata !{i32* %p129}, metadata !390), !dbg !393
+  store i32 0, i32* %p129, align 4, !dbg !394
+  br label %for.cond130, !dbg !394
+
+for.cond130:                                      ; preds = %for.inc141, %if.else128
+  %140 = load i32* %p129, align 4, !dbg !394
+  %141 = load i32* %n2, align 4, !dbg !394
+  %cmp131 = icmp slt i32 %140, %141, !dbg !394
+  br i1 %cmp131, label %for.body132, label %for.end143, !dbg !394
+
+for.body132:                                      ; preds = %for.cond130
+  %142 = load i32* %p129, align 4, !dbg !395
+  %mul133 = mul nsw i32 2, %142, !dbg !395
+  %143 = load i16** %w.addr, align 4, !dbg !395
+  %arrayidx134 = getelementptr inbounds i16* %143, i32 %mul133, !dbg !395
+  %144 = load i16* %arrayidx134, align 2, !dbg !395
+  %145 = load i32* %p129, align 4, !dbg !395
+  %146 = load i16** %w.addr, align 4, !dbg !395
+  %arrayidx135 = getelementptr inbounds i16* %146, i32 %145, !dbg !395
+  store i16 %144, i16* %arrayidx135, align 2, !dbg !395
+  %147 = load i32* %p129, align 4, !dbg !397
+  %mul136 = mul nsw i32 2, %147, !dbg !397
+  %add137 = add nsw i32 %mul136, 1, !dbg !397
+  %148 = load i16** %w.addr, align 4, !dbg !397
+  %arrayidx138 = getelementptr inbounds i16* %148, i32 %add137, !dbg !397
+  %149 = load i16* %arrayidx138, align 2, !dbg !397
+  %150 = load i32* %p129, align 4, !dbg !397
+  %add139 = add nsw i32 %150, 1, !dbg !397
+  %151 = load i16** %w.addr, align 4, !dbg !397
+  %arrayidx140 = getelementptr inbounds i16* %151, i32 %add139, !dbg !397
+  store i16 %149, i16* %arrayidx140, align 2, !dbg !397
+  br label %for.inc141, !dbg !398
+
+for.inc141:                                       ; preds = %for.body132
+  %152 = load i32* %p129, align 4, !dbg !399
+  %add142 = add nsw i32 %152, 2, !dbg !399
+  store i32 %add142, i32* %p129, align 4, !dbg !399
+  br label %for.cond130, !dbg !399
+
+for.end143:                                       ; preds = %for.cond130
+  br label %if.end144
+
+if.end144:                                        ; preds = %for.end143, %for.end127
+  br label %for.inc145, !dbg !400
+
+for.inc145:                                       ; preds = %if.end144
+  %153 = load i32* %k, align 4, !dbg !401
+  %shr146 = ashr i32 %153, 1, !dbg !401
+  store i32 %shr146, i32* %k, align 4, !dbg !401
+  br label %for.cond, !dbg !401
+
+for.end147:                                       ; preds = %for.cond
+  %154 = load i32* %nx.addr, align 4, !dbg !402
+  %155 = load i16** %x.addr, align 4, !dbg !402
+  call void @bit_reverse(i32 %154, i16* %155), !dbg !402
+  ret void, !dbg !403
+}
+
+declare signext i16 @vmac_butterfly(i16*, i16*, i16*) #2
+
+declare signext i16 @vmac_shuffle(i16*, i16*, i16*, i16*, i16*, i16*, i16*) #2
+
+declare signext i16 @vmac_rotation_factor(i16*, i16*, i16*) #2
+
+; Function Attrs: nounwind
+define i32 @main() #0 {
+entry:
+  %retval = alloca i32, align 4
+  %ndata = alloca i32, align 4
+  store i32 0, i32* %retval
+  call void @llvm.dbg.declare(metadata !{i32* %ndata}, metadata !404), !dbg !405
+  store i32 256, i32* %ndata, align 4, !dbg !406
+  %0 = load i32* %ndata, align 4, !dbg !407
+  call void @fft_16x16(i16* getelementptr inbounds ([512 x i16]* @data, i32 0, i32 0), i16* getelementptr inbounds ([256 x i16]* @f, i32 0, i32 0), i32 %0), !dbg !407
+  %call = call i32 @dbg_output(i8* bitcast ([512 x i16]* @data to i8*), i32 512, i32 2), !dbg !408
+  ret i32 0, !dbg !409
+}
+
+attributes #0 = { nounwind "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { nounwind readnone }
+attributes #2 = { "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "unsafe-fp-math"="false" "use-soft-float"="false" }
+
+!llvm.dbg.cu = !{!0}
+!llvm.module.flags = !{!52, !53}
+!llvm.ident = !{!54}
+
+!0 = metadata !{i32 786449, metadata !1, i32 12, metadata !"clang version 3.5.0 (tags/RELEASE_350/final)", i1 false, metadata !"", i32 0, metadata !2, metadata !2, metadata !3, metadata !28, metadata !2, metadata !"", i32 1} ; [ DW_TAG_compile_unit ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c] [DW_LANG_C99]
+!1 = metadata !{metadata !"..\5Cfft_16x16.c", metadata !"D:\5Ceclipse\5Cworkspace\5Cfft_16x16\5CRelease"}
+!2 = metadata !{}
+!3 = metadata !{metadata !4, metadata !11, metadata !17, metadata !20, metadata !23}
+!4 = metadata !{i32 786478, metadata !5, metadata !6, metadata !"dbg_output", metadata !"dbg_output", metadata !"", i32 12, metadata !7, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, i32 (i8*, i32, i32)* @dbg_output, null, null, metadata !2, i32 12} ; [ DW_TAG_subprogram ] [line 12] [def] [dbg_output]
+!5 = metadata !{metadata !"D:\5CCIC\5CSwift_IDE_Toolchain\5Ctoolchain_8slot\5Cinclude\5Cswift_debug.h", metadata !"D:\5Ceclipse\5Cworkspace\5Cfft_16x16\5CRelease"}
+!6 = metadata !{i32 786473, metadata !5}          ; [ DW_TAG_file_type ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h]
+!7 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !8, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
+!8 = metadata !{metadata !9, metadata !10, metadata !9, metadata !9}
+!9 = metadata !{i32 786468, null, null, metadata !"int", i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ] [int] [line 0, size 32, align 32, offset 0, enc DW_ATE_signed]
+!10 = metadata !{i32 786447, null, null, metadata !"", i32 0, i64 32, i64 32, i64 0, i32 0, null} ; [ DW_TAG_pointer_type ] [line 0, size 32, align 32, offset 0] [from ]
+!11 = metadata !{i32 786478, metadata !1, metadata !12, metadata !"bit_reverse", metadata !"bit_reverse", metadata !"", i32 17, metadata !13, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (i32, i16*)* @bit_reverse, null, null, metadata !2, i32 20} ; [ DW_TAG_subprogram ] [line 17] [def] [scope 20] [bit_reverse]
+!12 = metadata !{i32 786473, metadata !1}         ; [ DW_TAG_file_type ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!13 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !14, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
+!14 = metadata !{null, metadata !9, metadata !15}
+!15 = metadata !{i32 786447, null, null, metadata !"", i32 0, i64 32, i64 32, i64 0, i32 0, metadata !16} ; [ DW_TAG_pointer_type ] [line 0, size 32, align 32, offset 0] [from short]
+!16 = metadata !{i32 786468, null, null, metadata !"short", i32 0, i64 16, i64 16, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ] [short] [line 0, size 16, align 16, offset 0, enc DW_ATE_signed]
+!17 = metadata !{i32 786478, metadata !1, metadata !12, metadata !"fft_16x16", metadata !"fft_16x16", metadata !"", i32 34, metadata !18, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, void (i16*, i16*, i32)* @fft_16x16, null, null, metadata !2, i32 34} ; [ DW_TAG_subprogram ] [line 34] [def] [fft_16x16]
+!18 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !19, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
+!19 = metadata !{null, metadata !15, metadata !15, metadata !9}
+!20 = metadata !{i32 786478, metadata !1, metadata !12, metadata !"main", metadata !"main", metadata !"", i32 115, metadata !21, i1 false, i1 true, i32 0, i32 0, null, i32 0, i1 false, i32 ()* @main, null, null, metadata !2, i32 115} ; [ DW_TAG_subprogram ] [line 115] [def] [main]
+!21 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !22, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
+!22 = metadata !{metadata !9}
+!23 = metadata !{i32 786478, metadata !24, metadata !25, metadata !"set_vpsel", metadata !"set_vpsel", metadata !"", i32 13, metadata !26, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !2, i32 13} ; [ DW_TAG_subprogram ] [line 13] [def] [set_vpsel]
+!24 = metadata !{metadata !"D:\5CCIC\5CSwift_IDE_Toolchain\5Ctoolchain_8slot\5Cinclude\5Cswift_math.h", metadata !"D:\5Ceclipse\5Cworkspace\5Cfft_16x16\5CRelease"}
+!25 = metadata !{i32 786473, metadata !24}        ; [ DW_TAG_file_type ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h]
+!26 = metadata !{i32 786453, i32 0, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !27, i32 0, null, null, null} ; [ DW_TAG_subroutine_type ] [line 0, size 0, align 0, offset 0] [from ]
+!27 = metadata !{metadata !9, metadata !9}
+!28 = metadata !{metadata !29, metadata !33, metadata !37, metadata !41, metadata !45, metadata !46, metadata !47, metadata !48}
+!29 = metadata !{i32 786484, i32 0, null, metadata !"dbg_addr", metadata !"dbg_addr", metadata !"", metadata !6, i32 4, metadata !30, i32 0, i32 1, i32** @dbg_addr, null} ; [ DW_TAG_variable ] [dbg_addr] [line 4] [def]
+!30 = metadata !{i32 786470, null, null, metadata !"", i32 0, i64 0, i64 0, i64 0, i32 0, metadata !31} ; [ DW_TAG_const_type ] [line 0, size 0, align 0, offset 0] [from ]
+!31 = metadata !{i32 786447, null, null, metadata !"", i32 0, i64 32, i64 32, i64 0, i32 0, metadata !32} ; [ DW_TAG_pointer_type ] [line 0, size 32, align 32, offset 0] [from unsigned int]
+!32 = metadata !{i32 786468, null, null, metadata !"unsigned int", i32 0, i64 32, i64 32, i64 0, i32 0, i32 7} ; [ DW_TAG_base_type ] [unsigned int] [line 0, size 32, align 32, offset 0, enc DW_ATE_unsigned]
+!33 = metadata !{i32 786484, i32 0, null, metadata !"data", metadata !"data", metadata !"", metadata !12, i32 7, metadata !34, i32 0, i32 1, [512 x i16]* @data, null} ; [ DW_TAG_variable ] [data] [line 7] [def]
+!34 = metadata !{i32 786433, null, null, metadata !"", i32 0, i64 8192, i64 16, i32 0, i32 0, metadata !16, metadata !35, i32 0, null, null, null} ; [ DW_TAG_array_type ] [line 0, size 8192, align 16, offset 0] [from short]
+!35 = metadata !{metadata !36}
+!36 = metadata !{i32 786465, i64 0, i64 512}      ; [ DW_TAG_subrange_type ] [0, 511]
+!37 = metadata !{i32 786484, i32 0, null, metadata !"f", metadata !"f", metadata !"", metadata !12, i32 8, metadata !38, i32 0, i32 1, [256 x i16]* @f, null} ; [ DW_TAG_variable ] [f] [line 8] [def]
+!38 = metadata !{i32 786433, null, null, metadata !"", i32 0, i64 4096, i64 16, i32 0, i32 0, metadata !16, metadata !39, i32 0, null, null, null} ; [ DW_TAG_array_type ] [line 0, size 4096, align 16, offset 0] [from short]
+!39 = metadata !{metadata !40}
+!40 = metadata !{i32 786465, i64 0, i64 256}      ; [ DW_TAG_subrange_type ] [0, 255]
+!41 = metadata !{i32 786484, i32 0, null, metadata !"idx_8", metadata !"idx_8", metadata !"", metadata !12, i32 9, metadata !42, i32 0, i32 1, [128 x i16]* @idx_8, null} ; [ DW_TAG_variable ] [idx_8] [line 9] [def]
+!42 = metadata !{i32 786433, null, null, metadata !"", i32 0, i64 2048, i64 16, i32 0, i32 0, metadata !16, metadata !43, i32 0, null, null, null} ; [ DW_TAG_array_type ] [line 0, size 2048, align 16, offset 0] [from short]
+!43 = metadata !{metadata !44}
+!44 = metadata !{i32 786465, i64 0, i64 128}      ; [ DW_TAG_subrange_type ] [0, 127]
+!45 = metadata !{i32 786484, i32 0, null, metadata !"idx_4", metadata !"idx_4", metadata !"", metadata !12, i32 10, metadata !42, i32 0, i32 1, [128 x i16]* @idx_4, null} ; [ DW_TAG_variable ] [idx_4] [line 10] [def]
+!46 = metadata !{i32 786484, i32 0, null, metadata !"idx_2", metadata !"idx_2", metadata !"", metadata !12, i32 11, metadata !42, i32 0, i32 1, [128 x i16]* @idx_2, null} ; [ DW_TAG_variable ] [idx_2] [line 11] [def]
+!47 = metadata !{i32 786484, i32 0, null, metadata !"idx_1", metadata !"idx_1", metadata !"", metadata !12, i32 12, metadata !42, i32 0, i32 1, [128 x i16]* @idx_1, null} ; [ DW_TAG_variable ] [idx_1] [line 12] [def]
+!48 = metadata !{i32 786484, i32 0, null, metadata !"idx", metadata !"idx", metadata !"", metadata !12, i32 13, metadata !49, i32 0, i32 1, [32 x i16]* @idx, null} ; [ DW_TAG_variable ] [idx] [line 13] [def]
+!49 = metadata !{i32 786433, null, null, metadata !"", i32 0, i64 512, i64 16, i32 0, i32 0, metadata !16, metadata !50, i32 0, null, null, null} ; [ DW_TAG_array_type ] [line 0, size 512, align 16, offset 0] [from short]
+!50 = metadata !{metadata !51}
+!51 = metadata !{i32 786465, i64 0, i64 32}       ; [ DW_TAG_subrange_type ] [0, 31]
+!52 = metadata !{i32 2, metadata !"Dwarf Version", i32 2}
+!53 = metadata !{i32 2, metadata !"Debug Info Version", i32 1}
+!54 = metadata !{metadata !"clang version 3.5.0 (tags/RELEASE_350/final)"}
+!55 = metadata !{i32 786689, metadata !4, metadata !"base", metadata !6, i32 16777228, metadata !10, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [base] [line 12]
+!56 = metadata !{i32 12, i32 22, metadata !4, null}
+!57 = metadata !{i32 786689, metadata !4, metadata !"num", metadata !6, i32 33554444, metadata !9, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [num] [line 12]
+!58 = metadata !{i32 12, i32 32, metadata !4, null}
+!59 = metadata !{i32 786689, metadata !4, metadata !"wid", metadata !6, i32 50331660, metadata !9, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [wid] [line 12]
+!60 = metadata !{i32 12, i32 41, metadata !4, null}
+!61 = metadata !{i32 13, i32 2, metadata !4, null}
+!62 = metadata !{i32 786688, metadata !63, metadata !"i", metadata !6, i32 15, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [i] [line 15]
+!63 = metadata !{i32 786443, metadata !5, metadata !64, i32 15, i32 3, i32 0, i32 1} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h]
+!64 = metadata !{i32 786443, metadata !5, metadata !4, i32 13, i32 14, i32 0, i32 0} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h]
+!65 = metadata !{i32 15, i32 11, metadata !63, null}
+!66 = metadata !{i32 15, i32 7, metadata !63, null}
+!67 = metadata !{i32 16, i32 4, metadata !63, null}
+!68 = metadata !{i32 15, i32 23, metadata !63, null}
+!69 = metadata !{i32 17, i32 3, metadata !64, null}
+!70 = metadata !{i32 786688, metadata !71, metadata !"i", metadata !6, i32 19, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [i] [line 19]
+!71 = metadata !{i32 786443, metadata !5, metadata !64, i32 19, i32 3, i32 0, i32 2} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h]
+!72 = metadata !{i32 19, i32 11, metadata !71, null}
+!73 = metadata !{i32 19, i32 7, metadata !71, null}
+!74 = metadata !{i32 20, i32 4, metadata !71, null}
+!75 = metadata !{i32 19, i32 23, metadata !71, null}
+!76 = metadata !{i32 21, i32 3, metadata !64, null}
+!77 = metadata !{i32 786688, metadata !78, metadata !"i", metadata !6, i32 23, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [i] [line 23]
+!78 = metadata !{i32 786443, metadata !5, metadata !64, i32 23, i32 3, i32 0, i32 3} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_debug.h]
+!79 = metadata !{i32 23, i32 11, metadata !78, null}
+!80 = metadata !{i32 23, i32 7, metadata !78, null}
+!81 = metadata !{i32 24, i32 4, metadata !78, null}
+!82 = metadata !{i32 23, i32 23, metadata !78, null}
+!83 = metadata !{i32 25, i32 3, metadata !64, null}
+!84 = metadata !{i32 27, i32 3, metadata !64, null}
+!85 = metadata !{i32 29, i32 1, metadata !4, null}
+!86 = metadata !{i32 786689, metadata !11, metadata !"n", metadata !12, i32 16777233, metadata !9, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [n] [line 17]
+!87 = metadata !{i32 17, i32 22, metadata !11, null}
+!88 = metadata !{i32 786689, metadata !11, metadata !"x", metadata !12, i32 33554449, metadata !15, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [x] [line 17]
+!89 = metadata !{i32 17, i32 32, metadata !11, null}
+!90 = metadata !{i32 786688, metadata !11, metadata !"temp", metadata !12, i32 21, metadata !16, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [temp] [line 21]
+!91 = metadata !{i32 21, i32 9, metadata !11, null}
+!92 = metadata !{i32 786688, metadata !93, metadata !"i", metadata !12, i32 22, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [i] [line 22]
+!93 = metadata !{i32 786443, metadata !1, metadata !11, i32 22, i32 3, i32 0, i32 4} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!94 = metadata !{i32 22, i32 12, metadata !93, null}
+!95 = metadata !{i32 22, i32 8, metadata !93, null}
+!96 = metadata !{i32 786688, metadata !93, metadata !"j", metadata !12, i32 22, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [j] [line 22]
+!97 = metadata !{i32 22, i32 19, metadata !93, null}
+!98 = metadata !{i32 786688, metadata !99, metadata !"k", metadata !12, i32 23, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [k] [line 23]
+!99 = metadata !{i32 786443, metadata !1, metadata !100, i32 23, i32 5, i32 0, i32 6} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!100 = metadata !{i32 786443, metadata !1, metadata !93, i32 22, i32 42, i32 0, i32 5} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!101 = metadata !{i32 23, i32 14, metadata !99, null}
+!102 = metadata !{i32 23, i32 10, metadata !99, null}
+!103 = metadata !{i32 23, i32 39, metadata !99, null}
+!104 = metadata !{i32 24, i32 9, metadata !105, null}
+!105 = metadata !{i32 786443, metadata !1, metadata !100, i32 24, i32 9, i32 0, i32 7} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!106 = metadata !{i32 25, i32 6, metadata !107, null}
+!107 = metadata !{i32 786443, metadata !1, metadata !105, i32 24, i32 15, i32 0, i32 8} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!108 = metadata !{i32 26, i32 6, metadata !107, null}
+!109 = metadata !{i32 27, i32 6, metadata !107, null}
+!110 = metadata !{i32 28, i32 6, metadata !107, null}
+!111 = metadata !{i32 29, i32 6, metadata !107, null}
+!112 = metadata !{i32 30, i32 6, metadata !107, null}
+!113 = metadata !{i32 31, i32 5, metadata !107, null}
+!114 = metadata !{i32 32, i32 3, metadata !100, null}
+!115 = metadata !{i32 22, i32 37, metadata !93, null}
+!116 = metadata !{i32 33, i32 1, metadata !11, null}
+!117 = metadata !{i32 71, i32 4, metadata !118, null}
+!118 = metadata !{i32 786443, metadata !1, metadata !119, i32 70, i32 19, i32 0, i32 24} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!119 = metadata !{i32 786443, metadata !1, metadata !120, i32 70, i32 11, i32 0, i32 23} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!120 = metadata !{i32 786443, metadata !1, metadata !121, i32 57, i32 11, i32 0, i32 17} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!121 = metadata !{i32 786443, metadata !1, metadata !122, i32 43, i32 6, i32 0, i32 11} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!122 = metadata !{i32 786443, metadata !1, metadata !123, i32 40, i32 35, i32 0, i32 10} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!123 = metadata !{i32 786443, metadata !1, metadata !17, i32 40, i32 2, i32 0, i32 9} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!124 = metadata !{i32 78, i32 4, metadata !125, null}
+!125 = metadata !{i32 786443, metadata !1, metadata !126, i32 77, i32 19, i32 0, i32 28} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!126 = metadata !{i32 786443, metadata !1, metadata !119, i32 77, i32 11, i32 0, i32 27} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!127 = metadata !{i32 85, i32 4, metadata !128, null}
+!128 = metadata !{i32 786443, metadata !1, metadata !129, i32 84, i32 19, i32 0, i32 32} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!129 = metadata !{i32 786443, metadata !1, metadata !126, i32 84, i32 11, i32 0, i32 31} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!130 = metadata !{i32 92, i32 4, metadata !131, null}
+!131 = metadata !{i32 786443, metadata !1, metadata !129, i32 91, i32 7, i32 0, i32 35} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!132 = metadata !{i32 100, i32 4, metadata !133, null}
+!133 = metadata !{i32 786443, metadata !1, metadata !134, i32 98, i32 13, i32 0, i32 39} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!134 = metadata !{i32 786443, metadata !1, metadata !122, i32 98, i32 6, i32 0, i32 38} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!135 = metadata !{i32 58, i32 4, metadata !136, null} ; [ DW_TAG_imported_module ]
+!136 = metadata !{i32 786443, metadata !1, metadata !120, i32 57, i32 20, i32 0, i32 18} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!137 = metadata !{i32 44, i32 4, metadata !138, null}
+!138 = metadata !{i32 786443, metadata !1, metadata !121, i32 43, i32 15, i32 0, i32 12} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!139 = metadata !{i32 786689, metadata !17, metadata !"x", metadata !12, i32 16777250, metadata !15, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [x] [line 34]
+!140 = metadata !{i32 34, i32 23, metadata !17, null}
+!141 = metadata !{i32 786689, metadata !17, metadata !"w", metadata !12, i32 33554466, metadata !15, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [w] [line 34]
+!142 = metadata !{i32 34, i32 33, metadata !17, null}
+!143 = metadata !{i32 786689, metadata !17, metadata !"nx", metadata !12, i32 50331682, metadata !9, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [nx] [line 34]
+!144 = metadata !{i32 34, i32 40, metadata !17, null}
+!145 = metadata !{i32 786688, metadata !17, metadata !"n1", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [n1] [line 35]
+!146 = metadata !{i32 35, i32 6, metadata !17, null}
+!147 = metadata !{i32 786688, metadata !17, metadata !"n2", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [n2] [line 35]
+!148 = metadata !{i32 35, i32 9, metadata !17, null}
+!149 = metadata !{i32 786688, metadata !17, metadata !"ie", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [ie] [line 35]
+!150 = metadata !{i32 35, i32 12, metadata !17, null}
+!151 = metadata !{i32 786688, metadata !17, metadata !"ia", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [ia] [line 35]
+!152 = metadata !{i32 35, i32 15, metadata !17, null}
+!153 = metadata !{i32 786688, metadata !17, metadata !"i", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [i] [line 35]
+!154 = metadata !{i32 35, i32 18, metadata !17, null}
+!155 = metadata !{i32 786688, metadata !17, metadata !"j", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [j] [line 35]
+!156 = metadata !{i32 35, i32 20, metadata !17, null}
+!157 = metadata !{i32 786688, metadata !17, metadata !"k", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [k] [line 35]
+!158 = metadata !{i32 35, i32 22, metadata !17, null}
+!159 = metadata !{i32 786688, metadata !17, metadata !"l", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [l] [line 35]
+!160 = metadata !{i32 35, i32 24, metadata !17, null}
+!161 = metadata !{i32 786688, metadata !17, metadata !"m", metadata !12, i32 35, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [m] [line 35]
+!162 = metadata !{i32 35, i32 26, metadata !17, null}
+!163 = metadata !{i32 786688, metadata !17, metadata !"xt", metadata !12, i32 36, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [xt] [line 36]
+!164 = metadata !{i32 36, i32 6, metadata !17, null}
+!165 = metadata !{i32 786688, metadata !17, metadata !"yt", metadata !12, i32 36, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [yt] [line 36]
+!166 = metadata !{i32 36, i32 9, metadata !17, null}
+!167 = metadata !{i32 786688, metadata !17, metadata !"c", metadata !12, i32 36, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [c] [line 36]
+!168 = metadata !{i32 36, i32 12, metadata !17, null}
+!169 = metadata !{i32 786688, metadata !17, metadata !"s", metadata !12, i32 36, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [s] [line 36]
+!170 = metadata !{i32 36, i32 14, metadata !17, null}
+!171 = metadata !{i32 786688, metadata !17, metadata !"mid_a", metadata !12, i32 37, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [mid_a] [line 37]
+!172 = metadata !{i32 37, i32 6, metadata !17, null}
+!173 = metadata !{i32 786688, metadata !17, metadata !"mid_b", metadata !12, i32 37, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [mid_b] [line 37]
+!174 = metadata !{i32 37, i32 12, metadata !17, null}
+!175 = metadata !{i32 38, i32 2, metadata !17, null}
+!176 = metadata !{i32 39, i32 2, metadata !17, null}
+!177 = metadata !{i32 40, i32 7, metadata !123, null}
+!178 = metadata !{i32 41, i32 3, metadata !122, null}
+!179 = metadata !{i32 42, i32 3, metadata !122, null}
+!180 = metadata !{i32 43, i32 6, metadata !121, null}
+!181 = metadata !{i32 786689, metadata !23, metadata !"vpnum", metadata !25, i32 16777229, metadata !9, i32 0, i32 0} ; [ DW_TAG_arg_variable ] [vpnum] [line 13]
+!182 = metadata !{i32 13, i32 26, metadata !23, metadata !137}
+!183 = metadata !{i32 786688, metadata !23, metadata !"vpsel", metadata !25, i32 14, metadata !30, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [vpsel] [line 14]
+!184 = metadata !{i32 14, i32 23, metadata !23, metadata !137}
+!185 = metadata !{i32 14, i32 2, metadata !23, metadata !137}
+!186 = metadata !{i32 15, i32 2, metadata !23, metadata !137}
+!187 = metadata !{i32 16, i32 10, metadata !188, metadata !137}
+!188 = metadata !{i32 786443, metadata !24, metadata !23, i32 15, i32 15, i32 0, i32 45} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/D:\CIC\Swift_IDE_Toolchain\toolchain_8slot\include\swift_math.h]
+!189 = metadata !{i32 16, i32 23, metadata !188, metadata !137}
+!190 = metadata !{i32 17, i32 10, metadata !188, metadata !137}
+!191 = metadata !{i32 17, i32 23, metadata !188, metadata !137}
+!192 = metadata !{i32 18, i32 10, metadata !188, metadata !137}
+!193 = metadata !{i32 18, i32 23, metadata !188, metadata !137}
+!194 = metadata !{i32 19, i32 10, metadata !188, metadata !137}
+!195 = metadata !{i32 19, i32 23, metadata !188, metadata !137}
+!196 = metadata !{i32 20, i32 10, metadata !188, metadata !137}
+!197 = metadata !{i32 20, i32 23, metadata !188, metadata !137}
+!198 = metadata !{i32 22, i32 3, metadata !188, metadata !137}
+!199 = metadata !{i32 24, i32 2, metadata !23, metadata !137}
+!200 = metadata !{i32 25, i32 1, metadata !23, metadata !137}
+!201 = metadata !{i32 45, i32 9, metadata !202, null}
+!202 = metadata !{i32 786443, metadata !1, metadata !138, i32 45, i32 4, i32 0, i32 13} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!203 = metadata !{i32 46, i32 5, metadata !204, null}
+!204 = metadata !{i32 786443, metadata !1, metadata !202, i32 45, i32 29, i32 0, i32 14} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!205 = metadata !{i32 786688, metadata !204, metadata !"time", metadata !12, i32 47, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [time] [line 47]
+!206 = metadata !{i32 47, i32 9, metadata !204, null}
+!207 = metadata !{i32 48, i32 5, metadata !204, null}
+!208 = metadata !{i32 49, i32 10, metadata !209, null}
+!209 = metadata !{i32 786443, metadata !1, metadata !204, i32 49, i32 5, i32 0, i32 15} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!210 = metadata !{i32 50, i32 6, metadata !211, null}
+!211 = metadata !{i32 786443, metadata !1, metadata !209, i32 49, i32 33, i32 0, i32 16} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!212 = metadata !{i32 51, i32 6, metadata !211, null}
+!213 = metadata !{i32 52, i32 6, metadata !211, null}
+!214 = metadata !{i32 53, i32 6, metadata !211, null}
+!215 = metadata !{i32 54, i32 5, metadata !211, null}
+!216 = metadata !{i32 49, i32 25, metadata !209, null}
+!217 = metadata !{i32 55, i32 4, metadata !204, null}
+!218 = metadata !{i32 45, i32 22, metadata !202, null}
+!219 = metadata !{i32 56, i32 3, metadata !138, null}
+!220 = metadata !{i32 57, i32 11, metadata !120, null}
+!221 = metadata !{i32 13, i32 26, metadata !23, metadata !135}
+!222 = metadata !{i32 14, i32 23, metadata !23, metadata !135}
+!223 = metadata !{i32 14, i32 2, metadata !23, metadata !135}
+!224 = metadata !{i32 15, i32 2, metadata !23, metadata !135}
+!225 = metadata !{i32 16, i32 10, metadata !188, metadata !135}
+!226 = metadata !{i32 16, i32 23, metadata !188, metadata !135}
+!227 = metadata !{i32 17, i32 10, metadata !188, metadata !135}
+!228 = metadata !{i32 17, i32 23, metadata !188, metadata !135}
+!229 = metadata !{i32 18, i32 10, metadata !188, metadata !135}
+!230 = metadata !{i32 18, i32 23, metadata !188, metadata !135}
+!231 = metadata !{i32 19, i32 10, metadata !188, metadata !135}
+!232 = metadata !{i32 19, i32 23, metadata !188, metadata !135}
+!233 = metadata !{i32 20, i32 10, metadata !188, metadata !135}
+!234 = metadata !{i32 20, i32 23, metadata !188, metadata !135}
+!235 = metadata !{i32 22, i32 3, metadata !188, metadata !135}
+!236 = metadata !{i32 24, i32 2, metadata !23, metadata !135}
+!237 = metadata !{i32 25, i32 1, metadata !23, metadata !135}
+!238 = metadata !{i32 59, i32 9, metadata !239, null}
+!239 = metadata !{i32 786443, metadata !1, metadata !136, i32 59, i32 4, i32 0, i32 19} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!240 = metadata !{i32 60, i32 5, metadata !241, null}
+!241 = metadata !{i32 786443, metadata !1, metadata !239, i32 59, i32 29, i32 0, i32 20} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!242 = metadata !{i32 786688, metadata !241, metadata !"time", metadata !12, i32 61, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [time] [line 61]
+!243 = metadata !{i32 61, i32 9, metadata !241, null}
+!244 = metadata !{i32 61, i32 5, metadata !241, null}
+!245 = metadata !{i32 62, i32 10, metadata !246, null}
+!246 = metadata !{i32 786443, metadata !1, metadata !241, i32 62, i32 5, i32 0, i32 21} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!247 = metadata !{i32 63, i32 6, metadata !248, null}
+!248 = metadata !{i32 786443, metadata !1, metadata !246, i32 62, i32 33, i32 0, i32 22} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!249 = metadata !{i32 64, i32 6, metadata !248, null}
+!250 = metadata !{i32 65, i32 6, metadata !248, null}
+!251 = metadata !{i32 66, i32 6, metadata !248, null}
+!252 = metadata !{i32 67, i32 5, metadata !248, null}
+!253 = metadata !{i32 62, i32 25, metadata !246, null}
+!254 = metadata !{i32 68, i32 4, metadata !241, null}
+!255 = metadata !{i32 59, i32 22, metadata !239, null}
+!256 = metadata !{i32 69, i32 3, metadata !136, null}
+!257 = metadata !{i32 70, i32 11, metadata !119, null}
+!258 = metadata !{i32 13, i32 26, metadata !23, metadata !117}
+!259 = metadata !{i32 14, i32 23, metadata !23, metadata !117}
+!260 = metadata !{i32 14, i32 2, metadata !23, metadata !117}
+!261 = metadata !{i32 15, i32 2, metadata !23, metadata !117}
+!262 = metadata !{i32 16, i32 10, metadata !188, metadata !117}
+!263 = metadata !{i32 16, i32 23, metadata !188, metadata !117}
+!264 = metadata !{i32 17, i32 10, metadata !188, metadata !117}
+!265 = metadata !{i32 17, i32 23, metadata !188, metadata !117}
+!266 = metadata !{i32 18, i32 10, metadata !188, metadata !117}
+!267 = metadata !{i32 18, i32 23, metadata !188, metadata !117}
+!268 = metadata !{i32 19, i32 10, metadata !188, metadata !117}
+!269 = metadata !{i32 19, i32 23, metadata !188, metadata !117}
+!270 = metadata !{i32 20, i32 10, metadata !188, metadata !117}
+!271 = metadata !{i32 20, i32 23, metadata !188, metadata !117}
+!272 = metadata !{i32 22, i32 3, metadata !188, metadata !117}
+!273 = metadata !{i32 24, i32 2, metadata !23, metadata !117}
+!274 = metadata !{i32 25, i32 1, metadata !23, metadata !117}
+!275 = metadata !{i32 72, i32 9, metadata !276, null}
+!276 = metadata !{i32 786443, metadata !1, metadata !118, i32 72, i32 4, i32 0, i32 25} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!277 = metadata !{i32 73, i32 5, metadata !278, null}
+!278 = metadata !{i32 786443, metadata !1, metadata !276, i32 72, i32 29, i32 0, i32 26} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!279 = metadata !{i32 74, i32 5, metadata !278, null}
+!280 = metadata !{i32 75, i32 5, metadata !278, null}
+!281 = metadata !{i32 72, i32 22, metadata !276, null}
+!282 = metadata !{i32 76, i32 3, metadata !118, null}
+!283 = metadata !{i32 77, i32 11, metadata !126, null}
+!284 = metadata !{i32 13, i32 26, metadata !23, metadata !124}
+!285 = metadata !{i32 14, i32 23, metadata !23, metadata !124}
+!286 = metadata !{i32 14, i32 2, metadata !23, metadata !124}
+!287 = metadata !{i32 15, i32 2, metadata !23, metadata !124}
+!288 = metadata !{i32 16, i32 10, metadata !188, metadata !124}
+!289 = metadata !{i32 16, i32 23, metadata !188, metadata !124}
+!290 = metadata !{i32 17, i32 10, metadata !188, metadata !124}
+!291 = metadata !{i32 17, i32 23, metadata !188, metadata !124}
+!292 = metadata !{i32 18, i32 10, metadata !188, metadata !124}
+!293 = metadata !{i32 18, i32 23, metadata !188, metadata !124}
+!294 = metadata !{i32 19, i32 10, metadata !188, metadata !124}
+!295 = metadata !{i32 19, i32 23, metadata !188, metadata !124}
+!296 = metadata !{i32 20, i32 10, metadata !188, metadata !124}
+!297 = metadata !{i32 20, i32 23, metadata !188, metadata !124}
+!298 = metadata !{i32 22, i32 3, metadata !188, metadata !124}
+!299 = metadata !{i32 24, i32 2, metadata !23, metadata !124}
+!300 = metadata !{i32 25, i32 1, metadata !23, metadata !124}
+!301 = metadata !{i32 79, i32 8, metadata !302, null}
+!302 = metadata !{i32 786443, metadata !1, metadata !125, i32 79, i32 4, i32 0, i32 29} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!303 = metadata !{i32 80, i32 5, metadata !304, null}
+!304 = metadata !{i32 786443, metadata !1, metadata !302, i32 79, i32 28, i32 0, i32 30} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!305 = metadata !{i32 81, i32 5, metadata !304, null}
+!306 = metadata !{i32 82, i32 4, metadata !304, null}
+!307 = metadata !{i32 79, i32 22, metadata !302, null}
+!308 = metadata !{i32 83, i32 3, metadata !125, null}
+!309 = metadata !{i32 84, i32 11, metadata !129, null}
+!310 = metadata !{i32 13, i32 26, metadata !23, metadata !127}
+!311 = metadata !{i32 14, i32 23, metadata !23, metadata !127}
+!312 = metadata !{i32 14, i32 2, metadata !23, metadata !127}
+!313 = metadata !{i32 15, i32 2, metadata !23, metadata !127}
+!314 = metadata !{i32 16, i32 10, metadata !188, metadata !127}
+!315 = metadata !{i32 16, i32 23, metadata !188, metadata !127}
+!316 = metadata !{i32 17, i32 10, metadata !188, metadata !127}
+!317 = metadata !{i32 17, i32 23, metadata !188, metadata !127}
+!318 = metadata !{i32 18, i32 10, metadata !188, metadata !127}
+!319 = metadata !{i32 18, i32 23, metadata !188, metadata !127}
+!320 = metadata !{i32 19, i32 10, metadata !188, metadata !127}
+!321 = metadata !{i32 19, i32 23, metadata !188, metadata !127}
+!322 = metadata !{i32 20, i32 10, metadata !188, metadata !127}
+!323 = metadata !{i32 20, i32 23, metadata !188, metadata !127}
+!324 = metadata !{i32 22, i32 3, metadata !188, metadata !127}
+!325 = metadata !{i32 24, i32 2, metadata !23, metadata !127}
+!326 = metadata !{i32 25, i32 1, metadata !23, metadata !127}
+!327 = metadata !{i32 86, i32 8, metadata !328, null}
+!328 = metadata !{i32 786443, metadata !1, metadata !128, i32 86, i32 4, i32 0, i32 33} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!329 = metadata !{i32 87, i32 5, metadata !330, null}
+!330 = metadata !{i32 786443, metadata !1, metadata !328, i32 86, i32 28, i32 0, i32 34} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!331 = metadata !{i32 88, i32 5, metadata !330, null}
+!332 = metadata !{i32 89, i32 4, metadata !330, null}
+!333 = metadata !{i32 86, i32 22, metadata !328, null}
+!334 = metadata !{i32 90, i32 3, metadata !128, null}
+!335 = metadata !{i32 13, i32 26, metadata !23, metadata !130}
+!336 = metadata !{i32 14, i32 23, metadata !23, metadata !130}
+!337 = metadata !{i32 14, i32 2, metadata !23, metadata !130}
+!338 = metadata !{i32 15, i32 2, metadata !23, metadata !130}
+!339 = metadata !{i32 16, i32 10, metadata !188, metadata !130}
+!340 = metadata !{i32 16, i32 23, metadata !188, metadata !130}
+!341 = metadata !{i32 17, i32 10, metadata !188, metadata !130}
+!342 = metadata !{i32 17, i32 23, metadata !188, metadata !130}
+!343 = metadata !{i32 18, i32 10, metadata !188, metadata !130}
+!344 = metadata !{i32 18, i32 23, metadata !188, metadata !130}
+!345 = metadata !{i32 19, i32 10, metadata !188, metadata !130}
+!346 = metadata !{i32 19, i32 23, metadata !188, metadata !130}
+!347 = metadata !{i32 20, i32 10, metadata !188, metadata !130}
+!348 = metadata !{i32 20, i32 23, metadata !188, metadata !130}
+!349 = metadata !{i32 22, i32 3, metadata !188, metadata !130}
+!350 = metadata !{i32 24, i32 2, metadata !23, metadata !130}
+!351 = metadata !{i32 25, i32 1, metadata !23, metadata !130}
+!352 = metadata !{i32 93, i32 8, metadata !353, null}
+!353 = metadata !{i32 786443, metadata !1, metadata !131, i32 93, i32 4, i32 0, i32 36} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!354 = metadata !{i32 94, i32 5, metadata !355, null}
+!355 = metadata !{i32 786443, metadata !1, metadata !353, i32 93, i32 28, i32 0, i32 37} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!356 = metadata !{i32 95, i32 5, metadata !355, null}
+!357 = metadata !{i32 96, i32 4, metadata !355, null}
+!358 = metadata !{i32 93, i32 22, metadata !353, null}
+!359 = metadata !{i32 98, i32 6, metadata !134, null}
+!360 = metadata !{i32 786688, metadata !133, metadata !"step", metadata !12, i32 99, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [step] [line 99]
+!361 = metadata !{i32 99, i32 8, metadata !133, null}
+!362 = metadata !{i32 99, i32 4, metadata !133, null}
+!363 = metadata !{i32 13, i32 26, metadata !23, metadata !132}
+!364 = metadata !{i32 14, i32 23, metadata !23, metadata !132}
+!365 = metadata !{i32 14, i32 2, metadata !23, metadata !132}
+!366 = metadata !{i32 15, i32 2, metadata !23, metadata !132}
+!367 = metadata !{i32 16, i32 10, metadata !188, metadata !132}
+!368 = metadata !{i32 16, i32 23, metadata !188, metadata !132}
+!369 = metadata !{i32 17, i32 10, metadata !188, metadata !132}
+!370 = metadata !{i32 17, i32 23, metadata !188, metadata !132}
+!371 = metadata !{i32 18, i32 10, metadata !188, metadata !132}
+!372 = metadata !{i32 18, i32 23, metadata !188, metadata !132}
+!373 = metadata !{i32 19, i32 10, metadata !188, metadata !132}
+!374 = metadata !{i32 19, i32 23, metadata !188, metadata !132}
+!375 = metadata !{i32 20, i32 10, metadata !188, metadata !132}
+!376 = metadata !{i32 20, i32 23, metadata !188, metadata !132}
+!377 = metadata !{i32 22, i32 3, metadata !188, metadata !132}
+!378 = metadata !{i32 24, i32 2, metadata !23, metadata !132}
+!379 = metadata !{i32 25, i32 1, metadata !23, metadata !132}
+!380 = metadata !{i32 786688, metadata !381, metadata !"p", metadata !12, i32 101, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [p] [line 101]
+!381 = metadata !{i32 786443, metadata !1, metadata !133, i32 101, i32 4, i32 0, i32 40} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!382 = metadata !{i32 101, i32 12, metadata !381, null}
+!383 = metadata !{i32 101, i32 8, metadata !381, null}
+!384 = metadata !{i32 102, i32 5, metadata !385, null}
+!385 = metadata !{i32 786443, metadata !1, metadata !381, i32 101, i32 35, i32 0, i32 41} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!386 = metadata !{i32 103, i32 5, metadata !385, null}
+!387 = metadata !{i32 104, i32 4, metadata !385, null}
+!388 = metadata !{i32 101, i32 27, metadata !381, null}
+!389 = metadata !{i32 105, i32 3, metadata !133, null}
+!390 = metadata !{i32 786688, metadata !391, metadata !"p", metadata !12, i32 107, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [p] [line 107]
+!391 = metadata !{i32 786443, metadata !1, metadata !392, i32 107, i32 5, i32 0, i32 43} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!392 = metadata !{i32 786443, metadata !1, metadata !134, i32 106, i32 7, i32 0, i32 42} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!393 = metadata !{i32 107, i32 13, metadata !391, null}
+!394 = metadata !{i32 107, i32 9, metadata !391, null}
+!395 = metadata !{i32 108, i32 7, metadata !396, null}
+!396 = metadata !{i32 786443, metadata !1, metadata !391, i32 107, i32 33, i32 0, i32 44} ; [ DW_TAG_lexical_block ] [D:\eclipse\workspace\fft_16x16\Release/..\fft_16x16.c]
+!397 = metadata !{i32 109, i32 7, metadata !396, null}
+!398 = metadata !{i32 110, i32 6, metadata !396, null}
+!399 = metadata !{i32 107, i32 28, metadata !391, null}
+!400 = metadata !{i32 112, i32 2, metadata !122, null}
+!401 = metadata !{i32 40, i32 21, metadata !123, null}
+!402 = metadata !{i32 113, i32 2, metadata !17, null}
+!403 = metadata !{i32 114, i32 1, metadata !17, null}
+!404 = metadata !{i32 786688, metadata !20, metadata !"ndata", metadata !12, i32 116, metadata !9, i32 0, i32 0} ; [ DW_TAG_auto_variable ] [ndata] [line 116]
+!405 = metadata !{i32 116, i32 6, metadata !20, null}
+!406 = metadata !{i32 116, i32 2, metadata !20, null}
+!407 = metadata !{i32 117, i32 2, metadata !20, null}
+!408 = metadata !{i32 118, i32 2, metadata !20, null}
+!409 = metadata !{i32 119, i32 2, metadata !20, null}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;fft_16x16/rotation_factor_asm.s&apos; to &apos;fft_16x16_rotation_factor_asm.s&apos;" description="Rename resource &apos;rotation_factor_asm.s&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="rotation_factor_asm.s" name="fft_16x16_rotation_factor_asm.s" stamp="1600430567371" updateReferences="true"/>
+</session>
